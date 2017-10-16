@@ -10,6 +10,8 @@ namespace POP_40_2016
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Dobro dosli u salon namestaja");
+            Console.WriteLine("Izlistaj sve salone, dodaj nov salon, izlistaj sav namestaj, dodaj novi namestaj");
 
         }
     }
