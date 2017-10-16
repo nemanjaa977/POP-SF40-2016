@@ -14,6 +14,6 @@ namespace POP_40_2016.Model
         public DateTime DatumProdaje { get; set; }
         public string BrojRacuna { get; set; }
         public string Kupac { get; set;}
-
+        public List<DodatnaUsluga> DodatnaUsluga { get; set; }
     }
 }

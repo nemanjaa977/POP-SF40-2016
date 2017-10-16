@@ -18,7 +18,6 @@ namespace POP_40_2016.Model
 
         public double PDV { get; set; }
 
-        public List<DodatnaUsluga>DodatnaUsluga { get; set; }
 
         public double UkupanIznos { get; set; }
 
