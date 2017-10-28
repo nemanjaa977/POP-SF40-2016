@@ -26,6 +26,6 @@ namespace POP_40_2016.Model
 
         public int MaticniBroj { get; set; }
 
-        public int BrojZiroRacuna { get; set; }
+        public string BrojZiroRacuna { get; set; }
     }
 }

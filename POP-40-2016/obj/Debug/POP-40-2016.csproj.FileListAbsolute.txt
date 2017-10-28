@@ -1,2 +1,9 @@
 c:\users\temp.ftn.001\documents\visual studio 2015\Projects\POP-40-2016\POP-40-2016\bin\Debug\POP-40-2016.exe.config
 C:\Users\TEMP.FTN.001\POP-SF40-2016\POP-40-2016\bin\Debug\POP-40-2016.exe.config
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\bin\Debug\POP-40-2016.exe.config
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\bin\Debug\POP-40-2016.exe
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\bin\Debug\POP-40-2016.pdb
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\obj\Debug\POP-40-2016.csprojResolveAssemblyReference.cache
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\obj\Debug\POP-40-2016.csproj.CoreCompileInputs.cache
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\obj\Debug\POP-40-2016.exe
+C:\Users\nemanja97\POP-SF40-2016\POP-40-2016\obj\Debug\POP-40-2016.pdb
