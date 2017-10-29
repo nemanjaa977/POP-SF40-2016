@@ -81,10 +81,10 @@ namespace POP_40_2016
 
             }
         }
+
         private static void IspisMenijaRadSaNamestajem()
         {
             int izbor = 0;
-
             do
             {
                 Console.WriteLine("=== Meni Namestaj ===");
@@ -98,7 +98,6 @@ namespace POP_40_2016
             } while (izbor < 0 || izbor > 4);
 
             izbor = int.Parse(Console.ReadLine());
-
             switch (izbor)
             {
                 case 0:
@@ -135,9 +134,7 @@ namespace POP_40_2016
                     n.Obrisan = true;
                     Console.WriteLine("=== Uspesno brisanje ===\n");
                     break;
-                }
-                
-               
+                } 
             }
             
             IspisMenijaRadSaNamestajem();
@@ -152,10 +149,7 @@ namespace POP_40_2016
                 {
                     IspisMenijaIzmenaNamestaja(idZaIzmenu);
                 }
-                else
-                {
-                    Console.WriteLine("Namestaj s tim ID-jem ne postoji");
-                }
+               
             }
         }
 
@@ -180,7 +174,6 @@ namespace POP_40_2016
             int idNamestaja = Namestaj.Count+1;
             noviNamestaj.Id = idNamestaja;
             
-
             int Id = 0;
             TipNamestaja trazeniTipNamestaja = null;
             do
@@ -202,7 +195,6 @@ namespace POP_40_2016
             Namestaj.Add(noviNamestaj);
 
             IspisMenijaRadSaNamestajem();
-
         }
 
         private static void IzlistajNamestaj()
@@ -223,7 +215,6 @@ namespace POP_40_2016
         private static void IspisMenijaIzmenaNamestaja(int idZaPromenu)
         {
             int izbor = 0;
-
             do
             {
                 Console.WriteLine("1. Izmeni Naziv");
@@ -234,7 +225,6 @@ namespace POP_40_2016
                 Console.WriteLine("0. Izlaz\n");
 
                 izbor = int.Parse(Console.ReadLine());
-
                 switch (izbor)
                 {
                     case 0:
@@ -255,8 +245,6 @@ namespace POP_40_2016
                     case 5:
                         IzmenaKolicineUMagacinu(idZaPromenu);
                         break;
-
-
                 }
 
             } while (izbor < 0 || izbor > 5);
@@ -380,10 +368,112 @@ namespace POP_40_2016
 
             switch (izbor)
             {
+                case 0:
+                    IspisGlavnogMenija();
+                    break;
+                case 1:
+                    IzlistajTipNamestaja();
+                    break;
+                case 2:
+                    DodajNoviTipNamestaja();
+                    break;
+                case 3:
+                    Console.WriteLine("Unesi Id tipa namestaja za izmenu");
+                    int IdZaIzmenu = int.Parse(Console.ReadLine());
+                    IzmeniTipNamestaja(IdZaIzmenu);
+                    break;
+                case 4:
+                    Console.WriteLine("Unesi Id tipa namestaja za brisanje");
+                    int IdZaBrisanje = int.Parse(Console.ReadLine());
+                    BrisanjeTipaNamestaja(IdZaBrisanje);
+                    break;
                 default:
                     break;
             }
         }
+
+        private static void DodajNoviTipNamestaja()
+        {
+            Console.WriteLine("Unesite naziv tipa namestaja: ");
+            string inaziv = Console.ReadLine();
+
+            var tn = new TipNamestaja()
+            {
+                Naziv = inaziv,
+                Id = TipoviNamestaja.Count + 1
+
+        };
+            TipoviNamestaja.Add(tn);
+            IspisMenijaRadSaTipomNamestaja();
+      
+        }
+
+        private static void BrisanjeTipaNamestaja(int idZaBrisanje)
+        {
+
+            foreach (TipNamestaja t in TipoviNamestaja)
+            {
+                if (t.Id == idZaBrisanje)
+                {
+                    t.Obrisan = true;
+                    Console.WriteLine("=== Uspesno brisanje ===\n");
+                    break;
+                }
+
+            }
+
+            IspisMenijaRadSaTipomNamestaja();
+        }
+
+        private static void IzlistajTipNamestaja()
+        {
+            Console.WriteLine("--- Izlistavanje tipa namestaja ---");
+
+            for (int i = 0; i < TipoviNamestaja.Count; i++)
+            {
+                if (!TipoviNamestaja[i].Obrisan)
+                {
+                    Console.WriteLine($"{i + 1}. { TipoviNamestaja[i].Id}, naziv: {TipoviNamestaja[i].Naziv}\n");
+                }
+            }
+
+            IspisMenijaRadSaTipomNamestaja();
+        }
+
+
+        private static void IzmeniTipNamestaja(int idZaIzmenu)
+        {
+            Console.WriteLine("=== Izmena tipa namestaja ===");
+            for (int i = 0; i < TipoviNamestaja.Count; i++)
+            {
+                if (TipoviNamestaja[i].Id == idZaIzmenu)
+                {
+                    IzmenaNazivaTipaNamestaja(idZaIzmenu);
+                }
+                else
+                {
+                    Console.WriteLine("Tip namestaja s tim ID-jem ne postoji");
+                }
+            }
+        }
+
+        private static void IzmenaNazivaTipaNamestaja(int idZaPromenu)
+        {
+            Console.WriteLine("Unesite novi naziv za tip namestaja:");
+            var noviNaziv = Console.ReadLine();
+            for (int i = 0; i < TipoviNamestaja.Count; i++)
+            {
+                if (TipoviNamestaja[i].Id == idZaPromenu)
+                {
+                    TipoviNamestaja[i].Naziv = noviNaziv;
+                    break;
+                }
+
+            }
+            IspisMenijaRadSaTipomNamestaja();
+
+        }
+
 
 
     }
