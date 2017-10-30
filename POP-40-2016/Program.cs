@@ -1,4 +1,5 @@
 ﻿using POP_40_2016.Model;
+using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,10 @@ namespace POP_40_2016
                 KolicinaUMagacinu = 2,
                 JedinicnaCena =15000
             };
+
+            var akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
+            
+            Console.ReadLine();
 
             TipoviNamestaja.Add(tn1);
             TipoviNamestaja.Add(tn2);
