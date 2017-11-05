@@ -60,7 +60,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Dats\akcija.xml" />
+    <Content Include="Dats\dodatnaUsluga.xml" />
+    <Content Include="Dats\korisnik.xml" />
     <Content Include="Dats\namestaj.xml" />
+    <Content Include="Dats\tipoviNamestaja.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

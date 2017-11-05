@@ -76,5 +76,56 @@ namespace POP_40_2016.Model
             }
         }
 
+        private List<DodatnaUsluga> dodatnaUsluga;
+
+        public List<DodatnaUsluga> DodatnaUsluga
+        {
+            get
+            {
+                this.dodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");
+                return this.dodatnaUsluga;
+            }
+            set
+            {
+
+                this.dodatnaUsluga = value;
+                GenericSerializer.Serialize<DodatnaUsluga>("dodatnaUsluga.xml", dodatnaUsluga);
+            }
+        }
+
+        private List<TipNamestaja> tipoviNamestaja;
+
+        public List<TipNamestaja> TipNamestaja
+        {
+            get
+            {
+                this.tipoviNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipoviNamestaja.xml");
+                return this.tipoviNamestaja;
+            }
+            set
+            {
+
+                this.tipoviNamestaja = value;
+                GenericSerializer.Serialize<TipNamestaja>("tipoviNamestaja.xml", tipoviNamestaja);
+            }
+        }
+
+        private List<ProdajaNamestaja> prodajaNamestaja;
+
+        public List<ProdajaNamestaja> ProdajaNamestaja
+        {
+            get
+            {
+                this.prodajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+                return this.prodajaNamestaja;
+            }
+            set
+            {
+
+                this.prodajaNamestaja = value;
+                GenericSerializer.Serialize<ProdajaNamestaja>("prodajaNamestaja.xml", prodajaNamestaja);
+            }
+        }
+
     }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfDodatnaUsluga xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <DodatnaUsluga>
+    <Id>0</Id>
+    <Obrisan>false</Obrisan>
+    <Cena>0</Cena>
+    <PDV>0</PDV>
+    <UkupanIznos>0</UkupanIznos>
+  </DodatnaUsluga>
+</ArrayOfDodatnaUsluga>
