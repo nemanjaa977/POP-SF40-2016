@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Namestaj>
+    <Id>1</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Super sofa</Naziv>
+    <Sifra>12345</Sifra>
+    <JedinicnaCena>5000</JedinicnaCena>
+    <KolicinaUMagacinu>15</KolicinaUMagacinu>
+    <TipNamestajaId>1</TipNamestajaId>
+  </Namestaj>
+</ArrayOfNamestaj>

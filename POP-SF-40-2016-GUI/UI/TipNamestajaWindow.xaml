@@ -1,0 +1,16 @@
+﻿<Window x:Class="POP_SF_40_2016_GUI.UI.TipNamestajaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="TipNamestaja" Height="274.942" Width="480.279">
+    <Grid>
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Click="DodajTipNamestaja"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="24" Margin="10,39,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniTipNamestaja" />
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="24" Margin="10,68,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiTipNamestaja"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="24" Margin="10,212,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriTipNamestaja"/>
+        <ListBox HorizontalAlignment="Left" Height="226" Margin="156,10,0,0" VerticalAlignment="Top" Width="243" Name="lbTipNamestaja"/>
+    </Grid>
+</Window>

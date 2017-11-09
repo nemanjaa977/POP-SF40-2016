@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAkcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Akcija>
+    <Id>1</Id>
+    <Obrisan>false</Obrisan>
+    <DatumPocetka>2017-11-08T18:47:27.753767+01:00</DatumPocetka>
+    <DatumZavrsetka>2018-06-15T12:34:44</DatumZavrsetka>
+    <NamestajNaPopustuId>
+      <int>1</int>
+    </NamestajNaPopustuId>
+    <Popust>15000</Popust>
+  </Akcija>
+</ArrayOfAkcija>
