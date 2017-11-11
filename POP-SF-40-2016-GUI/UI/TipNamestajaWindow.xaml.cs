@@ -45,6 +45,7 @@ namespace POP_SF_40_2016_GUI.UI
 
             var tipProzor = new EditTipWindow(noviTip, EditTipWindow.Operacija.DODAVANJE);
             tipProzor.Show();
+            OSveziPrikaz();
         } 
 
         private void IzbrisiTipNamestaja(object sender, RoutedEventArgs e)
@@ -62,6 +63,7 @@ namespace POP_SF_40_2016_GUI.UI
             var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
             var tipProzor = new EditTipWindow(izabraniTip, EditTipWindow.Operacija.IZMENA);
             tipProzor.ShowDialog();
+            OSveziPrikaz();
         }
     }
 }

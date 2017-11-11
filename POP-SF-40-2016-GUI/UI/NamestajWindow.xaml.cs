@@ -49,6 +49,7 @@ namespace POP_SF_40_2016_GUI.UI
 
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
             namestajProzor.Show();
+            OSveziPrikaz();
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
@@ -56,6 +57,7 @@ namespace POP_SF_40_2016_GUI.UI
             var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
             var namestajProzor = new EditNamestajWindow(izabraniNamestaj, EditNamestajWindow.Operacija.IZMENA);
             namestajProzor.ShowDialog();
+            OSveziPrikaz();
             
         }
 

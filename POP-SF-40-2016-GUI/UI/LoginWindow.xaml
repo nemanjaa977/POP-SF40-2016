@@ -1,0 +1,18 @@
+﻿<Window x:Class="POP_SF_40_2016_GUI.UI.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="318.794" Width="513.689" Background="#FFBBC7CD">
+    <Grid>
+        <Label Content="Korisnicko ime:" HorizontalAlignment="Left" Height="29" Margin="76,125,0,0" VerticalAlignment="Top" Width="128" FontSize="15"/>
+        <Label Content="Lozinka:" HorizontalAlignment="Left" Height="29" Margin="76,179,0,0" VerticalAlignment="Top" Width="128" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="226,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="183" Name="tbIme" FontSize="15"/>
+        <TextBox HorizontalAlignment="Left" Height="29" Margin="226,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="183" Name="tbLozinka" FontSize="15"/>
+        <Label Content="Prijava" HorizontalAlignment="Left" Height="43" Margin="209,47,0,0" VerticalAlignment="Top" Width="84" FontSize="23"/>
+        <Button x:Name="btnLogin" Content="Prijavi se" HorizontalAlignment="Left" Height="20" Margin="336,224,0,0" VerticalAlignment="Top" Width="73" Click="PrijaviSe"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="20" Margin="258,224,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriProzor"/>
+    </Grid>
+</Window>

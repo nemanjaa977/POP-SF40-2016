@@ -28,10 +28,10 @@ namespace POP_SF_40_2016_GUI
             
         }
 
-        private void prikazi(object sender, RoutedEventArgs e)
+        private void UlogujSe(object sender, RoutedEventArgs e)
         {
-            var namestajWindow = new GlavniMeniWindow();
-            namestajWindow.ShowDialog();
+            var p = new LoginWindow();
+            p.ShowDialog();
         }
     }
 }

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" Background="#FFBBC7CD">
     <Grid>
-        <Button x:Name="prikaz" Content="Button" HorizontalAlignment="Left" Height="38" Margin="24,235,0,0" VerticalAlignment="Top" Width="84" Click="prikazi"/>
-
+        <Label Content="Salon namestaja" HorizontalAlignment="Left" Height="54" Margin="135,10,0,0" VerticalAlignment="Top" Width="237" FontSize="30"/>
+        <Button x:Name="btnLog" Content="Prijava" HorizontalAlignment="Left" Height="44" Margin="328,86,0,0" VerticalAlignment="Top" Width="114" FontSize="20" Click="UlogujSe"/>
+        
     </Grid>
 </Window>

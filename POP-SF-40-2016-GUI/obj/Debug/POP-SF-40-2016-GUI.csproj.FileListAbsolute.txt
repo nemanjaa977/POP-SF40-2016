@@ -23,3 +23,5 @@ C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\TipNamestajaWin
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\TipNamestajaWindow.baml
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditTipWindow.g.cs
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditTipWindow.baml
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\LoginWindow.g.cs
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\LoginWindow.baml

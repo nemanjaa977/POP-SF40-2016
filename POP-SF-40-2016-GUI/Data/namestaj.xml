@@ -6,7 +6,16 @@
     <Naziv>Super sofa</Naziv>
     <Sifra>12345</Sifra>
     <JedinicnaCena>5000</JedinicnaCena>
-    <KolicinaUMagacinu>15</KolicinaUMagacinu>
+    <KolicinaUMagacinu>178</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
+  </Namestaj>
+  <Namestaj>
+    <Id>2</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Fotelja</Naziv>
+    <Sifra>245</Sifra>
+    <JedinicnaCena>6</JedinicnaCena>
+    <KolicinaUMagacinu>458</KolicinaUMagacinu>
+    <TipNamestajaId>2</TipNamestajaId>
   </Namestaj>
 </ArrayOfNamestaj>
