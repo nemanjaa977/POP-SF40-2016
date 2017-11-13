@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\
 POP_SF_40_2016_GUI
 none
 false
 DEBUG;TRACE
-C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\App.xaml
-71905753284
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\App.xaml
+9-832455805
 
-24371303802
+26-553534002
 131569487696
-MainWindow.xaml;UI\EditNamestajWindow.xaml;UI\EditTipWindow.xaml;UI\GlavniMeniWindow.xaml;UI\LoginWindow.xaml;UI\NamestajWindow.xaml;UI\TipNamestajaWindow.xaml;
+MainWindow.xaml;UI\AkcijeWindow.xaml;UI\EditAkcijeWindow.xaml;UI\EditNamestajWindow.xaml;UI\EditTipWindow.xaml;UI\GlavniMeniWindow.xaml;UI\LoginWindow.xaml;UI\NamestajWindow.xaml;UI\TipNamestajaWindow.xaml;
 
 False
 

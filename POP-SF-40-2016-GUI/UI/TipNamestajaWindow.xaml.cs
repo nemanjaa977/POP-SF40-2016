@@ -31,7 +31,10 @@ namespace POP_SF_40_2016_GUI.UI
             lbTipNamestaja.Items.Clear();
             foreach (var tip in Projekat.Instance.TipNamestaja)
             {
-                lbTipNamestaja.Items.Add(tip);
+                if (tip.Obrisan == false)
+                {
+                    lbTipNamestaja.Items.Add(tip);
+                }
             }
             lbTipNamestaja.SelectedIndex = 0;
         }
@@ -44,13 +47,26 @@ namespace POP_SF_40_2016_GUI.UI
             };
 
             var tipProzor = new EditTipWindow(noviTip, EditTipWindow.Operacija.DODAVANJE);
-            tipProzor.Show();
+            tipProzor.ShowDialog();
             OSveziPrikaz();
         } 
 
         private void IzbrisiTipNamestaja(object sender, RoutedEventArgs e)
         {
-
+            var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
+            var listaTipova = Projekat.Instance.TipNamestaja;
+            if (MessageBox.Show($"Da li zelite da izbrisete: {izabraniTip.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                foreach (var t in listaTipova)
+                {
+                    if(t.Id == izabraniTip.Id)
+                    {
+                        t.Obrisan = true;
+                    }
+                }
+                Projekat.Instance.TipNamestaja = listaTipova;
+                OSveziPrikaz();
+            }
         }
 
         private void ZatvoriTipNamestaja(object sender, RoutedEventArgs e)

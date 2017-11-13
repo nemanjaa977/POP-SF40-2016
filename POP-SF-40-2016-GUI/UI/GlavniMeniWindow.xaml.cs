@@ -35,5 +35,11 @@ namespace POP_SF_40_2016_GUI.UI
             var tipWindow = new TipNamestajaWindow();
             tipWindow.ShowDialog();
         }
+
+        private void PrikaziAkcije_Click(object sender, RoutedEventArgs e)
+        {
+            var a = new AkcijeWindow();
+            a.ShowDialog();
+        }
     }
 }

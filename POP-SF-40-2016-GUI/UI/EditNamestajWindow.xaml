@@ -7,22 +7,24 @@
         mc:Ignorable="d"
         Title="EditNamestajWindow" Height="322.97" Width="508.121">
     <Grid >
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="124*"/>
             <RowDefinition Height="23*"/>
         </Grid.RowDefinitions>
 
         <Label x:Name="labelNaziv" Content="Naziv:" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="72" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNaziv"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="408,12.98,0,0" VerticalAlignment="Top" Width="80" Click="ZatvoriProzor" Grid.Row="1"/>
-        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="314,12.98,0,0" VerticalAlignment="Top" Width="80" Click="SacuvajProzor" Grid.Row="1"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNaziv" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="23.386,13,0,0" VerticalAlignment="Top" Width="80" Click="ZatvoriProzor" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="314,13,0,0" VerticalAlignment="Top" Width="80" Click="SacuvajProzor" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Label x:Name="labelSifra" Content="Sifra:" HorizontalAlignment="Left" Height="28" Margin="10,50,0,0" VerticalAlignment="Top" Width="72" FontSize="15"/>
         <Label x:Name="labelCena" Content="Jedinicna Cena:" HorizontalAlignment="Left" Height="35" Margin="10,93,0,0" VerticalAlignment="Top" Width="116" FontSize="15"/>
         <Label x:Name="labelKolicina" Content="Kolicina u magacinu:" HorizontalAlignment="Left" Height="31" Margin="10,141,0,0" VerticalAlignment="Top" Width="146" FontSize="15"/>
         <Label x:Name="labelTipNam" Content="Tip namestaja:" HorizontalAlignment="Left" Height="28" Margin="10,189,0,0" VerticalAlignment="Top" Width="116" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivv"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivi"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivii"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNaziviii"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivv" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivi" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivii" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2"/>
+
     </Grid>
 </Window>

@@ -10,5 +10,6 @@
         <Label Content="Glavni meni:" HorizontalAlignment="Left" Height="35" Margin="22,20,0,0" VerticalAlignment="Top" Width="92"/>
         <Button x:Name="btnPrikazi" Content="Namestaj" HorizontalAlignment="Left" Height="26" Margin="138,21,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziNamestaj"/>
         <Button x:Name="btnPrikaziTip" Content="Tip namestaja" HorizontalAlignment="Left" Height="26" Margin="138,62,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziTipNamestaja"/>
+        <Button x:Name="btnAkcije" Content="Akcije" HorizontalAlignment="Left" Height="26" Margin="138,101,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziAkcije_Click"/>
     </Grid>
 </Window>

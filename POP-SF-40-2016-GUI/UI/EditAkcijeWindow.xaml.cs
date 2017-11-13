@@ -1,6 +1,4 @@
-﻿using POP_40_2016.Model;
-using POP_SF_40_2016_GUI.UI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace POP_SF_40_2016_GUI
+namespace POP_SF_40_2016_GUI.UI
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for EditAkcijeWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EditAkcijeWindow : Window
     {
-        public MainWindow()
+        public EditAkcijeWindow()
         {
             InitializeComponent();
-            
-        }
-
-        private void UlogujSe(object sender, RoutedEventArgs e)
-        {
-            var p = new LoginWindow();
-            p.ShowDialog();
-            
         }
     }
 }

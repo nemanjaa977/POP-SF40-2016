@@ -8,7 +8,7 @@
         Title="MainWindow" Height="350" Width="525" Background="#FFBBC7CD">
     <Grid>
         <Label Content="Salon namestaja" HorizontalAlignment="Left" Height="54" Margin="135,10,0,0" VerticalAlignment="Top" Width="237" FontSize="30"/>
-        <Button x:Name="btnLog" Content="Prijava" HorizontalAlignment="Left" Height="44" Margin="328,86,0,0" VerticalAlignment="Top" Width="114" FontSize="20" Click="UlogujSe"/>
+        <Button x:Name="btnLog" Content="Prijava" HorizontalAlignment="Left" Height="44" Margin="201,91,0,0" VerticalAlignment="Top" Width="114" FontSize="20" Click="UlogujSe"/>
         
     </Grid>
 </Window>

@@ -18,4 +18,13 @@
     <KolicinaUMagacinu>458</KolicinaUMagacinu>
     <TipNamestajaId>2</TipNamestajaId>
   </Namestaj>
+  <Namestaj>
+    <Id>3</Id>
+    <Obrisan>true</Obrisan>
+    <Naziv>Stolica</Naziv>
+    <Sifra>4855</Sifra>
+    <JedinicnaCena>4566</JedinicnaCena>
+    <KolicinaUMagacinu>1488</KolicinaUMagacinu>
+    <TipNamestajaId>2</TipNamestajaId>
+  </Namestaj>
 </ArrayOfNamestaj>

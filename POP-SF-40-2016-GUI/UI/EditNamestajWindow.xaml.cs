@@ -44,7 +44,20 @@ namespace POP_SF_40_2016_GUI.UI
             this.tbNazivv.Text = namestaj.Sifra;
             this.tbNazivi.Text = namestaj.JedinicnaCena.ToString("0.###");
             this.tbNazivii.Text = namestaj.KolicinaUMagacinu.ToString();
-            this.tbNaziviii.Text = namestaj.TipNamestajaId.ToString();
+
+            foreach (var tipNamestaja in Projekat.Instance.TipNamestaja)
+            {
+                cbTipNamestaja.Items.Add(tipNamestaja);    
+            }
+
+            foreach (TipNamestaja tipN in cbTipNamestaja.Items)
+            {
+                if(tipN.Id == namestaj.TipNamestajaId)
+                {
+                    cbTipNamestaja.SelectedItem = tipN;
+                    break;
+                }
+            }
 
         }
 
@@ -56,6 +69,7 @@ namespace POP_SF_40_2016_GUI.UI
         private void SacuvajProzor(object sender, RoutedEventArgs e)
         {
             var listaNamestaja = Projekat.Instance.Namestaj;
+            var izabranTip = (TipNamestaja)cbTipNamestaja.SelectedItem;
 
             switch (operacija)
             {
@@ -67,7 +81,8 @@ namespace POP_SF_40_2016_GUI.UI
                         Sifra = this.tbNazivv.Text,
                         JedinicnaCena = Double.Parse(this.tbNazivi.Text),
                         KolicinaUMagacinu = int.Parse(this.tbNazivii.Text),
-                        TipNamestajaId = int.Parse(this.tbNaziviii.Text)
+                        TipNamestajaId = izabranTip.Id
+                        //TipNamestajaId = int.Parse(this.cbTipNamestaja.Text)
 
 
                     };
@@ -82,7 +97,8 @@ namespace POP_SF_40_2016_GUI.UI
                             n.Sifra = this.tbNazivv.Text;
                             n.JedinicnaCena = Double.Parse(this.tbNazivi.Text);
                             n.KolicinaUMagacinu = int.Parse(this.tbNazivii.Text);
-                            n.TipNamestajaId = int.Parse(this.tbNaziviii.Text);
+                            n.TipNamestajaId = izabranTip.Id;
+                            //n.TipNamestajaId = int.Parse(this.cbTipNamestaja.Text);
                             break;
                         }
                     }
