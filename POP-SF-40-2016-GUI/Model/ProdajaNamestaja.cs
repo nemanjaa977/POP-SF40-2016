@@ -9,10 +9,12 @@ namespace POP_40_2016.Model
     public class ProdajaNamestaja
     {
         public int Id { get; set; }
-        public List<int> NamestajZaProdajuId { get; set; }
+        public int NamestajZaProdajuId { get; set; }
         public DateTime DatumProdaje { get; set; }
         public string BrojRacuna { get; set; }
         public string Kupac { get; set;}
-        public List<int> DodatnaUslugaId { get; set; }
+        public int DodatnaUslugaId { get; set; }
+        public const double PDV = 0.2;
+        public double UkupanIznos { get; set; }
     }
 }

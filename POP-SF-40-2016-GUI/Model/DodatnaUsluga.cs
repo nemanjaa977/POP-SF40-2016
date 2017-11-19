@@ -12,8 +12,6 @@ namespace POP_40_2016.Model
         public bool Obrisan { get; set; }
         public string Naziv { get; set; }
         public double Cena { get; set; }
-        public double PDV { get; set; }
-        public double UkupanIznos { get; set; }
 
         public static DodatnaUsluga PronadjiDodatnuUslugu(int id)
         {

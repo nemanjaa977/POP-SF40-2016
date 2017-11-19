@@ -12,9 +12,14 @@ namespace POP_40_2016.Model
         public bool Obrisan { get; set; }
         public DateTime DatumPocetka { get; set; }
         public DateTime DatumZavrsetka { get; set; }
-        public List<int> NamestajNaPopustuId { get; set; }
+        public int NamestajNaPopustuId { get; set; }
         public double Popust { get; set; }
-   
+
+        public override string ToString()
+        {
+            return $"{DatumPocetka}, {DatumZavrsetka}, {Namestaj.PronadjiNamestajNaPopustu(NamestajNaPopustuId).Naziv}, {Popust}";
+        }
+
     }
 
 }

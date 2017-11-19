@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestaja" Height="274.942" Width="480.279">
+        Title="TipNamestaja" Height="274.942" Width="480.279" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Click="DodajTipNamestaja"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="24" Margin="10,39,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniTipNamestaja" />

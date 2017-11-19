@@ -159,11 +159,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\dodatnaUsluga.xml" />
     <Resource Include="Data\tipoviNamestaja.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\namestaj.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\korisnik.xml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\akcija.xml" />
@@ -172,7 +174,7 @@
     <Resource Include="Data\prodajaNamestaja.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Data\korisnik.xml" />
+    <Resource Include="Data\dodatnaUsluga.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

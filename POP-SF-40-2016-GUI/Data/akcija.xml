@@ -3,11 +3,9 @@
   <Akcija>
     <Id>1</Id>
     <Obrisan>false</Obrisan>
-    <DatumPocetka>2017-11-08T18:47:27.753767+01:00</DatumPocetka>
-    <DatumZavrsetka>2018-06-15T12:34:44</DatumZavrsetka>
-    <NamestajNaPopustuId>
-      <int>1</int>
-    </NamestajNaPopustuId>
-    <Popust>15000</Popust>
+    <DatumPocetka>2017-11-14T14:30:03</DatumPocetka>
+    <DatumZavrsetka>2017-11-19T14:30:03</DatumZavrsetka>
+    <NamestajNaPopustuId>1</NamestajNaPopustuId>
+    <Popust>1455</Popust>
   </Akcija>
 </ArrayOfAkcija>

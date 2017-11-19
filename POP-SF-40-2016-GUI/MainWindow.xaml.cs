@@ -28,11 +28,11 @@ namespace POP_SF_40_2016_GUI
             
         }
 
-        private void UlogujSe(object sender, RoutedEventArgs e)
+      /*  private void UlogujSe(object sender, RoutedEventArgs e)
         {
             var p = new LoginWindow();
             p.ShowDialog();
             
-        }
+        }*/
     }
 }

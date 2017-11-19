@@ -82,8 +82,6 @@ namespace POP_SF_40_2016_GUI.UI
                         JedinicnaCena = Double.Parse(this.tbNazivi.Text),
                         KolicinaUMagacinu = int.Parse(this.tbNazivii.Text),
                         TipNamestajaId = izabranTip.Id
-                        //TipNamestajaId = int.Parse(this.cbTipNamestaja.Text)
-
 
                     };
                     listaNamestaja.Add(noviNamesstaj);
@@ -97,8 +95,7 @@ namespace POP_SF_40_2016_GUI.UI
                             n.Sifra = this.tbNazivv.Text;
                             n.JedinicnaCena = Double.Parse(this.tbNazivi.Text);
                             n.KolicinaUMagacinu = int.Parse(this.tbNazivii.Text);
-                            n.TipNamestajaId = izabranTip.Id;
-                            //n.TipNamestajaId = int.Parse(this.cbTipNamestaja.Text);
+                            n.TipNamestajaId = izabranTip.Id;                         
                             break;
                         }
                     }

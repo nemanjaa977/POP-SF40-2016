@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijeWindow" Height="327.642" Width="541.464">
+        Title="AkcijeWindow" Height="327.642" Width="541.464" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,-4">
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="31" Margin="20,17,0,0" VerticalAlignment="Top" Width="83" Click="DodajAkciju"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="31" Margin="20,53,0,0" VerticalAlignment="Top" Width="83" Click="IzmeniAkciju"/>

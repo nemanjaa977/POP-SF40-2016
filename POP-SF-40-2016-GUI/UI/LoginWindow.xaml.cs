@@ -31,7 +31,7 @@ namespace POP_SF_40_2016_GUI.UI
             foreach (var k in korisnici)
             {
                 var korIme = tbIme.Text;
-                var lozinka = tbLozinka.Text;
+                var lozinka = pfLozinka.Password;
                 if (korIme == "" || lozinka == "")
                 {
                     MessageBox.Show("Polja za unos su ostala prazna. Unesite sve podatke!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -40,8 +40,8 @@ namespace POP_SF_40_2016_GUI.UI
                 else if(korIme == k.KorisnickoIme && lozinka == k.Lozinka)
                 {
                     var glPMeni = new GlavniMeniWindow();
-                    this.Close();
                     glPMeni.ShowDialog();
+                    this.Close();
                     return;
                 }
 
