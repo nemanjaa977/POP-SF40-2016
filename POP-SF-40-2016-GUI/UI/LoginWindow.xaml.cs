@@ -39,9 +39,9 @@ namespace POP_SF_40_2016_GUI.UI
                 }
                 else if(korIme == k.KorisnickoIme && lozinka == k.Lozinka)
                 {
+                    Hide();
                     var glPMeni = new GlavniMeniWindow();
                     glPMeni.ShowDialog();
-                    this.Close();
                     return;
                 }
 

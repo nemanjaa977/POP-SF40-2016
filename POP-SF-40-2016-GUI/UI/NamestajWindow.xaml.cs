@@ -1,4 +1,5 @@
 ﻿using POP_40_2016.Model;
+using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,23 +21,17 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
+        //private Namestaj izabranNamestaj;
+        public Namestaj IzabranNamestaj { get; set; }
+
         public NamestajWindow()
         {
             InitializeComponent();
-            OSveziPrikaz();
-        }
-        private void OSveziPrikaz()
-        {
-            lbNamestaj.Items.Clear();
-            foreach (var namestaj in Projekat.Instance.Namestaj)
-            {
-                if (namestaj.Obrisan == false)
-                {
 
-                    lbNamestaj.Items.Add(namestaj);
-                }
-            }
-            lbNamestaj.SelectedIndex = 0;
+            dgNamestaj.IsSynchronizedWithCurrentItem = true;
+            dgNamestaj.DataContext = this;
+            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+
         }
 
 
@@ -53,34 +48,36 @@ namespace POP_SF_40_2016_GUI.UI
 
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
-            OSveziPrikaz();
+            
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
-            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
-            var namestajProzor = new EditNamestajWindow(izabraniNamestaj, EditNamestajWindow.Operacija.IZMENA);
+            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
+            Namestaj kopija = (Namestaj)IzabranNamestaj.Clone();
+            var namestajProzor = new EditNamestajWindow(kopija, EditNamestajWindow.Operacija.IZMENA);
             namestajProzor.ShowDialog();
-            OSveziPrikaz();
+            
             
         }
 
         private void IzbrisiNamestaj(object sender, RoutedEventArgs e)
         {
-            var izabraniNamestaj = (Namestaj)lbNamestaj.SelectedItem;
+            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var listaNamestaja = Projekat.Instance.Namestaj;
 
-            if(MessageBox.Show($"Da li zelite da izbrisete: {izabraniNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+            if(MessageBox.Show($"Da li zelite da izbrisete: {IzabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
             {
                 foreach (var nam in listaNamestaja)
                 {
-                    if(nam.Id == izabraniNamestaj.Id)
+                    if(nam.Id == IzabranNamestaj.Id)
                     {
                         nam.Obrisan = true;
+                        break;
                     }
                 }
-                Projekat.Instance.Namestaj = listaNamestaja;
-                OSveziPrikaz();
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
+                
             }
 
         }

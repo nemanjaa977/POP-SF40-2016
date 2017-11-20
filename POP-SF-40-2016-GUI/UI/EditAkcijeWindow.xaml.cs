@@ -44,7 +44,7 @@ namespace POP_SF_40_2016_GUI.UI
             this.tbDatumZ.Text = akcija.DatumZavrsetka.ToString();
             this.tbPopust.Text = akcija.Popust.ToString();
 
-            /*foreach (var nam in Projekat.Instance.Namestaj)
+            foreach (var nam in Projekat.Instance.Namestaj)
             {
                 cbNamestajPopust.Items.Add(nam);
             }
@@ -56,7 +56,7 @@ namespace POP_SF_40_2016_GUI.UI
                     cbNamestajPopust.SelectedItem = names;
                     break;
                 }
-            }*/
+            }
         }
 
         private void ZatvoriProzorEditAkcije(object sender, RoutedEventArgs e)

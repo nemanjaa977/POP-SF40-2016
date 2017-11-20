@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <Label x:Name="labelNaziv" Content="Naziv:" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="72" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNaziv" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Naziv}" VerticalAlignment="Top" Width="314" Name="tbNaziv" Grid.ColumnSpan="2"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="23.386,13,0,0" VerticalAlignment="Top" Width="80" Click="ZatvoriProzor" Grid.Row="1" Grid.Column="1"/>
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="314,13,0,0" VerticalAlignment="Top" Width="80" Click="SacuvajProzor" Grid.Row="1" Grid.ColumnSpan="2"/>
         <Label x:Name="labelSifra" Content="Sifra:" HorizontalAlignment="Left" Height="28" Margin="10,50,0,0" VerticalAlignment="Top" Width="72" FontSize="15"/>
@@ -24,7 +24,7 @@
         <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivv" Grid.ColumnSpan="2"/>
         <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivi" Grid.ColumnSpan="2"/>
         <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivii" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2" SelectedItem="{Binding Path=TipNamestaja}"/>
 
     </Grid>
 </Window>
