@@ -1,4 +1,5 @@
 ﻿using POP_40_2016.Model;
+using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,65 +21,52 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class AkcijeWindow : Window
     {
+        public Akcija IzabranaAkcija { get; set; }
+
         public AkcijeWindow()
         {
             InitializeComponent();
-            OSveziPrikaz();
-        }
 
-        private void OSveziPrikaz()
-        {
-            lbAkcija.Items.Clear();
-            foreach (var akcija in Projekat.Instance.Akcija)
-            {
-                if (akcija.Obrisan == false)
-                {
+            dgAkcija.IsSynchronizedWithCurrentItem = true;
+            dgAkcija.DataContext = this;
+            dgAkcija.ItemsSource = Projekat.Instance.Akcija;
 
-                    lbAkcija.Items.Add(akcija);
-                }
-            }
-            lbAkcija.SelectedIndex = 0;
-        }
+            dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }      
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
-            var novaAkcija = new Akcija()
-            {
-                DatumPocetka = DateTime.Parse(""),
-                DatumZavrsetka = DateTime.Parse(""),
-                NamestajNaPopustuId = 0,
-                Popust = 0
-            };
-
+            var novaAkcija = new Akcija();
             var akcijeProzor = new EditAkcijeWindow(novaAkcija, EditAkcijeWindow.Operacija.DODAVANJE);
             akcijeProzor.ShowDialog();
-            OSveziPrikaz();
+           
         }
 
         private void IzmeniAkciju(object sender, RoutedEventArgs e)
         {
-            var izabranaAkcija = (Akcija)lbAkcija.SelectedItem;
-            var akcijeProzor = new EditAkcijeWindow(izabranaAkcija, EditAkcijeWindow.Operacija.IZMENA);
-            akcijeProzor.ShowDialog();
-            OSveziPrikaz();
+            Akcija kopija = (Akcija)IzabranaAkcija.Clone();
+            var akcijaProzor = new EditAkcijeWindow(IzabranaAkcija, EditAkcijeWindow.Operacija.IZMENA);
+            if (akcijaProzor.ShowDialog() != true)
+            {
+                int index = Projekat.Instance.Akcija.IndexOf(IzabranaAkcija);
+                Projekat.Instance.Akcija[index] = kopija;
+            }
+
         }
 
         private void IzbrisiAkciju(object sender, RoutedEventArgs e)
         {
-            var izabranaAkcija = (Akcija)lbAkcija.SelectedItem;
             var listaAkcija = Projekat.Instance.Akcija;
-
-            if (MessageBox.Show($"Da li zelite da izbrisete: {izabranaAkcija}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaAkcija}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var a in listaAkcija)
                 {
-                    if (a.Id == izabranaAkcija.Id)
+                    if (a.Id == IzabranaAkcija.Id)
                     {
                         a.Obrisan = true;
                     }
                 }
-                Projekat.Instance.Akcija = listaAkcija;
-                OSveziPrikaz();
+                GenericSerializer.Serialize("akcija.xml", listaAkcija);     
             }
         }
 

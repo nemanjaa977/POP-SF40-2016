@@ -18,9 +18,8 @@ namespace POP_40_2016.Model
             get { return id; }
             set
             {
-
                 id = value;
-                OnPropertyChanged("ID");
+                OnPropertyChanged("Id");
             }
         }
         public string Naziv
@@ -55,7 +54,6 @@ namespace POP_40_2016.Model
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         public override string ToString()
         {

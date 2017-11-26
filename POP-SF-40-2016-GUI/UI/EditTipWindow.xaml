@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Naziv:" HorizontalAlignment="Left" Height="33" Margin="20,21,0,0" VerticalAlignment="Top" Width="100" FontSize="20"/>
-        <TextBox HorizontalAlignment="Left" Height="33" Margin="136,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="298" Name="tbNaziv"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="136,21,0,0" TextWrapping="Wrap" Text="{Binding Path=Naziv}" VerticalAlignment="Top" Width="298" Name="tbNaziv"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="364,10.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="70" Click="ZatvoriProzor"/>
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="284,10.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="SacuvajProzor"/>
 

@@ -38,14 +38,13 @@ namespace POP_40_2016.Model
                 }
         }
 
-
         public int Id
         {
             get { return id; }
             set {
 
                 id = value;
-                OnPropertyChanged("ID");
+                OnPropertyChanged("Id");
                 }
         }
         public string Naziv
@@ -63,7 +62,7 @@ namespace POP_40_2016.Model
             set
             {
                jedinicnaCena = value;
-                OnPropertyChanged("Cena");
+                OnPropertyChanged("JedinicnaCena");
             }
         }
         public int TipNamestajaId
@@ -147,7 +146,7 @@ namespace POP_40_2016.Model
 
         public override string ToString()
         {
-            return $"{Naziv}, {Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.PronadjiTip(TipNamestajaId).Naziv}";
+            return $"{Naziv}"; //{Sifra}, {JedinicnaCena}, {KolicinaUMagacinu}, {TipNamestaja.PronadjiTip(TipNamestajaId).Naziv}";
         }
 
         protected void OnPropertyChanged(string propertyName)

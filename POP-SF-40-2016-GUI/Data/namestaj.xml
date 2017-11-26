@@ -2,29 +2,47 @@
 <ArrayOfNamestaj xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Namestaj>
     <Id>1</Id>
-    <Obrisan>false</Obrisan>
     <Naziv>Super sofa</Naziv>
-    <Sifra>12345</Sifra>
     <JedinicnaCena>5000</JedinicnaCena>
-    <KolicinaUMagacinu>178</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+    <Sifra>12345</Sifra>
+    <KolicinaUMagacinu>178</KolicinaUMagacinu>
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
-    <Obrisan>false</Obrisan>
     <Naziv>Fotelja</Naziv>
-    <Sifra>245</Sifra>
-    <JedinicnaCena>6</JedinicnaCena>
-    <KolicinaUMagacinu>458</KolicinaUMagacinu>
+    <JedinicnaCena>8006</JedinicnaCena>
     <TipNamestajaId>2</TipNamestajaId>
+    <Obrisan>true</Obrisan>
+    <Sifra>2489</Sifra>
+    <KolicinaUMagacinu>458</KolicinaUMagacinu>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
-    <Obrisan>true</Obrisan>
     <Naziv>Stolica</Naziv>
-    <Sifra>4855</Sifra>
-    <JedinicnaCena>4566</JedinicnaCena>
-    <KolicinaUMagacinu>1488</KolicinaUMagacinu>
+    <JedinicnaCena>456</JedinicnaCena>
     <TipNamestajaId>2</TipNamestajaId>
+    <Obrisan>true</Obrisan>
+    <Sifra>4855</Sifra>
+    <KolicinaUMagacinu>1488</KolicinaUMagacinu>
+  </Namestaj>
+  <Namestaj>
+    <Id>4</Id>
+    <Naziv>Stolica</Naziv>
+    <JedinicnaCena>350</JedinicnaCena>
+    <TipNamestajaId>3</TipNamestajaId>
+    <Obrisan>false</Obrisan>
+    <Sifra>8000</Sifra>
+    <KolicinaUMagacinu>1111</KolicinaUMagacinu>
+  </Namestaj>
+  <Namestaj>
+    <Id>5</Id>
+    <Naziv>Leteci krevet</Naziv>
+    <JedinicnaCena>489</JedinicnaCena>
+    <TipNamestajaId>5</TipNamestajaId>
+    <Obrisan>true</Obrisan>
+    <Sifra>11</Sifra>
+    <KolicinaUMagacinu>6</KolicinaUMagacinu>
   </Namestaj>
 </ArrayOfNamestaj>

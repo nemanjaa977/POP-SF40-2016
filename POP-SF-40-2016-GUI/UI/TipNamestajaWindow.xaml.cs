@@ -1,4 +1,5 @@
 ﻿using POP_40_2016.Model;
+using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,52 +21,42 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class TipNamestajaWindow : Window
     {
+        public TipNamestaja IzabranTipNamestaja { get; set; } 
+
         public TipNamestajaWindow()
         {
             InitializeComponent();
-            OSveziPrikaz();
-        }
 
-        private void OSveziPrikaz()
-        {
-            lbTipNamestaja.Items.Clear();
-            foreach (var tip in Projekat.Instance.TipNamestaja)
-            {
-                if (tip.Obrisan == false)
-                {
-                    lbTipNamestaja.Items.Add(tip);
-                }
-            }
-            lbTipNamestaja.SelectedIndex = 0;
+            dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
+            dgTipNamestaja.DataContext = this;
+            dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
+
+            dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private void DodajTipNamestaja(object sender, RoutedEventArgs e)
         {
             var noviTip = new TipNamestaja()
-            {
-                Naziv = ""            
+            {           
             };
 
             var tipProzor = new EditTipWindow(noviTip, EditTipWindow.Operacija.DODAVANJE);
             tipProzor.ShowDialog();
-            OSveziPrikaz();
         } 
 
         private void IzbrisiTipNamestaja(object sender, RoutedEventArgs e)
         {
-            var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
             var listaTipova = Projekat.Instance.TipNamestaja;
-            if (MessageBox.Show($"Da li zelite da izbrisete: {izabraniTip.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranTipNamestaja.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var t in listaTipova)
                 {
-                    if(t.Id == izabraniTip.Id)
+                    if(t.Id == IzabranTipNamestaja.Id)
                     {
                         t.Obrisan = true;
                     }
                 }
-                Projekat.Instance.TipNamestaja = listaTipova;
-                OSveziPrikaz();
+                GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipova);
             }
         }
 
@@ -76,10 +67,13 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void IzmeniTipNamestaja(object sender, RoutedEventArgs e)
         {
-            var izabraniTip = (TipNamestaja)lbTipNamestaja.SelectedItem;
-            var tipProzor = new EditTipWindow(izabraniTip, EditTipWindow.Operacija.IZMENA);
-            tipProzor.ShowDialog();
-            OSveziPrikaz();
+            TipNamestaja kopija = (TipNamestaja)IzabranTipNamestaja.Clone();
+            var tipProzor = new EditTipWindow(IzabranTipNamestaja, EditTipWindow.Operacija.IZMENA);
+            if (tipProzor.ShowDialog() != true)
+            {
+                int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
+                Projekat.Instance.TipNamestaja[index] = kopija;
+            }
         }
     }
 }

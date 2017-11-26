@@ -1,4 +1,5 @@
 ﻿using POP_40_2016.Model;
+using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,32 +33,18 @@ namespace POP_SF_40_2016_GUI.UI
         public EditAkcijeWindow(Akcija akcija, Operacija operacija)
         {
             InitializeComponent();
-            InicijalizujVrednosti(akcija, operacija);
-        }
 
-        private void InicijalizujVrednosti(Akcija akcija, Operacija operacija)
-        {
             this.akcija = akcija;
             this.operacija = operacija;
 
-            this.tbDatumP.Text = akcija.DatumPocetka.ToString();
-            this.tbDatumZ.Text = akcija.DatumZavrsetka.ToString();
-            this.tbPopust.Text = akcija.Popust.ToString();
+            cbNamestajPopust.ItemsSource = Projekat.Instance.Namestaj;
 
-            foreach (var nam in Projekat.Instance.Namestaj)
-            {
-                cbNamestajPopust.Items.Add(nam);
-            }
-
-            foreach (Namestaj names in cbNamestajPopust.Items)
-            {
-                if (names.Id == akcija.NamestajNaPopustuId)
-                {
-                    cbNamestajPopust.SelectedItem = names;
-                    break;
-                }
-            }
+            tbDatumP.DataContext = akcija;
+            tbDatumZ.DataContext = akcija;
+            tbPopust.DataContext = akcija;
+            cbNamestajPopust.DataContext = akcija;
         }
+
 
         private void ZatvoriProzorEditAkcije(object sender, RoutedEventArgs e)
         {
@@ -67,38 +54,15 @@ namespace POP_SF_40_2016_GUI.UI
         private void SacuvajProzorEditAkcije(object sender, RoutedEventArgs e)
         {
             var listaAkcija = Projekat.Instance.Akcija;
-            //var izabranaAkcija = (Akcija)cbNamestajPopust.SelectedItem;
-
+            this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    var novaAkcija = new Akcija()
-                    {
-                        Id = listaAkcija.Count + 1,
-                        DatumPocetka = DateTime.Parse(this.tbDatumP.Text),
-                        DatumZavrsetka = DateTime.Parse(this.tbDatumZ.Text),
-                        //NamestajNaPopustuId = izabranaAkcija.Id,
-                        Popust = Double.Parse(this.tbPopust.Text)
-
-
-                    };
-                    listaAkcija.Add(novaAkcija);
-                    break;
-                case Operacija.IZMENA:
-                    foreach (var n in listaAkcija)
-                    {
-                        if (n.Id == akcija.Id)
-                        {
-                            n.DatumPocetka = DateTime.Parse(this.tbDatumP.Text);
-                            n.DatumZavrsetka = DateTime.Parse(this.tbDatumZ.Text);
-                           // n.NamestajNaPopustuId = izabranaAkcija.Id;
-                            n.Popust = Double.Parse(this.tbPopust.Text);
-                            break;
-                        }
-                    }
-                    break;
+                        akcija.Id = listaAkcija.Count + 1;
+                        listaAkcija.Add(akcija);
+                        break;
             }
-            Projekat.Instance.Akcija = listaAkcija;
+            GenericSerializer.Serialize("akcija.xml", listaAkcija);
             Close();
         }
     }

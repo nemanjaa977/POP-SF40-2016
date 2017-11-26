@@ -17,10 +17,10 @@
         <Label Content="Popust:" HorizontalAlignment="Left" Height="38" Margin="20,168,0,0" VerticalAlignment="Top" Width="184" FontSize="20"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="33" Margin="31,22.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="ZatvoriProzorEditAkcije"/>
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="33" Margin="435,22.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="SacuvajProzorEditAkcije"/>
-        <TextBox x:Name="tbDatumP" HorizontalAlignment="Left" Height="33" Margin="262,26,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBox x:Name="tbDatumZ" HorizontalAlignment="Left" Height="33" Margin="262,72,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="262,168,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314"/>
-        <ComboBox x:Name="cbNamestajPopust" HorizontalAlignment="Left" Height="34" Margin="262,120,0,0" VerticalAlignment="Top" Width="314"/>
+        <TextBox x:Name="tbDatumP" HorizontalAlignment="Left" Height="33" Margin="262,26,0,0" TextWrapping="Wrap" Text="{Binding Path=DatumPocetka}" VerticalAlignment="Top" Width="314"/>
+        <TextBox x:Name="tbDatumZ" HorizontalAlignment="Left" Height="33" Margin="262,72,0,0" TextWrapping="Wrap" Text="{Binding Path=DatumZavrsetka}" VerticalAlignment="Top" Width="314"/>
+        <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="262,168,0,0" TextWrapping="Wrap" Text="{Binding Path=Popust}" VerticalAlignment="Top" Width="314"/>
+        <ComboBox x:Name="cbNamestajPopust" HorizontalAlignment="Left" Height="34" Margin="262,120,0,0" VerticalAlignment="Top" Width="314" SelectedItem="{Binding Path=Namestaj}"/>
 
     </Grid>
 </Window>

@@ -2,9 +2,9 @@
 <ArrayOfKorisnik xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Korisnik>
     <Id>1</Id>
-    <Ime>Nemanja</Ime>
-    <Prezime>Gacic</Prezime>
-    <KorisnickoIme>ngacic</KorisnickoIme>
+    <Ime>Petar</Ime>
+    <Prezime>Peric</Prezime>
+    <KorisnickoIme>pera</KorisnickoIme>
     <Lozinka>12345</Lozinka>
     <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>

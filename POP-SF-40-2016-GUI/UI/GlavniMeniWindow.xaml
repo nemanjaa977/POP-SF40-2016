@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="GlavniMeniWindow" Height="306.613" Width="491.415" Background="#FFBBC7CD" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="GlavniMeniWindow" Height="368.532" Width="622.714" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="0"/>
+            <GradientStop Color="#FFEDE611" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-        <Label Content="Glavni meni:" HorizontalAlignment="Left" Height="35" Margin="22,20,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button x:Name="btnPrikazi" Content="Namestaj" HorizontalAlignment="Left" Height="26" Margin="138,21,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziNamestaj"/>
-        <Button x:Name="btnPrikaziTip" Content="Tip namestaja" HorizontalAlignment="Left" Height="26" Margin="138,62,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziTipNamestaja"/>
-        <Button x:Name="btnAkcije" Content="Akcije" HorizontalAlignment="Left" Height="26" Margin="138,101,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziAkcije_Click"/>
+        <Label Content="Glavni Meni" HorizontalAlignment="Left" Height="46" Margin="235,23,0,0" VerticalAlignment="Top" Width="155" FontSize="25" Foreground="#FF0D30ED" FontStyle="Italic" FontWeight="Bold"/>
+        <Button x:Name="btnPrikazi" Content="Namestaj" HorizontalAlignment="Left" Height="26" Margin="118,100,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziNamestaj" Background="#FF4658BA" BorderBrush="#FF0315C7" FontStyle="Italic"/>
+        <Button x:Name="btnPrikaziTip" Content="Tip namestaja" HorizontalAlignment="Left" Height="26" Margin="408,100,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziTipNamestaja" Background="#FF4658BA" BorderBrush="#FF0315C7" FontStyle="Italic"/>
+        <Button x:Name="btnAkcije" Content="Akcije" HorizontalAlignment="Left" Height="26" Margin="118,188,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziAkcije_Click" Background="#FF4658BA" BorderBrush="#FF0347C7" FontStyle="Italic"/>
+        <Button x:Name="btnDodUsluge" Content="Dodatne usluge" HorizontalAlignment="Left" Height="26" Margin="408,188,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziDodatneUsluge_Click" BorderBrush="#FF0315C7" Background="#FF4658BA" FontStyle="Italic" />
+        <Button x:Name="btnKorisnik" Content="Korisnici" HorizontalAlignment="Left" Height="26" Margin="266,147,0,0" VerticalAlignment="Top" Width="102" Click="PrikaziKorisnike_Click" BorderBrush="#FF0315C7" Background="#FF4658BA" FontStyle="Italic"/>
+        <Button x:Name="btnProdaja" Content="Prodaja namestaja" HorizontalAlignment="Left" Height="26" Margin="266,245,0,0" VerticalAlignment="Top" Width="102" Click="PrikaziProdajuNamestaja_Click" Background="#FF4658BA" BorderBrush="#FF0315C7" FontStyle="Italic"/>
     </Grid>
 </Window>

@@ -21,7 +21,6 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
-        //private Namestaj izabranNamestaj;
         public Namestaj IzabranNamestaj { get; set; }
 
         public NamestajWindow()
@@ -32,40 +31,33 @@ namespace POP_SF_40_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
 
+            dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
-
 
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
             var noviNamestaj = new Namestaj()
-            {
-                Naziv = "",
-                Sifra = "",
-                JedinicnaCena = 0,
-                KolicinaUMagacinu = 0,
-                TipNamestajaId = 0
+            {               
             };
 
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
-            namestajProzor.ShowDialog();
-            
+            namestajProzor.ShowDialog();          
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
-            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             Namestaj kopija = (Namestaj)IzabranNamestaj.Clone();
-            var namestajProzor = new EditNamestajWindow(kopija, EditNamestajWindow.Operacija.IZMENA);
-            namestajProzor.ShowDialog();
-            
-            
+            var namestajProzor = new EditNamestajWindow(IzabranNamestaj, EditNamestajWindow.Operacija.IZMENA);
+            if (namestajProzor.ShowDialog() != true)
+            {
+                 int index = Projekat.Instance.Namestaj.IndexOf(IzabranNamestaj);
+                 Projekat.Instance.Namestaj[index] =kopija;
+            }         
         }
 
         private void IzbrisiNamestaj(object sender, RoutedEventArgs e)
         {
-            //var izabraniNamestaj = (Namestaj)dgNamestaj.SelectedItem;
             var listaNamestaja = Projekat.Instance.Namestaj;
-
             if(MessageBox.Show($"Da li zelite da izbrisete: {IzabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
             {
                 foreach (var nam in listaNamestaja)
@@ -76,10 +68,8 @@ namespace POP_SF_40_2016_GUI.UI
                         break;
                     }
                 }
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
-                
+                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);              
             }
-
         }
 
         private void ZatvoriNamestaj(object sender, RoutedEventArgs e)

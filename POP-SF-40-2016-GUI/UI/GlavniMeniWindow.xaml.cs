@@ -41,5 +41,22 @@ namespace POP_SF_40_2016_GUI.UI
             var a = new AkcijeWindow();
             a.ShowDialog();
         }
+
+        private void PrikaziDodatneUsluge_Click(object sender, RoutedEventArgs e)
+        {
+            var d = new DodatneUslugeWindow();
+            d.ShowDialog();
+        }
+
+        private void PrikaziKorisnike_Click(object sender, RoutedEventArgs e)
+        {
+            var k = new KorisnikWindow();
+            k.ShowDialog();
+        }
+
+        private void PrikaziProdajuNamestaja_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

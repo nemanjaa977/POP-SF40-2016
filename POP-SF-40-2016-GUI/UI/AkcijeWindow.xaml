@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijeWindow" Height="327.642" Width="541.464" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AkcijeWindow" Height="327.642" Width="709.464" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,-4">
-        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="31" Margin="20,17,0,0" VerticalAlignment="Top" Width="83" Click="DodajAkciju"/>
-        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="31" Margin="20,53,0,0" VerticalAlignment="Top" Width="83" Click="IzmeniAkciju"/>
-        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="31" Margin="20,89,0,0" VerticalAlignment="Top" Width="83" Click="IzbrisiAkciju"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="20,250,0,0" VerticalAlignment="Top" Width="83" Click="ZatvoriAkciju"/>
-        <ListBox HorizontalAlignment="Left" Height="264" Margin="128,17,0,0" VerticalAlignment="Top" Width="393" Name="lbAkcija"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="31" Margin="20,252,0,0" VerticalAlignment="Top" Width="83" Click="DodajAkciju"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="31" Margin="108,252,0,0" VerticalAlignment="Top" Width="83" Click="IzmeniAkciju"/>
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="31" Margin="196,252,0,0" VerticalAlignment="Top" Width="83" Click="IzbrisiAkciju"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="599,252,0,0" VerticalAlignment="Top" Width="83" Click="ZatvoriAkciju" Background="White" BorderBrush="#FF763737" Foreground="#FFC74848"/>
+        <DataGrid HorizontalAlignment="Left" Height="229" Margin="20,10,0,0" VerticalAlignment="Top" Width="662" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}"/>
 
 
 

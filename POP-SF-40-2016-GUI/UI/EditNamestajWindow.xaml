@@ -21,9 +21,9 @@
         <Label x:Name="labelCena" Content="Jedinicna Cena:" HorizontalAlignment="Left" Height="35" Margin="10,93,0,0" VerticalAlignment="Top" Width="116" FontSize="15"/>
         <Label x:Name="labelKolicina" Content="Kolicina u magacinu:" HorizontalAlignment="Left" Height="31" Margin="10,141,0,0" VerticalAlignment="Top" Width="146" FontSize="15"/>
         <Label x:Name="labelTipNam" Content="Tip namestaja:" HorizontalAlignment="Left" Height="28" Margin="10,189,0,0" VerticalAlignment="Top" Width="116" FontSize="15"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivv" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivi" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" Name="tbNazivii" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="{Binding Path=Sifra}" VerticalAlignment="Top" Width="314" Name="tbNazivv" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="{Binding Path=JedinicnaCena}" VerticalAlignment="Top" Width="314" Name="tbNazivi" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaUMagacinu}" VerticalAlignment="Top" Width="314" Name="tbNazivii" Grid.ColumnSpan="2"/>
         <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2" SelectedItem="{Binding Path=TipNamestaja}"/>
 
     </Grid>
