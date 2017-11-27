@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +22,27 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class DodatneUslugeWindow : Window
     {
+        ICollectionView view;
+
         public DodatnaUsluga IzabranaUsluga { get; set; }
 
         public DodatneUslugeWindow()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
+            view.Filter = prikazView;
+
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
             dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
 
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
+        private bool prikazView(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
         }
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
@@ -62,6 +73,8 @@ namespace POP_SF_40_2016_GUI.UI
                     if (t.Id == IzabranaUsluga.Id)
                     {
                         t.Obrisan = true;
+                        view.Refresh();
+                        break;
                     }
                 }
                 GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);

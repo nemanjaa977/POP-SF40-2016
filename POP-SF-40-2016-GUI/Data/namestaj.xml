@@ -14,7 +14,7 @@
     <Naziv>Fotelja</Naziv>
     <JedinicnaCena>8006</JedinicnaCena>
     <TipNamestajaId>2</TipNamestajaId>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
     <Sifra>2489</Sifra>
     <KolicinaUMagacinu>458</KolicinaUMagacinu>
   </Namestaj>
@@ -32,7 +32,7 @@
     <Naziv>Stolica</Naziv>
     <JedinicnaCena>350</JedinicnaCena>
     <TipNamestajaId>3</TipNamestajaId>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
     <Sifra>8000</Sifra>
     <KolicinaUMagacinu>1111</KolicinaUMagacinu>
   </Namestaj>

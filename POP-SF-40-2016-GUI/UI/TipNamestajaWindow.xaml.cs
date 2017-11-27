@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +22,27 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class TipNamestajaWindow : Window
     {
+        ICollectionView view;
+
         public TipNamestaja IzabranTipNamestaja { get; set; } 
 
         public TipNamestajaWindow()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
+            view.Filter = prikazFilter;
+
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
             dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
 
             dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
+        private bool prikazFilter(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
         }
 
         private void DodajTipNamestaja(object sender, RoutedEventArgs e)
@@ -54,6 +65,8 @@ namespace POP_SF_40_2016_GUI.UI
                     if(t.Id == IzabranTipNamestaja.Id)
                     {
                         t.Obrisan = true;
+                        view.Refresh();
+                        break;
                     }
                 }
                 GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipova);
@@ -74,6 +87,11 @@ namespace POP_SF_40_2016_GUI.UI
                 int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
                 Projekat.Instance.TipNamestaja[index] = kopija;
             }
+        }
+
+        private void dgTipNamestaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+
         }
     }
 }

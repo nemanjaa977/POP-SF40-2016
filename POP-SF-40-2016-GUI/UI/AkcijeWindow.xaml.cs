@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,18 +22,28 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class AkcijeWindow : Window
     {
+        ICollectionView view;
+
         public Akcija IzabranaAkcija { get; set; }
 
         public AkcijeWindow()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Akcija);
+            view.Filter = prikazFilter;
+
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
-            dgAkcija.ItemsSource = Projekat.Instance.Akcija;
+            dgAkcija.ItemsSource = Projekat.Instance.Akcija;           
 
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }      
+        }
+
+        private bool prikazFilter(object obj)
+        {
+            return ((Akcija)obj).Obrisan == false;
+        }
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
@@ -64,6 +75,8 @@ namespace POP_SF_40_2016_GUI.UI
                     if (a.Id == IzabranaAkcija.Id)
                     {
                         a.Obrisan = true;
+                        view.Refresh();
+                        break;
                     }
                 }
                 GenericSerializer.Serialize("akcija.xml", listaAkcija);     

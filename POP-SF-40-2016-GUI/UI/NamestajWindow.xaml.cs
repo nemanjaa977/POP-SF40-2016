@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +22,27 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class NamestajWindow : Window
     {
+        ICollectionView view;
+
         public Namestaj IzabranNamestaj { get; set; }
 
         public NamestajWindow()
         {
             InitializeComponent();
 
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            view.Filter = prikazFilter;
+
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
-            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
+            dgNamestaj.ItemsSource = view;
 
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
+        private bool prikazFilter(object obj)
+        {
+            return ((Namestaj)obj).Obrisan == false; //ako je obrisan true, vrati ce ga i prikazati u data grid, A za false ne prikazuje
         }
 
         private void DodajNamestaj(object sender, RoutedEventArgs e)
@@ -65,6 +76,7 @@ namespace POP_SF_40_2016_GUI.UI
                     if(nam.Id == IzabranNamestaj.Id)
                     {
                         nam.Obrisan = true;
+                        view.Refresh();
                         break;
                     }
                 }
@@ -75,6 +87,14 @@ namespace POP_SF_40_2016_GUI.UI
         private void ZatvoriNamestaj(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if((string)e.Column.Header == "Id") // za uklanjanje kolone Id
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

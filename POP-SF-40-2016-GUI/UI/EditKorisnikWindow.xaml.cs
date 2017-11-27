@@ -37,10 +37,13 @@ namespace POP_SF_40_2016_GUI.UI
             this.korisnik = korisnik;
             this.operacija = operacija;
 
+            cbTipKorisnika.ItemsSource = Enum.GetValues(typeof(TipKorisnika)).Cast<TipKorisnika>();
+
             tbIme.DataContext = korisnik;
             tbPrezime.DataContext = korisnik;
             tbKorisnickoIme.DataContext = korisnik;
             tbLozinka.DataContext = korisnik;
+            cbTipKorisnika.DataContext = korisnik;
             
         }
 

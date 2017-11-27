@@ -9,7 +9,7 @@
     <Grid>
 
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="35" Margin="10,230,0,0" VerticalAlignment="Top" Width="71" Click="DodajNamestaj"/>
-        <DataGrid HorizontalAlignment="Left" Height="214" Margin="10,10,0,0" VerticalAlignment="Top" Width="769" Name="dgNamestaj" SelectedItem="{Binding Path=IzabranNamestaj}"/>
+        <DataGrid HorizontalAlignment="Left" Height="214" Margin="10,10,0,0" VerticalAlignment="Top" Width="769" Name="dgNamestaj" SelectedItem="{Binding Path=IzabranNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="35" Margin="86,230,0,0" VerticalAlignment="Top" Width="71" Click="IzmeniNamestaj" />
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="35" Margin="162,230,0,0" VerticalAlignment="Top" Width="71" Click="IzbrisiNamestaj" RenderTransformOrigin="0.544,0.543" />
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="35" Margin="708,230,0,0" VerticalAlignment="Top" Width="71" Click="ZatvoriNamestaj" />

@@ -18,11 +18,11 @@
   <TipNamestaja>
     <Id>4</Id>
     <Naziv>Super stolice</Naziv>
-    <Obrisan>false</Obrisan>
+    <Obrisan>true</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <Id>5</Id>
     <Naziv>Kreveti</Naziv>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
   </TipNamestaja>
 </ArrayOfTipNamestaja>

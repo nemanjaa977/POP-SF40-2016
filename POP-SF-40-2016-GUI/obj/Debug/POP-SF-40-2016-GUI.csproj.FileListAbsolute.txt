@@ -68,3 +68,11 @@ C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditKorisnikWin
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\KorisnikWindow.g.cs
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditKorisnikWindow.baml
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\KorisnikWindow.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\DodatneUslugeWindow.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditDodatneUsluge.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditKorisnikWindow.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\KorisnikWindow.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\DodatneUslugeWindow.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditDodatneUsluge.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditKorisnikWindow.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\KorisnikWindow.baml

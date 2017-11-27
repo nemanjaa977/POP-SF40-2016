@@ -9,4 +9,13 @@
     <TipKorisnika>Administrator</TipKorisnika>
     <Obrisan>false</Obrisan>
   </Korisnik>
+  <Korisnik>
+    <Id>2</Id>
+    <Ime>Marko</Ime>
+    <Prezime>Markovic</Prezime>
+    <KorisnickoIme>mare</KorisnickoIme>
+    <Lozinka>123</Lozinka>
+    <TipKorisnika>Prodavac</TipKorisnika>
+    <Obrisan>false</Obrisan>
+  </Korisnik>
 </ArrayOfKorisnik>
