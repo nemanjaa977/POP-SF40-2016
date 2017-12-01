@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="KorisnikWindow" Height="283.294" Width="546.404" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="dgKorisnik" HorizontalAlignment="Left" Height="191" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" SelectedItem="{Binding Path=IzabranKorisnik}"/>
+        <DataGrid x:Name="dgKorisnik" HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="191" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" SelectedItem="{Binding Path=IzabranKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn"/>
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="10,221,0,0" VerticalAlignment="Top" Width="73" Click="DodajKorisnika"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="23" Margin="88,221,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniKorisnika"/>
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="23" Margin="166,221,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiKorisnika"/>

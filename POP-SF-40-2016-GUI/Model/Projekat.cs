@@ -18,6 +18,7 @@ namespace POP_40_2016.Model
         public ObservableCollection<DodatnaUsluga> DodatnaUsluga { get; set; }
         public ObservableCollection<Korisnik> Korisnik { get; set; }
         public ObservableCollection<ProdajaNamestaja> ProdajaNamestaja { get; set; }
+        public ObservableCollection<Salon> Salon { get; set; }
 
         private Projekat()
         {
@@ -26,7 +27,8 @@ namespace POP_40_2016.Model
             Akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
             DodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");
-            ////ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja");
+            ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+            Salon = GenericSerializer.Deserialize<Salon>("salon.xml");
         }        
     }
 }

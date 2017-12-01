@@ -34,8 +34,7 @@ namespace POP_SF_40_2016_GUI.UI
         {
             InitializeComponent();
 
-            tbDatumP.SelectedDate = DateTime.Today;
-            tbDatumZ.SelectedDate = DateTime.Today;
+          
 
             this.akcija = akcija;
             this.operacija = operacija;

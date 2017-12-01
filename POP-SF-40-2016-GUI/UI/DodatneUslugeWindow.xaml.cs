@@ -26,9 +26,24 @@ namespace POP_SF_40_2016_GUI.UI
 
         public DodatnaUsluga IzabranaUsluga { get; set; }
 
-        public DodatneUslugeWindow()
+        public enum Operacija { ADMINISTRACIJA, PREUZIMANJE}
+        Operacija operacija;
+
+        public DodatneUslugeWindow(Operacija operacija = Operacija.ADMINISTRACIJA)
         {
             InitializeComponent();
+            this.operacija = operacija;
+
+            if (operacija == Operacija.PREUZIMANJE)
+            {
+                btnDodaj.Visibility = System.Windows.Visibility.Collapsed;
+                btnIzbrisi.Visibility = System.Windows.Visibility.Collapsed;
+                btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
+            }
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
             view.Filter = prikazView;
@@ -36,6 +51,8 @@ namespace POP_SF_40_2016_GUI.UI
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
             dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
+
+            IzabranaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
 
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
@@ -83,6 +100,23 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void ZatvoriUslugu(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void dgUsluga_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        public DodatnaUsluga SelektovanaUsluga = null;
+
+        private void PreuzmiUslugu(object sender, RoutedEventArgs e)
+        {
+            SelektovanaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
+            this.DialogResult = true;
             this.Close();
         }
     }

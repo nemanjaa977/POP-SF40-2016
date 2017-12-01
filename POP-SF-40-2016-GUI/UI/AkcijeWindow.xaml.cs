@@ -35,7 +35,9 @@ namespace POP_SF_40_2016_GUI.UI
 
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
-            dgAkcija.ItemsSource = Projekat.Instance.Akcija;           
+            dgAkcija.ItemsSource = Projekat.Instance.Akcija;
+
+            IzabranaAkcija = dgAkcija.SelectedItem as Akcija;
 
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
@@ -62,13 +64,12 @@ namespace POP_SF_40_2016_GUI.UI
                 int index = Projekat.Instance.Akcija.IndexOf(IzabranaAkcija);
                 Projekat.Instance.Akcija[index] = kopija;
             }
-
         }
 
         private void IzbrisiAkciju(object sender, RoutedEventArgs e)
         {
             var listaAkcija = Projekat.Instance.Akcija;
-            if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaAkcija}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 foreach (var a in listaAkcija)
                 {
@@ -86,6 +87,14 @@ namespace POP_SF_40_2016_GUI.UI
         private void ZatvoriAkciju(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Namestaj")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

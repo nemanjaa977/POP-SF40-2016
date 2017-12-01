@@ -37,6 +37,8 @@ namespace POP_SF_40_2016_GUI.UI
             dgKorisnik.DataContext = this;
             dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
 
+            IzabranKorisnik = dgKorisnik.SelectedItem as Korisnik;
+
             dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -87,6 +89,14 @@ namespace POP_SF_40_2016_GUI.UI
         private void ZatvoriKorisnika(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dgKorisnik_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Obrisan")
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

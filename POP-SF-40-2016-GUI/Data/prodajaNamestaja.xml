@@ -2,11 +2,22 @@
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProdajaNamestaja>
     <Id>1</Id>
-    <NamestajZaProdajuId>1</NamestajZaProdajuId>
-    <DatumProdaje>2017-11-11T00:00:00</DatumProdaje>
-    <BrojRacuna>1458</BrojRacuna>
+    <DatumProdaje>2017-11-29T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>15687</BrojRacuna>
     <Kupac>Marko Markovic</Kupac>
-    <DodatnaUslugaId>1</DodatnaUslugaId>
-    <UkupanIznos>5222</UkupanIznos>
+    <UkupanIznos>145875</UkupanIznos>
+    <Obrisan>false</Obrisan>
+    <NamestajZaProdajuId />
+    <DodatnaUslugaId>
+      <int>1</int>
+    </DodatnaUslugaId>
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Id>2</Id>
+    <DatumProdaje>2017-11-30T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>1457</BrojRacuna>
+    <Kupac>Mitar Mitrovic</Kupac>
+    <UkupanIznos>0</UkupanIznos>
+    <Obrisan>false</Obrisan>
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

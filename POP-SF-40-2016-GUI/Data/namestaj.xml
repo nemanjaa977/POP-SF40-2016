@@ -3,46 +3,55 @@
   <Namestaj>
     <Id>1</Id>
     <Naziv>Super sofa</Naziv>
+    <Sifra>12345</Sifra>
     <JedinicnaCena>5000</JedinicnaCena>
+    <KolicinaUMagacinu>178</KolicinaUMagacinu>
     <TipNamestajaId>1</TipNamestajaId>
     <Obrisan>false</Obrisan>
-    <Sifra>12345</Sifra>
-    <KolicinaUMagacinu>178</KolicinaUMagacinu>
   </Namestaj>
   <Namestaj>
     <Id>2</Id>
     <Naziv>Fotelja</Naziv>
+    <Sifra>2489</Sifra>
     <JedinicnaCena>8006</JedinicnaCena>
+    <KolicinaUMagacinu>458</KolicinaUMagacinu>
     <TipNamestajaId>2</TipNamestajaId>
     <Obrisan>false</Obrisan>
-    <Sifra>2489</Sifra>
-    <KolicinaUMagacinu>458</KolicinaUMagacinu>
   </Namestaj>
   <Namestaj>
     <Id>3</Id>
     <Naziv>Stolica</Naziv>
-    <JedinicnaCena>456</JedinicnaCena>
-    <TipNamestajaId>2</TipNamestajaId>
-    <Obrisan>true</Obrisan>
     <Sifra>4855</Sifra>
+    <JedinicnaCena>456</JedinicnaCena>
     <KolicinaUMagacinu>1488</KolicinaUMagacinu>
+    <TipNamestajaId>2</TipNamestajaId>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>4</Id>
     <Naziv>Stolica</Naziv>
-    <JedinicnaCena>350</JedinicnaCena>
-    <TipNamestajaId>3</TipNamestajaId>
-    <Obrisan>true</Obrisan>
     <Sifra>8000</Sifra>
+    <JedinicnaCena>350</JedinicnaCena>
     <KolicinaUMagacinu>1111</KolicinaUMagacinu>
+    <TipNamestajaId>3</TipNamestajaId>
+    <Obrisan>false</Obrisan>
   </Namestaj>
   <Namestaj>
     <Id>5</Id>
     <Naziv>Leteci krevet</Naziv>
+    <Sifra>11</Sifra>
     <JedinicnaCena>489</JedinicnaCena>
+    <KolicinaUMagacinu>6</KolicinaUMagacinu>
     <TipNamestajaId>5</TipNamestajaId>
     <Obrisan>true</Obrisan>
-    <Sifra>11</Sifra>
-    <KolicinaUMagacinu>6</KolicinaUMagacinu>
+  </Namestaj>
+  <Namestaj>
+    <Id>6</Id>
+    <Naziv>Sto</Naziv>
+    <Sifra>12</Sifra>
+    <JedinicnaCena>45</JedinicnaCena>
+    <KolicinaUMagacinu>4545</KolicinaUMagacinu>
+    <TipNamestajaId>4</TipNamestajaId>
+    <Obrisan>true</Obrisan>
   </Namestaj>
 </ArrayOfNamestaj>

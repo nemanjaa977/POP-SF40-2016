@@ -24,4 +24,20 @@
     <NamestajNaPopustuId>3</NamestajNaPopustuId>
     <Popust>111</Popust>
   </Akcija>
+  <Akcija>
+    <Id>4</Id>
+    <Obrisan>false</Obrisan>
+    <DatumPocetka>0001-01-01T00:00:00</DatumPocetka>
+    <DatumZavrsetka>0001-01-01T00:00:00</DatumZavrsetka>
+    <NamestajNaPopustuId>4</NamestajNaPopustuId>
+    <Popust>88</Popust>
+  </Akcija>
+  <Akcija>
+    <Id>5</Id>
+    <Obrisan>false</Obrisan>
+    <DatumPocetka>2017-11-29T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2017-12-20T00:00:00</DatumZavrsetka>
+    <NamestajNaPopustuId>1</NamestajNaPopustuId>
+    <Popust>1500</Popust>
+  </Akcija>
 </ArrayOfAkcija>

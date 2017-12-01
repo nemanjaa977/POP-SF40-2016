@@ -19,6 +19,56 @@ namespace POP_40_2016.Model
         private int kolicina;
         private TipNamestaja tippNamestaja;
 
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                id = value;
+                OnPropertyChanged("Id");
+            }
+        }
+
+        public string Naziv
+        {
+            get { return naziv; }
+            set
+            {
+                naziv = value;
+                OnPropertyChanged("Naziv");
+            }
+        }
+
+        public string Sifra
+        {
+            get { return sifra; }
+            set
+            {
+                sifra = value;
+                OnPropertyChanged("Sifra");
+            }
+        }
+
+        public Double JedinicnaCena
+        {
+            get { return jedinicnaCena; }
+            set
+            {
+                jedinicnaCena = value;
+                OnPropertyChanged("JedinicnaCena");
+            }
+        }
+
+        public int KolicinaUMagacinu
+        {
+            get { return kolicina; }
+            set
+            {
+                kolicina = value;
+                OnPropertyChanged("KolicinaUMagacinu");
+            }
+        }
+
         [XmlIgnore]
 
         public TipNamestaja TipNamestaja 
@@ -38,33 +88,6 @@ namespace POP_40_2016.Model
                 }
         }
 
-        public int Id
-        {
-            get { return id; }
-            set {
-
-                id = value;
-                OnPropertyChanged("Id");
-                }
-        }
-        public string Naziv
-        {
-            get { return naziv; }
-            set
-            {
-                naziv = value;
-                OnPropertyChanged("Naziv");
-            }
-        }
-        public Double JedinicnaCena
-        {
-            get { return jedinicnaCena; }
-            set
-            {
-               jedinicnaCena = value;
-                OnPropertyChanged("JedinicnaCena");
-            }
-        }
         public int TipNamestajaId
         {
             get { return tipNamestajaId; }
@@ -74,30 +97,13 @@ namespace POP_40_2016.Model
                 OnPropertyChanged("TipNamestajaId");
             }
         }
+
         public  bool Obrisan
         {
             get { return obrisan; }
             set {
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
-            }
-        }
-        public string Sifra
-        {
-            get { return sifra; }
-            set
-            {
-                sifra = value;
-                OnPropertyChanged("Sifra");
-            }
-        }
-        public int KolicinaUMagacinu
-        {
-            get { return kolicina; }
-            set
-            {
-                kolicina = value;
-                OnPropertyChanged("KolicinaUMagacinu");
             }
         }
 

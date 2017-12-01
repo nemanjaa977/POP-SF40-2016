@@ -1,0 +1,16 @@
+﻿<Window x:Class="POP_SF_40_2016_GUI.UI.ProdajaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="ProdajaWindow" Height="340.023" Width="753.678" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid x:Name="dgProdaja" HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="251" Margin="10,10,0,0" VerticalAlignment="Top" Width="727" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn"/>
+        <Button x:Name="btnDodajRacun" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="10,277,0,0" VerticalAlignment="Top" Width="87" Click="DodajRacun"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="650,277,0,0" VerticalAlignment="Top" Width="87" Click="ZatvoriRacun"/>
+        <Button x:Name="btnIzbrisiRacun" Content="Izbrisi" HorizontalAlignment="Left" Height="23" Margin="102,277,0,0" VerticalAlignment="Top" Width="87" Click="IzbrisiRacun"/>
+
+    </Grid>
+</Window>

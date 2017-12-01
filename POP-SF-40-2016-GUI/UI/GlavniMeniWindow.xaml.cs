@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POP_40_2016.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,7 +57,15 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void PrikaziProdajuNamestaja_Click(object sender, RoutedEventArgs e)
         {
+            var p = new ProdajaWindow();
+            p.ShowDialog();
+        }
 
+        private void IspisiSalon(object sender, RoutedEventArgs e)
+        {
+            var saloni = Projekat.Instance.Salon;
+            string infostring = saloni[0].Naziv;
+            MessageBox.Show(infostring, "Informacije", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

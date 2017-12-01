@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSalon xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Salon>
+    <Id>1</Id>
+    <Obrisan>false</Obrisan>
+    <Naziv>Salon namestaja Nexux</Naziv>
+    <Adresa>Alekse Santica 52</Adresa>
+    <Telefon>021-256-896</Telefon>
+    <Email>nexux@gmail.com</Email>
+    <AdresaInternetSajta>www.nexux.com</AdresaInternetSajta>
+    <PIB>2145555</PIB>
+    <MaticniBroj>1425884446</MaticniBroj>
+    <BrojZiroRacuna>840-6666666-5888</BrojZiroRacuna>
+  </Salon>
+</ArrayOfSalon>

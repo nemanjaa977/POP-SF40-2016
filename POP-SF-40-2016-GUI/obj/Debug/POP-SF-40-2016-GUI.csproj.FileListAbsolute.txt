@@ -76,3 +76,7 @@ C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\DodatneUslugeWi
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditDodatneUsluge.baml
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditKorisnikWindow.baml
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\KorisnikWindow.baml
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.g.cs
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.baml
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditProdajaWindow.g.cs
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditProdajaWindow.baml

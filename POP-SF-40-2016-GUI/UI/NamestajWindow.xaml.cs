@@ -26,9 +26,24 @@ namespace POP_SF_40_2016_GUI.UI
 
         public Namestaj IzabranNamestaj { get; set; }
 
-        public NamestajWindow()
+        public enum Operacija { ADMINISTRACIJA, PREUZIMANJE }
+        Operacija operacija;
+
+        public NamestajWindow(Operacija operacija = Operacija.ADMINISTRACIJA)
         {
             InitializeComponent();
+            this.operacija = operacija;
+
+            if (operacija == Operacija.PREUZIMANJE)
+            {
+                btnDodaj.Visibility = System.Windows.Visibility.Collapsed;
+                btnIzbrisi.Visibility = System.Windows.Visibility.Collapsed;
+                btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
+            }
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
             view.Filter = prikazFilter;
@@ -37,12 +52,14 @@ namespace POP_SF_40_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = view;
 
+            IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
+
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
         private bool prikazFilter(object obj)
         {
-            return ((Namestaj)obj).Obrisan == false; //ako je obrisan true, vrati ce ga i prikazati u data grid, A za false ne prikazuje
+            return ((Namestaj)obj).Obrisan == false; 
         }
 
         private void DodajNamestaj(object sender, RoutedEventArgs e)
@@ -91,10 +108,19 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if((string)e.Column.Header == "Id") // za uklanjanje kolone Id
+            if((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "TipNamestaja") // za uklanjanje kolone Id
             {
                 e.Cancel = true;
             }
+        }
+
+        public Namestaj SelektovaniNamestaj = null;
+
+        private void PreuzmiNamestaj(object sender, RoutedEventArgs e)
+        {
+            SelektovaniNamestaj = dgNamestaj.SelectedItem as Namestaj;
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

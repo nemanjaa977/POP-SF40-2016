@@ -106,7 +106,11 @@ namespace POP_40_2016.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
+        public Akcija()
+        {
+            datumPocetka = DateTime.Today;
+            datumZavrsetka = DateTime.Today;
+        }
         public object Clone()
         {
             return new Akcija()

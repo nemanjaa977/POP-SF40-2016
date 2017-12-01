@@ -37,6 +37,8 @@ namespace POP_SF_40_2016_GUI.UI
             dgTipNamestaja.DataContext = this;
             dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
 
+            IzabranTipNamestaja = dgTipNamestaja.SelectedItem as TipNamestaja;
+
             dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
@@ -91,7 +93,10 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgTipNamestaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-
+            if ((string)e.Column.Header == "Obrisan" ) 
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

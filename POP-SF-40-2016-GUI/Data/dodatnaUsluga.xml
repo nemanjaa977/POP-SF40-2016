@@ -14,8 +14,8 @@
   </DodatnaUsluga>
   <DodatnaUsluga>
     <Id>3</Id>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
     <Naziv>Istovar</Naziv>
-    <Cena>1000</Cena>
+    <Cena>1001</Cena>
   </DodatnaUsluga>
 </ArrayOfDodatnaUsluga>

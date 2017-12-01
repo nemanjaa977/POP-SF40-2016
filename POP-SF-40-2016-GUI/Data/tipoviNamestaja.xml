@@ -13,7 +13,7 @@
   <TipNamestaja>
     <Id>3</Id>
     <Naziv>Super stolica</Naziv>
-    <Obrisan>true</Obrisan>
+    <Obrisan>false</Obrisan>
   </TipNamestaja>
   <TipNamestaja>
     <Id>4</Id>
