@@ -24,7 +24,21 @@ namespace POP_SF_40_2016_GUI.UI
     {
         public LoginWindow()
         {
-            InitializeComponent();          
+            InitializeComponent();
+
+            /*var listaUsluga = Projekat.Instance.DodatnaUsluga;
+            var listaNamestaja = Projekat.Instance.Namestaj;
+            var o = new ProdajaNamestaja()
+            {
+                Id = 1,
+                DatumProdaje = DateTime.Today,
+                BrojRacuna = 7777,
+                Kupac = "Marko Maric",
+                KolicinaNamestaja = 7,
+                UkupanIznos = 14555,
+
+            };
+            GenericSerializer.*/
         }
 
         private void PrijaviSe(object sender, RoutedEventArgs e)

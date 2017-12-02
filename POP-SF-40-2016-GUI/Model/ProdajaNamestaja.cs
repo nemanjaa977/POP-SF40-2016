@@ -15,13 +15,14 @@ namespace POP_40_2016.Model
         private int id;
         private List<int> namestajZaProdajuId;
         private DateTime datumProdaje;
-        private string brojRacuna;
+        private int brojRacuna;
         private string kupac;
         private List<int> uslugaId;
         private double ukupanIznos;
         private bool obrisan;
         private ObservableCollection<DodatnaUsluga> dodUsluge;
         private ObservableCollection<Namestaj> namProdaja;
+        private int kolicina;
    
         public int Id
         {
@@ -41,7 +42,7 @@ namespace POP_40_2016.Model
                 OnPropertyChanged("DatumProdaje");
             }
         }
-        public string BrojRacuna
+        public int BrojRacuna
         {
             get { return brojRacuna; }
             set
@@ -75,6 +76,16 @@ namespace POP_40_2016.Model
             {
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
+            }
+        }
+
+        public int KolicinaNamestaja
+        {
+            get { return kolicina; }
+            set
+            {
+                kolicina = value;
+                OnPropertyChanged("KolicinaNamestaja");
             }
         }
 
@@ -157,7 +168,8 @@ namespace POP_40_2016.Model
                 UkupanIznos = ukupanIznos,
                 Obrisan = obrisan,
                 NamestajZaProdajuId = namestajZaProdajuId,
-                DodatnaUslugaId = uslugaId
+                DodatnaUslugaId = uslugaId,
+                KolicinaNamestaja = kolicina
             };
         }
 

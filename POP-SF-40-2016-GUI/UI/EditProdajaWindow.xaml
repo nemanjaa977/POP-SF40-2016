@@ -21,5 +21,7 @@
         <Label Content="Namestaj" HorizontalAlignment="Left" Height="32" Margin="154,239,0,0" VerticalAlignment="Top" Width="90" FontSize="18" RenderTransformOrigin="0.505,0.488"/>
         <DataGrid x:Name="dgNamestajj" ItemsSource="{Binding Source=NamestajNaProdaja}" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" HorizontalAlignment="Left" Height="136" Margin="25,276,0,0" VerticalAlignment="Top" Width="343" AutoGeneratingColumn="dgNamestajj_AutoGeneratingColumn"/>
         <Button x:Name="btnIzaberiNamestaj" Content="Izaberi" HorizontalAlignment="Left" Height="20" Margin="100,417,0,0" VerticalAlignment="Top" Width="189" Click="IzaberiNamestaj"/>
+        <Label Content="Kolicina" HorizontalAlignment="Left" Height="28" Margin="513,310,0,0" VerticalAlignment="Top" Width="74" FontSize="15"/>
+        <TextBox x:Name="tbKolicinaNamestaja" HorizontalAlignment="Left" Height="31" Margin="464,352,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaNamestaja}" VerticalAlignment="Top" Width="164" FontSize="15"/>
     </Grid>
 </Window>

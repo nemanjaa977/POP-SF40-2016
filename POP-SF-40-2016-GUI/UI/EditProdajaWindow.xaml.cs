@@ -40,6 +40,7 @@ namespace POP_SF_40_2016_GUI.UI
             dpDatumProdaje.DataContext = prodaja;
             tbBrRacuna.DataContext = prodaja;
             tbKupac.DataContext = prodaja;
+            tbKolicinaNamestaja.DataContext = prodaja;
             dgDodUsluge.ItemsSource = prodaja.DodatneUsluge;
             dgNamestajj.ItemsSource = prodaja.NamestajNaProdaja;
         }
@@ -53,10 +54,23 @@ namespace POP_SF_40_2016_GUI.UI
         {
             var listaProdaje = Projekat.Instance.ProdajaNamestaja;
             this.DialogResult = true;
+            double cenaNamestaja = 0;
+            double cenaUsluga = 0;
+            for(int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
+            {
+                cenaNamestaja += prodaja.NamestajNaProdaja[i].JedinicnaCena;
+
+            }
+            for (int i = 0; i < prodaja.DodatneUsluge.Count; i++)
+            {
+                cenaUsluga += prodaja.DodatneUsluge[i].Cena;
+
+            }
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
                     prodaja.Id = listaProdaje.Count + 1;
+                    prodaja.UkupanIznos = (cenaNamestaja * prodaja.KolicinaNamestaja) + cenaUsluga ;
                     listaProdaje.Add(prodaja);
                     break;                 
             }

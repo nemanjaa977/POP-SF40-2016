@@ -66,6 +66,7 @@ namespace POP_SF_40_2016_GUI.UI
             var saloni = Projekat.Instance.Salon;
             string infostring = saloni[0].Naziv;
             MessageBox.Show(infostring, "Informacije", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
     }
 }

@@ -7,6 +7,7 @@
     <Kupac>Marko Markovic</Kupac>
     <UkupanIznos>145875</UkupanIznos>
     <Obrisan>false</Obrisan>
+    <KolicinaNamestaja>7</KolicinaNamestaja>
     <NamestajZaProdajuId />
     <DodatnaUslugaId>
       <int>1</int>
@@ -14,10 +15,13 @@
   </ProdajaNamestaja>
   <ProdajaNamestaja>
     <Id>2</Id>
-    <DatumProdaje>2017-11-30T00:00:00+01:00</DatumProdaje>
-    <BrojRacuna>1457</BrojRacuna>
-    <Kupac>Mitar Mitrovic</Kupac>
-    <UkupanIznos>0</UkupanIznos>
+    <DatumProdaje>2017-12-23T00:00:00</DatumProdaje>
+    <BrojRacuna>11</BrojRacuna>
+    <Kupac>Mitar Miric</Kupac>
+    <UkupanIznos>32750</UkupanIznos>
     <Obrisan>false</Obrisan>
+    <KolicinaNamestaja>5</KolicinaNamestaja>
+    <NamestajZaProdajuId />
+    <DodatnaUslugaId />
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>
