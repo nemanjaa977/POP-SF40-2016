@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -83,7 +84,8 @@ namespace POP_SF_40_2016_GUI.UI
             DodatneUslugeWindow ff = new DodatneUslugeWindow(DodatneUslugeWindow.Operacija.PREUZIMANJE);
             if (ff.ShowDialog() == true)
             {
-                prodaja.DodatneUsluge.Add(ff.SelektovanaUsluga);              
+                prodaja.DodatneUsluge.Add(ff.SelektovanaUsluga);
+                prodaja.DodatnaUslugaId.Add(ff.SelektovanaUsluga.Id);
             }
         }
 
@@ -102,6 +104,7 @@ namespace POP_SF_40_2016_GUI.UI
             if(nn.ShowDialog() == true)
             {
                 prodaja.NamestajNaProdaja.Add(nn.SelektovaniNamestaj);
+                prodaja.NamestajZaProdajuId.Add(nn.SelektovaniNamestaj.Id);
             }
         }
 

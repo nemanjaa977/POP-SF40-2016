@@ -115,6 +115,8 @@ namespace POP_40_2016.Model
             datumProdaje = DateTime.Today;
             dodUsluge = new ObservableCollection<DodatnaUsluga>();
             namProdaja = new ObservableCollection<Namestaj>();
+            uslugaId = new List<int>();
+            namestajZaProdajuId = new List<int>();
         }
 
         [XmlIgnore]
