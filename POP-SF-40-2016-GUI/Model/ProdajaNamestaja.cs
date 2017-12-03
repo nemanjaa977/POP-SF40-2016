@@ -169,7 +169,9 @@ namespace POP_40_2016.Model
                 Obrisan = obrisan,
                 NamestajZaProdajuId = namestajZaProdajuId,
                 DodatnaUslugaId = uslugaId,
-                KolicinaNamestaja = kolicina
+                KolicinaNamestaja = kolicina,
+                NamestajNaProdaja = namProdaja,
+                DodatneUsluge = dodUsluge
             };
         }
 

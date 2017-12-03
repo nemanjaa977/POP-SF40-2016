@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\App.xaml
-15-92324170
+16-1904431100
 
-32993894247
+33202593883
 131569487696
-MainWindow.xaml;UI\AkcijeWindow.xaml;UI\DodatneUslugeWindow.xaml;UI\EditAkcijeWindow.xaml;UI\EditDodatneUsluge.xaml;UI\EditKorisnikWindow.xaml;UI\EditNamestajWindow.xaml;UI\EditProdajaWindow.xaml;UI\EditTipWindow.xaml;UI\GlavniMeniWindow.xaml;UI\KorisnikWindow.xaml;UI\LoginWindow.xaml;UI\NamestajWindow.xaml;UI\ProdajaWindow.xaml;UI\TipNamestajaWindow.xaml;
+MainWindow.xaml;UI\AkcijeWindow.xaml;UI\DodatneUslugeWindow.xaml;UI\EditAkcijeWindow.xaml;UI\EditDodatneUsluge.xaml;UI\EditKorisnikWindow.xaml;UI\EditNamestajWindow.xaml;UI\EditProdajaWindow.xaml;UI\EditTipWindow.xaml;UI\GlavniMeniWindow.xaml;UI\KorisnikWindow.xaml;UI\LoginWindow.xaml;UI\NamestajWindow.xaml;UI\PrikaziNamestajUsluge.xaml;UI\ProdajaWindow.xaml;UI\TipNamestajaWindow.xaml;
 
 False
 

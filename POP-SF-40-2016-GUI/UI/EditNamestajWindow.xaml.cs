@@ -61,20 +61,6 @@ namespace POP_SF_40_2016_GUI.UI
                     namestaj.Id = listaNamestaja.Count + 1;
                     listaNamestaja.Add(namestaj);
                     break;                  
-                /*case Operacija.IZMENA:
-                    foreach (var n in listaNamestaja)
-                    {
-                        if (n.Id == namestaj.Id)
-                        {
-                            n.Naziv = namestaj.Naziv;
-                            n.Sifra = namestaj.Sifra;
-                            n.JedinicnaCena = namestaj.JedinicnaCena;
-                            n.KolicinaUMagacinu = namestaj.KolicinaUMagacinu;
-                            n.TipNamestaja = namestaj.TipNamestaja;                       
-                            break;
-                        }
-                    }
-                    break;*/
             }
             GenericSerializer.Serialize("namestaj.xml", listaNamestaja);
             Close();

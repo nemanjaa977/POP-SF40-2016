@@ -112,5 +112,15 @@ namespace POP_SF_40_2016_GUI.UI
                 e.Cancel = true;
             }
         }
+
+        private void UkloniNamestaj(object sender, RoutedEventArgs e)
+        {
+            prodaja.NamestajNaProdaja.Remove(dgNamestajj.SelectedItem as Namestaj);
+        }
+
+        private void UkloniUslugu(object sender, RoutedEventArgs e)
+        {
+            prodaja.DodatneUsluge.Remove(dgDodUsluge.SelectedItem as DodatnaUsluga);
+        }
     }
 }

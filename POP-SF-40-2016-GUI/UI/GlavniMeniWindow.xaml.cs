@@ -64,7 +64,8 @@ namespace POP_SF_40_2016_GUI.UI
         private void IspisiSalon(object sender, RoutedEventArgs e)
         {
             var saloni = Projekat.Instance.Salon;
-            string infostring = saloni[0].Naziv;
+            string infostring = saloni[0].Naziv + "\n" + saloni[0].Adresa + "\n" + saloni[0].Email + "\n" + saloni[0].AdresaInternetSajta
+                            + "\n" + saloni[0].BrojZiroRacuna + "\n" + saloni[0].Telefon;
             MessageBox.Show(infostring, "Informacije", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }

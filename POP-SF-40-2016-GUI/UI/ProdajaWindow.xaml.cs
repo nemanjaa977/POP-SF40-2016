@@ -22,54 +22,28 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class ProdajaWindow : Window
     {
-        ICollectionView view;
 
         public ProdajaNamestaja IzabranaProdaja { get; set; }
 
         public ProdajaWindow()
         {
-            InitializeComponent();
-
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajaNamestaja);
-            view.Filter = prikazFilter;
+            InitializeComponent();         
 
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
-            dgProdaja.ItemsSource = view;
+            dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
 
             IzabranaProdaja = dgProdaja.SelectedItem as ProdajaNamestaja;
 
             dgProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private bool prikazFilter(object obj)
-        {
-            return ((ProdajaNamestaja)obj).Obrisan == false;
-        }
 
         private void DodajRacun(object sender, RoutedEventArgs e)
         {
             var novaProdaja = new ProdajaNamestaja();
             var prodajaProzor = new EditProdajaWindow(novaProdaja, EditProdajaWindow.Operacija.DODAVANJE);
             prodajaProzor.ShowDialog();
-        }
-
-        private void IzbrisiRacun(object sender, RoutedEventArgs e)
-        {
-            var listaProdaja = Projekat.Instance.ProdajaNamestaja;
-            if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaProdaja}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            {
-                foreach (var p in listaProdaja)
-                {
-                    if (p.Id == IzabranaProdaja.Id)
-                    {
-                        p.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-                }
-                GenericSerializer.Serialize("prodajaNamestaja.xml", listaProdaja);
-            }
         }
 
         private void ZatvoriRacun(object sender, RoutedEventArgs e)
@@ -79,10 +53,29 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if ((string)e.Column.Header == "Obrisan" )
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "NamestajZaProdajuId" || (string)e.Column.Header == "DodatnaUslugaId"
+                || (string)e.Column.Header == "NamestajNaProdaja" || (string)e.Column.Header == "DodatneUsluge")
             {
                 e.Cancel = true;
             }
+        }
+
+        private void IzmeniRacun(object sender, RoutedEventArgs e)
+        {
+            ProdajaNamestaja kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
+            var pProzor = new EditProdajaWindow(IzabranaProdaja, EditProdajaWindow.Operacija.IZMENA);
+            if (pProzor.ShowDialog() != true)
+            {
+                int index = Projekat.Instance.ProdajaNamestaja.IndexOf(IzabranaProdaja);
+                Projekat.Instance.ProdajaNamestaja[index] = kopija;
+            }
+        }
+
+        private void PrikaziNamUs(object sender, RoutedEventArgs e)
+        {
+            ProdajaNamestaja pr = dgProdaja.SelectedItem as ProdajaNamestaja;
+            var novi = new PrikaziNamestajUsluge(pr);
+            novi.ShowDialog();
         }
     }
 }

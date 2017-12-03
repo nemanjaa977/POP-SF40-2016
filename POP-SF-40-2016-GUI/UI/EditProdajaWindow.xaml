@@ -23,5 +23,8 @@
         <Button x:Name="btnIzaberiNamestaj" Content="Izaberi" HorizontalAlignment="Left" Height="20" Margin="100,417,0,0" VerticalAlignment="Top" Width="189" Click="IzaberiNamestaj"/>
         <Label Content="Kolicina" HorizontalAlignment="Left" Height="28" Margin="513,310,0,0" VerticalAlignment="Top" Width="74" FontSize="15"/>
         <TextBox x:Name="tbKolicinaNamestaja" HorizontalAlignment="Left" Height="31" Margin="464,352,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaNamestaja}" VerticalAlignment="Top" Width="164" FontSize="15"/>
+        <Button x:Name="btnUkloniNamestaj" Content="X" HorizontalAlignment="Left" Height="20" Margin="294,417,0,0" VerticalAlignment="Top" Width="29" Click="UkloniNamestaj" />
+        <Button x:Name="btnUkloniUslugu" Content="X" HorizontalAlignment="Left" Height="23" Margin="612,202,0,0" VerticalAlignment="Top" Width="28" Click="UkloniUslugu"/>
+
     </Grid>
 </Window>

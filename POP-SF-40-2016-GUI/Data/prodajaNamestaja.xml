@@ -2,26 +2,11 @@
 <ArrayOfProdajaNamestaja xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProdajaNamestaja>
     <Id>1</Id>
-    <DatumProdaje>2017-11-29T00:00:00+01:00</DatumProdaje>
-    <BrojRacuna>15687</BrojRacuna>
-    <Kupac>Marko Markovic</Kupac>
-    <UkupanIznos>145875</UkupanIznos>
+    <DatumProdaje>2017-12-09T00:00:00</DatumProdaje>
+    <BrojRacuna>2</BrojRacuna>
+    <Kupac>Ona</Kupac>
+    <UkupanIznos>75604</UkupanIznos>
     <Obrisan>false</Obrisan>
-    <KolicinaNamestaja>7</KolicinaNamestaja>
-    <NamestajZaProdajuId />
-    <DodatnaUslugaId>
-      <int>1</int>
-    </DodatnaUslugaId>
-  </ProdajaNamestaja>
-  <ProdajaNamestaja>
-    <Id>2</Id>
-    <DatumProdaje>2017-12-23T00:00:00</DatumProdaje>
-    <BrojRacuna>11</BrojRacuna>
-    <Kupac>Mitar Miric</Kupac>
-    <UkupanIznos>32750</UkupanIznos>
-    <Obrisan>false</Obrisan>
-    <KolicinaNamestaja>5</KolicinaNamestaja>
-    <NamestajZaProdajuId />
-    <DodatnaUslugaId />
+    <KolicinaNamestaja>4</KolicinaNamestaja>
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>
