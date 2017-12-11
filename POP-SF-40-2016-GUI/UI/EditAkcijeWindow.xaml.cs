@@ -34,17 +34,14 @@ namespace POP_SF_40_2016_GUI.UI
         {
             InitializeComponent();
 
-          
-
             this.akcija = akcija;
             this.operacija = operacija;
-
-            cbNamestajPopust.ItemsSource = Projekat.Instance.Namestaj;
 
             tbDatumP.DataContext = akcija;
             tbDatumZ.DataContext = akcija;
             tbPopust.DataContext = akcija;
-            cbNamestajPopust.DataContext = akcija;
+
+            dgNamestajPopust.ItemsSource = akcija.NamestajNaPopustu;
         }
 
 
@@ -60,13 +57,35 @@ namespace POP_SF_40_2016_GUI.UI
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                        akcija.Id = listaAkcija.Count + 1;
-                        listaAkcija.Add(akcija);
-                        break;
+                    akcija.Id = listaAkcija.Count + 1;
+                    listaAkcija.Add(akcija);
+                    break;
             }
             GenericSerializer.Serialize("akcija.xml", listaAkcija);
             Close();
         }
+    
+        private void UkloniNamestajPopust(object sender, RoutedEventArgs e)
+        {
+            akcija.NamestajNaPopustu.Remove(dgNamestajPopust.SelectedItem as Namestaj);
+        }
+
+        private void dgNamestajPopust_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "Sifra" || (string)e.Column.Header == "TipNamestajaId" 
+                || (string)e.Column.Header == "KolicinaUMagacinu" || (string)e.Column.Header == "TipNamestaja")
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void IzabreiNamestajNaPopustu(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
+
+       
+         
     
 }

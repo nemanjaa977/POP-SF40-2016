@@ -39,9 +39,9 @@ namespace POP_SF_40_2016_GUI.UI
             this.operacija = operacija;
 
             dpDatumProdaje.DataContext = prodaja;
-            tbBrRacuna.DataContext = prodaja;
             tbKupac.DataContext = prodaja;
             tbKolicinaNamestaja.DataContext = prodaja;
+
             dgDodUsluge.ItemsSource = prodaja.DodatneUsluge;
             dgNamestajj.ItemsSource = prodaja.NamestajNaProdaja;
         }
@@ -71,6 +71,7 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
                     prodaja.Id = listaProdaje.Count + 1;
+                    prodaja.BrojRacuna = listaProdaje.Count + 1;
                     prodaja.UkupanIznos = (cenaNamestaja * prodaja.KolicinaNamestaja) + cenaUsluga ;
                     listaProdaje.Add(prodaja);
                     break;                 

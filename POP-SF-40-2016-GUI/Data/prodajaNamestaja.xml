@@ -8,11 +8,19 @@
     <UkupanIznos>2000</UkupanIznos>
     <Obrisan>false</Obrisan>
     <KolicinaNamestaja>6</KolicinaNamestaja>
+    <NamestajZaProdajuId />
+    <DodatnaUslugaId />
+  </ProdajaNamestaja>
+  <ProdajaNamestaja>
+    <Id>2</Id>
+    <DatumProdaje>2017-12-05T00:00:00+01:00</DatumProdaje>
+    <BrojRacuna>2</BrojRacuna>
+    <UkupanIznos>0</UkupanIznos>
+    <Obrisan>false</Obrisan>
+    <KolicinaNamestaja>0</KolicinaNamestaja>
     <NamestajZaProdajuId>
-      <int>1</int>
+      <int>3</int>
     </NamestajZaProdajuId>
-    <DodatnaUslugaId>
-      <int>1</int>
-    </DodatnaUslugaId>
+    <DodatnaUslugaId />
   </ProdajaNamestaja>
 </ArrayOfProdajaNamestaja>

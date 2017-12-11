@@ -1,6 +1,7 @@
 ﻿using POP_40_2016.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class PrikaziNamestajUsluge : Window
     {
+  
         ProdajaNamestaja prodaja;
 
         public PrikaziNamestajUsluge(ProdajaNamestaja prodaja)
@@ -30,7 +32,6 @@ namespace POP_SF_40_2016_GUI.UI
 
             dgNamestaj.ItemsSource = prodaja.NamestajNaProdaja;
             dgDodatneUsluge.ItemsSource = prodaja.DodatneUsluge;
-
 
             dgDodatneUsluge.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);

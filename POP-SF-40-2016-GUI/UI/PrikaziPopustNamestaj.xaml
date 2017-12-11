@@ -1,0 +1,14 @@
+﻿<Window x:Class="POP_SF_40_2016_GUI.UI.PrikaziPopustNamestaj"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="PrikaziPopustNamestaj" Height="291.647" Width="422.506">
+    <Grid>
+        <DataGrid x:Name="dgPrikaziPopust" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="215" Margin="0,47,0,0" VerticalAlignment="Top" Width="416" AutoGeneratingColumn="dgPrikaziPopust_AutoGeneratingColumn"/>
+        <Label Content="Namestaj na popustu" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" VerticalAlignment="Top" Width="151" FontSize="15"/>
+
+    </Grid>
+</Window>

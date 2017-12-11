@@ -22,8 +22,10 @@ namespace POP_40_2016.Model
 
         private Projekat()
         {
-            TipNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipoviNamestaja.xml");
-            Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
+            TipNamestaja = Model.TipNamestaja.GetAll();
+            Namestaj = Model.Namestaj.GetAll();
+            //TipNamestaja = GenericSerializer.Deserialize<TipNamestaja>("tipoviNamestaja.xml");
+            //Namestaj = GenericSerializer.Deserialize<Namestaj>("namestaj.xml");
             Akcija = GenericSerializer.Deserialize<Akcija>("akcija.xml");
             DodatnaUsluga = GenericSerializer.Deserialize<DodatnaUsluga>("dodatnaUsluga.xml");
             Korisnik = GenericSerializer.Deserialize<Korisnik>("korisnik.xml");

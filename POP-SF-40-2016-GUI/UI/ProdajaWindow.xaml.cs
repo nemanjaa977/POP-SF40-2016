@@ -54,7 +54,7 @@ namespace POP_SF_40_2016_GUI.UI
         private void dgProdaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "NamestajZaProdajuId" || (string)e.Column.Header == "DodatnaUslugaId"
-                || (string)e.Column.Header == "NamestajNaProdaja" || (string)e.Column.Header == "DodatneUsluge")
+                || (string)e.Column.Header == "NamestajNaProdaja" || (string)e.Column.Header == "DodatneUsluge" || (string)e.Column.Header == "Id")
             {
                 e.Cancel = true;
             }

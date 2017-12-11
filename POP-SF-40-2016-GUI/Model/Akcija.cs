@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,10 @@ namespace POP_40_2016.Model
         private bool obrisan;
         private DateTime datumPocetka;
         private DateTime datumZavrsetka;
-        private int namestajPopustId;
+        private List<int> namestajPopustId;
         private double popust;
-        private Namestaj nam;
+        private ObservableCollection<Namestaj> namPopust;
+        //private Namestaj nam;
 
         public int Id
         {
@@ -54,7 +56,7 @@ namespace POP_40_2016.Model
                 OnPropertyChanged("DatumPocetka");
             }
         }
-        public int NamestajNaPopustuId
+        public List<int> NamestajNaPopustuId
         {
             get { return namestajPopustId; }
             set
@@ -73,28 +75,9 @@ namespace POP_40_2016.Model
             }
         }
 
-        [XmlIgnore]
-        public Namestaj Namestaj
-        {
-            get
-            {
-                if (nam == null)
-                {
-                    nam = Namestaj.PronadjiNamestajNaPopustu(NamestajNaPopustuId);
-                }
-                return nam;
-            }
-            set
-            {
-                nam = value;
-                NamestajNaPopustuId = nam.Id;
-                OnPropertyChanged("Namestaj");
-            }
-        }
-
         public override string ToString()
         {
-            return $"{DatumPocetka}, {DatumZavrsetka}, {Namestaj.PronadjiNamestajNaPopustu(NamestajNaPopustuId).Naziv}, {Popust}";
+            return $"{DatumPocetka}, {DatumZavrsetka}";//, {Namestaj.PronadjiNamestajNaPopustu(NamestajNaPopustuId).Naziv}, {Popust}";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -110,6 +93,8 @@ namespace POP_40_2016.Model
         {
             datumPocetka = DateTime.Today;
             datumZavrsetka = DateTime.Today;
+            namPopust = new ObservableCollection<Namestaj>();
+            namestajPopustId = new List<int>();
         }
         public object Clone()
         {
@@ -120,8 +105,58 @@ namespace POP_40_2016.Model
                 DatumPocetka = datumPocetka,
                 DatumZavrsetka = datumZavrsetka,
                 NamestajNaPopustuId = namestajPopustId,
-                Popust = popust
+                Popust = popust,
+                NamestajNaPopustu = namPopust
             };
+        }
+
+        [XmlIgnore]
+        public ObservableCollection<Namestaj> NamestajNaPopustu
+        {
+            get
+            {
+                if (namPopust.Count == 0)
+                {
+                    namPopust = PronadjiNamestaj(namestajPopustId);
+                }
+                return namPopust;
+            }
+            set
+            {
+                namPopust = value;
+                namestajPopustId = PronadjiIdNamestajPopust(namPopust);
+                OnPropertyChanged("NamestajNaPopustu");
+            }
+        }
+
+        public static List<int> PronadjiIdNamestajPopust(ObservableCollection<Namestaj> nam)
+        {
+            var lista = new List<int>();
+            if (nam != null)
+            {
+                for (int i = 0; i < nam.Count; i++)
+                {
+                    var id = nam[i].Id;
+                    lista.Add(id);
+                }
+                return lista;
+            }
+            return null;
+        }
+
+        public static ObservableCollection<Namestaj> PronadjiNamestaj(List<int> namId)
+        {
+            if (namId != null)
+            {
+                var lista = new ObservableCollection<Namestaj>();
+                for (int i = 0; i < namId.Count; i++)
+                {
+                    var n = Namestaj.PronadjiNamestajNaPopustu(namId[i]);
+                    lista.Add(n);
+                }
+                return lista;
+            }
+            return null;
         }
     }
 

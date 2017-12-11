@@ -24,12 +24,12 @@ namespace POP_SF_40_2016_GUI.UI
     {
         ICollectionView view;
 
-        public Akcija IzabranaAkcija { get; set; }
+        public Akcija IzabranaAkcija { get; set; }   
 
         public AkcijeWindow()
         {
             InitializeComponent();
-
+          
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Akcija);
             view.Filter = prikazFilter;
 
@@ -91,10 +91,11 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Namestaj")
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
             {
                 e.Cancel = true;
             }
         }
+
     }
 }

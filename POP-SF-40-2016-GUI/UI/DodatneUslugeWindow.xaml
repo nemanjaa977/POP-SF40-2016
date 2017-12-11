@@ -12,6 +12,6 @@
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="28" Margin="21,87,0,0" VerticalAlignment="Top" Width="90" Click="IzbrisiUslugu" />
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="21,240,0,0" VerticalAlignment="Top" Width="90" Click="ZatvoriUslugu" />
         <DataGrid HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="247" Margin="139,21,0,0" VerticalAlignment="Top" Width="369" Name="dgUsluga" SelectedItem="{Binding Path=IzabranaUsluga}" AutoGeneratingColumn="dgUsluga_AutoGeneratingColumn"/>
-        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="28" Margin="21,207,0,0" VerticalAlignment="Top" Width="90" Click="PreuzmiUslugu"/>
+        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="28" Margin="21,120,0,0" VerticalAlignment="Top" Width="90" Click="PreuzmiUslugu"/>
     </Grid>
 </Window>

@@ -9,10 +9,8 @@
     <Grid>
         <Label Content="Datum prodaje:" HorizontalAlignment="Left" Height="31" Margin="10,31,0,0" VerticalAlignment="Top" Width="110" FontSize="14" RenderTransformOrigin="0.5,0.5"/>
         <DatePicker x:Name="dpDatumProdaje" SelectedDate="{ Binding Path=DatumProdaje}" HorizontalAlignment="Left" Height="31" Margin="125,31,0,0" VerticalAlignment="Top" Width="243" RenderTransformOrigin="0.498,0.561"/>
-        <Label Content="Broj racuna:" HorizontalAlignment="Left" Height="29" Margin="10,81,0,0" VerticalAlignment="Top" Width="92" FontSize="14"/>
-        <TextBox x:Name="tbBrRacuna" HorizontalAlignment="Left" Height="29" Margin="125,81,0,0" TextWrapping="Wrap" Text="{Binding Path=BrojRacuna}" VerticalAlignment="Top" Width="243"/>
-        <Label Content="Kupac:" HorizontalAlignment="Left" Height="33" Margin="10,129,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
-        <TextBox x:Name="tbKupac" HorizontalAlignment="Left" Height="33" Margin="125,129,0,0" TextWrapping="Wrap" Text="{Binding Path=Kupac}" VerticalAlignment="Top" Width="243"/>
+        <Label Content="Kupac:" HorizontalAlignment="Left" Height="33" Margin="10,91,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
+        <TextBox x:Name="tbKupac" HorizontalAlignment="Left" Height="33" Margin="125,91,0,0" TextWrapping="Wrap" Text="{Binding Path=Kupac}" VerticalAlignment="Top" Width="243"/>
         <Button x:Name="btnZavoriProzor" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="495,510,0,0" VerticalAlignment="Top" Width="102" Click="ZatvoriProzorProdajaEdit"/>
         <Button x:Name="btnSacuvajProzor" Content="Sacuvaj" HorizontalAlignment="Left" Height="28" Margin="612,510,0,0" VerticalAlignment="Top" Width="102" Click="SacuvajEditProdaja"/>
         <Label Content="Dodatne Usluge" HorizontalAlignment="Left" Height="34" Margin="485,31,0,0" VerticalAlignment="Top" Width="143" FontSize="18"/>

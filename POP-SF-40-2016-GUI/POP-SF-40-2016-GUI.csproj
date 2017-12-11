@@ -93,6 +93,9 @@
     <Compile Include="UI\PrikaziNamestajUsluge.xaml.cs">
       <DependentUpon>PrikaziNamestajUsluge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\PrikaziPopustNamestaj.xaml.cs">
+      <DependentUpon>PrikaziPopustNamestaj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\ProdajaWindow.xaml.cs">
       <DependentUpon>ProdajaWindow.xaml</DependentUpon>
     </Compile>
@@ -164,6 +167,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\PrikaziPopustNamestaj.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\ProdajaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +234,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\salon.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DB_scripts\crebas.sql" />
+    <Content Include="DB_scripts\seed.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

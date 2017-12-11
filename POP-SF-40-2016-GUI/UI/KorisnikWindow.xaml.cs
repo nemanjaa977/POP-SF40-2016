@@ -93,7 +93,7 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgKorisnik_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if ((string)e.Column.Header == "Obrisan")
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
             {
                 e.Cancel = true;
             }

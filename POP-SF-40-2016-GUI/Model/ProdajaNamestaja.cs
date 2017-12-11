@@ -124,7 +124,7 @@ namespace POP_40_2016.Model
         {
             get
             {
-                if (dodUsluge == null)
+                if (dodUsluge.Count == 0)
                 {                                 
                     dodUsluge = PronadjiUsluge(uslugaId);                                 
                 }
@@ -143,7 +143,7 @@ namespace POP_40_2016.Model
         {
             get
             {
-                if (namProdaja == null)
+                if (namProdaja.Count == 0)
                 {
                     namProdaja = PronadjiNamestaj(namestajZaProdajuId);               
                 }

@@ -108,7 +108,7 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "TipNamestaja") // za uklanjanje kolone Id
+            if((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "Id") // za uklanjanje kolone Id
             {
                 e.Cancel = true;
             }
