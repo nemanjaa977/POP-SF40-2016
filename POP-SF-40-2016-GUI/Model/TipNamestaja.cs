@@ -83,7 +83,7 @@ namespace POP_40_2016.Model
         }
 
         #region CRUD
-        public static ObservableCollection<TipNamestaja> GetAll()
+        public static ObservableCollection<TipNamestaja> GetAllTipNamestaja()
         {
             var tipoviNamestaja = new ObservableCollection<TipNamestaja>();
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))

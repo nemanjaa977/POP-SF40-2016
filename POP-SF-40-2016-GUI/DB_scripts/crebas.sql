@@ -17,3 +17,11 @@ CREATE TABLE Namestaj(
 	Obrisan BIT,
 	FOREIGN KEY (TipNamestajaId) REFERENCES TipNamestaja(Id)
 );
+
+GO
+CREATE TABLE DodatneUsluge(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	Naziv VARCHAR(90),
+	Cena NUMERIC(9, 2),
+	Obrisan BIT
+);

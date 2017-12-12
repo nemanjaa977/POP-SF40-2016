@@ -168,7 +168,7 @@ namespace POP_40_2016.Model
 
         #region CRUD
 
-        public static ObservableCollection<Namestaj> GetAll()
+        public static ObservableCollection<Namestaj> GetAllNamestaj()
         {
             var listaNamestaja = new ObservableCollection<Namestaj>();
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
