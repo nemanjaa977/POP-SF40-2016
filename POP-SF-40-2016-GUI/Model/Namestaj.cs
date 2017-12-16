@@ -187,7 +187,7 @@ namespace POP_40_2016.Model
                     n.Id = int.Parse(row["Id"].ToString());
                     n.Naziv = row["Naziv"].ToString();
                     n.Sifra = row["Sifra"].ToString();
-                    n.JedinicnaCena = int.Parse(row["Cena"].ToString());
+                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
                     n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
                     n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
                     n.Obrisan = bool.Parse(row["Obrisan"].ToString());
@@ -229,7 +229,7 @@ namespace POP_40_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "UPDATE TipNamestaja SET Naziv=@NAziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina  WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina  WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
@@ -241,7 +241,7 @@ namespace POP_40_2016.Model
 
                 cmd.ExecuteNonQuery();
             }
-            foreach (var nam in Projekat.Instance.Namestaj)
+            foreach (var nam in Namestaj.GetAllNamestaj())
             {
                 if (n.Id == nam.Id)
                 {

@@ -18,3 +18,8 @@ INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Prevoz', 500, 0);
 INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Utovar', 200, 0);
 INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Istovar', 300, 0);
 INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Rezervacija', 800, 0);
+
+INSERT INTO Korisnici (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan)
+	VALUES('Marko', 'Jezdic', 'mare', '123', 'Administrator' , 0);
+INSERT INTO Korisnici (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan)
+	VALUES('Petar', 'Kojic', 'pera', '12345', 'Prodavac' , 0);

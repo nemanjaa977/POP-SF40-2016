@@ -26,24 +26,12 @@ namespace POP_SF_40_2016_GUI.UI
         {
             InitializeComponent();
 
-            /*var listaUsluga = Projekat.Instance.DodatnaUsluga;
-            var listaNamestaja = Projekat.Instance.Namestaj;
-            var o = new ProdajaNamestaja()
-            {
-                Id = 1,
-                DatumProdaje = DateTime.Today,
-                BrojRacuna = 7777,
-                Kupac = "Marko Maric",
-                KolicinaNamestaja = 7,
-                UkupanIznos = 14555,
-
-            };
-            GenericSerializer.*/
         }
 
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
-            var korisnici = Projekat.Instance.Korisnik;
+            // var korisnici = Projekat.Instance.Korisnik;
+            var korisnici = Korisnik.GetAllKorisnik();
             foreach (var k in korisnici)
             {
                 var korIme = tbIme.Text;

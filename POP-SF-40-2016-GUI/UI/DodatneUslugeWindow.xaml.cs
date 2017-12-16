@@ -45,21 +45,15 @@ namespace POP_SF_40_2016_GUI.UI
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
             }
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
-            view.Filter = prikazView;
+            view = CollectionViewSource.GetDefaultView(DodatnaUsluga.GetAllUsluge());
 
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
-            dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
+            dgUsluga.ItemsSource = view;
 
             IzabranaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
 
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
-        }
-
-        private bool prikazView(object obj)
-        {
-            return ((DodatnaUsluga)obj).Obrisan == false;
         }
 
         private void DodajUslugu(object sender, RoutedEventArgs e)
@@ -67,17 +61,19 @@ namespace POP_SF_40_2016_GUI.UI
             var novaUsluga = new DodatnaUsluga();          
             var uslugaProzor = new EditDodatneUsluge(novaUsluga, EditDodatneUsluge.Operacija.DODAVANJE);
             uslugaProzor.ShowDialog();
+            Osvezi();
         }
 
         private void IzmeniUslugu(object sender, RoutedEventArgs e)
         {
             DodatnaUsluga kopija = (DodatnaUsluga)IzabranaUsluga.Clone();
-            var uslugaProzor = new EditDodatneUsluge(IzabranaUsluga, EditDodatneUsluge.Operacija.IZMENA);
-            if (uslugaProzor.ShowDialog() != true)
+            var uslugaProzor = new EditDodatneUsluge(kopija, EditDodatneUsluge.Operacija.IZMENA);
+            if (uslugaProzor.ShowDialog() == true)
             {
                 int index = Projekat.Instance.DodatnaUsluga.IndexOf(IzabranaUsluga);
-                Projekat.Instance.DodatnaUsluga[index] = kopija;
+                DodatnaUsluga.Update(kopija);
             }
+            Osvezi();
         }
 
         private void IzbrisiUslugu(object sender, RoutedEventArgs e)
@@ -85,17 +81,9 @@ namespace POP_SF_40_2016_GUI.UI
             var listaUsluga = Projekat.Instance.DodatnaUsluga;
             if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaUsluga.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var t in listaUsluga)
-                {
-                    if (t.Id == IzabranaUsluga.Id)
-                    {
-                        t.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-                }
-                GenericSerializer.Serialize("dodatnaUsluga.xml", listaUsluga);
+                DodatnaUsluga.Delete(IzabranaUsluga);
             }
+            Osvezi();
         }
 
         private void ZatvoriUslugu(object sender, RoutedEventArgs e)
@@ -118,6 +106,12 @@ namespace POP_SF_40_2016_GUI.UI
             SelektovanaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
             this.DialogResult = true;
             this.Close();
+        }
+
+        public void Osvezi()
+        {
+            view = CollectionViewSource.GetDefaultView(DodatnaUsluga.GetAllUsluge());
+            dgUsluga.ItemsSource = view;
         }
     }
 }

@@ -54,16 +54,13 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void SacuvajProzor(object sender, RoutedEventArgs e)
         {
-            var listaKorisnika = Projekat.Instance.Korisnik;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    korisnik.Id = listaKorisnika.Count + 1;
-                    listaKorisnika.Add(korisnik);
+                    Korisnik.Create(korisnik);
                     break;
             }
-            GenericSerializer.Serialize("korisnik.xml", listaKorisnika);
             Close();
         }
     }

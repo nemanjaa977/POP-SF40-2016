@@ -25,3 +25,13 @@ CREATE TABLE DodatneUsluge(
 	Cena NUMERIC(9, 2),
 	Obrisan BIT
 );
+GO
+CREATE TABLE Korisnici(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	Ime VARCHAR(70),
+	Prezime VARCHAR(70),
+	KorisnickoIme VARCHAR(60),
+	Lozinka VARCHAR(60),
+	TipKorisnika VARCHAR(15),
+	Obrisan BIT
+);

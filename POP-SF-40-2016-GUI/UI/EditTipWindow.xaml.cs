@@ -47,16 +47,13 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void SacuvajProzor(object sender, RoutedEventArgs e)
         {
-            var listaTipovaNam = Projekat.Instance.TipNamestaja;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    tip.Id = listaTipovaNam.Count + 1;
-                    listaTipovaNam.Add(tip);
+                    TipNamestaja.Create(tip);
                     break;
             }
-            GenericSerializer.Serialize("tipoviNamestaja.xml", listaTipovaNam);
             Close();
         }
     }

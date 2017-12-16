@@ -45,8 +45,8 @@ namespace POP_SF_40_2016_GUI.UI
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
             }
 
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
-            view.Filter = prikazFilter;
+            view = CollectionViewSource.GetDefaultView(Namestaj.GetAllNamestaj());
+            
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
@@ -57,48 +57,33 @@ namespace POP_SF_40_2016_GUI.UI
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
-        private bool prikazFilter(object obj)
-        {
-            return ((Namestaj)obj).Obrisan == false; 
-        }
-
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
-            var noviNamestaj = new Namestaj()
-            {               
-            };
-
+            var noviNamestaj = new Namestaj();
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
-            namestajProzor.ShowDialog();          
+            namestajProzor.ShowDialog();
+            Osvezi();
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
         {
             Namestaj kopija = (Namestaj)IzabranNamestaj.Clone();
-            var namestajProzor = new EditNamestajWindow(IzabranNamestaj, EditNamestajWindow.Operacija.IZMENA);
-            if (namestajProzor.ShowDialog() != true)
+            var namestajProzor = new EditNamestajWindow(kopija, EditNamestajWindow.Operacija.IZMENA);
+            if (namestajProzor.ShowDialog() == true)
             {
                  int index = Projekat.Instance.Namestaj.IndexOf(IzabranNamestaj);
-                 Projekat.Instance.Namestaj[index] =kopija;
-            }         
+                 Namestaj.Update(kopija);           
+            }
+            Osvezi();
         }
 
         private void IzbrisiNamestaj(object sender, RoutedEventArgs e)
-        {
-            var listaNamestaja = Projekat.Instance.Namestaj;
+        {       
             if(MessageBox.Show($"Da li zelite da izbrisete: {IzabranNamestaj.Naziv}", "Brisanje", MessageBoxButton.YesNo)==MessageBoxResult.Yes)
             {
-                foreach (var nam in listaNamestaja)
-                {
-                    if(nam.Id == IzabranNamestaj.Id)
-                    {
-                        nam.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-                }
-                GenericSerializer.Serialize("namestaj.xml", listaNamestaja);              
+                Namestaj.Delete(IzabranNamestaj);                        
             }
+            Osvezi();
         }
 
         private void ZatvoriNamestaj(object sender, RoutedEventArgs e)
@@ -121,6 +106,12 @@ namespace POP_SF_40_2016_GUI.UI
             SelektovaniNamestaj = dgNamestaj.SelectedItem as Namestaj;
             this.DialogResult = true;
             this.Close();
+        }
+
+        public void Osvezi()
+        {
+            view = CollectionViewSource.GetDefaultView(Namestaj.GetAllNamestaj());
+            dgNamestaj.ItemsSource = view;
         }
     }
 }
