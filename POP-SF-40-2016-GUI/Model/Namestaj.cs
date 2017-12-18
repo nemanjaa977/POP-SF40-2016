@@ -213,9 +213,10 @@ namespace POP_40_2016.Model
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu); 
 
                 n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+                
             }
             Projekat.Instance.Namestaj.Add(n);
             return n;
@@ -241,9 +242,9 @@ namespace POP_40_2016.Model
 
                 cmd.ExecuteNonQuery();
             }
-            foreach (var nam in Namestaj.GetAllNamestaj())
+            foreach (var nam in Projekat.Instance.Namestaj)
             {
-                if (n.Id == nam.Id)
+                if (nam.Id == n.Id)
                 {
                     nam.Naziv = n.Naziv;
                     nam.Obrisan = n.Obrisan;

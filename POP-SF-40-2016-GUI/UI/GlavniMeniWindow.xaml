@@ -19,7 +19,7 @@
         <Button x:Name="btnAkcije" Content="Akcije" HorizontalAlignment="Left" Height="26" Margin="118,186,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziAkcije_Click" Background="#FF4658BA" BorderBrush="#FF0347C7" FontStyle="Italic"/>
         <Button x:Name="btnDodUsluge" Content="Dodatne usluge" HorizontalAlignment="Left" Height="26" Margin="408,186,0,0" VerticalAlignment="Top" Width="94" Click="PrikaziDodatneUsluge_Click" BorderBrush="#FF0315C7" Background="#FF4658BA" FontStyle="Italic" />
         <Button x:Name="btnKorisnik" Content="Korisnici" HorizontalAlignment="Left" Height="26" Margin="266,233,0,0" VerticalAlignment="Top" Width="102" Click="PrikaziKorisnike_Click" BorderBrush="#FF0315C7" Background="#FF4658BA" FontStyle="Italic"/>
-        <Button x:Name="btnProdaja" Content="Prodaja namestaja" HorizontalAlignment="Left" Height="26" Margin="266,138,0,0" VerticalAlignment="Top" Width="102" Click="PrikaziProdajuNamestaja_Click" Background="#FF4658BA" BorderBrush="#FF0315C7" FontStyle="Italic"/>
+        <Button x:Name="btnProdaja" Content="Prodaja namestaja" HorizontalAlignment="Left" Height="26" Margin="266,141,0,0" VerticalAlignment="Top" Width="102" Click="PrikaziProdajuNamestaja_Click" Background="#FF4658BA" BorderBrush="#FF0315C7" FontStyle="Italic"/>
         <Button x:Name="btnIspisiSalon" Content="Informacije o salonu" HorizontalAlignment="Left" Height="26" Margin="10,303,0,0" VerticalAlignment="Top" Width="596" Background="#FFCAC52A" BorderBrush="#FFD6D136" FontStyle="Italic" Click="IspisiSalon"/>
     </Grid>
 </Window>

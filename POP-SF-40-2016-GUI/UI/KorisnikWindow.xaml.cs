@@ -30,7 +30,9 @@ namespace POP_SF_40_2016_GUI.UI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(Korisnik.GetAllKorisnik());
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Korisnik);
+
+            view.Filter = prikazFilter;
 
             dgKorisnik.IsSynchronizedWithCurrentItem = true;
             dgKorisnik.DataContext = this;
@@ -41,12 +43,16 @@ namespace POP_SF_40_2016_GUI.UI
             dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private bool prikazFilter(object obj)
+        {
+            return ((Korisnik)obj).Obrisan == false;
+        }
+
         private void DodajKorisnika(object sender, RoutedEventArgs e)
         {
             var noviKorisnik = new Korisnik();
             var korisnikProzor = new EditKorisnikWindow(noviKorisnik, EditKorisnikWindow.Operacija.DODAVANJE);
             korisnikProzor.ShowDialog();
-            Osvezi();
         }
 
         private void IzmeniKorisnika(object sender, RoutedEventArgs e)
@@ -58,7 +64,6 @@ namespace POP_SF_40_2016_GUI.UI
                 int index = Projekat.Instance.Korisnik.IndexOf(IzabranKorisnik);
                 Korisnik.Update(kopija);
             }
-            Osvezi();
         }
 
         private void IzbrisiKorisnika(object sender, RoutedEventArgs e)
@@ -68,7 +73,7 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 Korisnik.Delete(IzabranKorisnik);
             }
-            Osvezi();
+            view.Refresh();
         }
 
         private void ZatvoriKorisnika(object sender, RoutedEventArgs e)
@@ -82,12 +87,6 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 e.Cancel = true;
             }
-        }
-
-        public void Osvezi()
-        {
-            view = CollectionViewSource.GetDefaultView(Korisnik.GetAllKorisnik());
-            dgKorisnik.ItemsSource = view;
         }
     }
 }

@@ -30,7 +30,9 @@ namespace POP_SF_40_2016_GUI.UI
         {
             InitializeComponent();
 
-            view = CollectionViewSource.GetDefaultView(TipNamestaja.GetAllTipNamestaja());
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.TipNamestaja);
+
+            view.Filter = prikazFilter;
 
             dgTipNamestaja.IsSynchronizedWithCurrentItem = true;
             dgTipNamestaja.DataContext = this;
@@ -41,12 +43,16 @@ namespace POP_SF_40_2016_GUI.UI
             dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private bool prikazFilter(object obj)
+        {
+            return ((TipNamestaja)obj).Obrisan == false;
+        }
+
         private void DodajTipNamestaja(object sender, RoutedEventArgs e)
         {
             var noviTip = new TipNamestaja();
             var tipProzor = new EditTipWindow(noviTip, EditTipWindow.Operacija.DODAVANJE);
             tipProzor.ShowDialog();
-            Osvezi();
         } 
 
         private void IzbrisiTipNamestaja(object sender, RoutedEventArgs e)
@@ -55,7 +61,7 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 TipNamestaja.Delete(IzabranTipNamestaja);
             }
-            Osvezi();
+            view.Refresh();
         }
 
         private void ZatvoriTipNamestaja(object sender, RoutedEventArgs e)
@@ -72,7 +78,6 @@ namespace POP_SF_40_2016_GUI.UI
                 int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
                 TipNamestaja.Update(kopija);
             }
-            Osvezi();
         }
 
         private void dgTipNamestaja_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -81,12 +86,6 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 e.Cancel = true;
             }
-        }
-
-        public void Osvezi()
-        {
-            view = CollectionViewSource.GetDefaultView(TipNamestaja.GetAllTipNamestaja());
-            dgTipNamestaja.ItemsSource = view;
         }
     }
 }

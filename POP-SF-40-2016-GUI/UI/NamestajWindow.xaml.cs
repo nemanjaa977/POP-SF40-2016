@@ -45,8 +45,9 @@ namespace POP_SF_40_2016_GUI.UI
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
             }
 
-            view = CollectionViewSource.GetDefaultView(Namestaj.GetAllNamestaj());
-            
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+
+            view.Filter = prikazFilter;
 
             dgNamestaj.IsSynchronizedWithCurrentItem = true;
             dgNamestaj.DataContext = this;
@@ -57,12 +58,16 @@ namespace POP_SF_40_2016_GUI.UI
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private bool prikazFilter(object obj)
+        {
+            return ((Namestaj)obj).Obrisan == false;
+        }
+
         private void DodajNamestaj(object sender, RoutedEventArgs e)
         {
             var noviNamestaj = new Namestaj();
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
-            Osvezi();
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
@@ -74,7 +79,6 @@ namespace POP_SF_40_2016_GUI.UI
                  int index = Projekat.Instance.Namestaj.IndexOf(IzabranNamestaj);
                  Namestaj.Update(kopija);           
             }
-            Osvezi();
         }
 
         private void IzbrisiNamestaj(object sender, RoutedEventArgs e)
@@ -83,7 +87,7 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 Namestaj.Delete(IzabranNamestaj);                        
             }
-            Osvezi();
+            view.Refresh();
         }
 
         private void ZatvoriNamestaj(object sender, RoutedEventArgs e)
@@ -108,10 +112,5 @@ namespace POP_SF_40_2016_GUI.UI
             this.Close();
         }
 
-        public void Osvezi()
-        {
-            view = CollectionViewSource.GetDefaultView(Namestaj.GetAllNamestaj());
-            dgNamestaj.ItemsSource = view;
-        }
     }
 }

@@ -85,3 +85,12 @@ C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziNamestaj
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNamestaj.g.cs
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNamestaj.baml
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\POP-SF-40-2016-GUI_Content.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditProdajaWindow.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziNamestajUsluge.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNamestaj.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\POP-SF-40-2016-GUI_Content.g.cs
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditProdajaWindow.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziNamestajUsluge.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNamestaj.baml
+C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.baml

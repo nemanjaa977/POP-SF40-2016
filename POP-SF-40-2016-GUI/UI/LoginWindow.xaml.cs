@@ -30,8 +30,7 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void PrijaviSe(object sender, RoutedEventArgs e)
         {
-            // var korisnici = Projekat.Instance.Korisnik;
-            var korisnici = Korisnik.GetAllKorisnik();
+            var korisnici = Projekat.Instance.Korisnik;
             foreach (var k in korisnici)
             {
                 var korIme = tbIme.Text;

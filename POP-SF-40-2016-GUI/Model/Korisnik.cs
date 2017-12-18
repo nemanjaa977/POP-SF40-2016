@@ -128,6 +128,8 @@ namespace POP_40_2016.Model
                 cmd.CommandText = "SELECT * FROM Korisnici WHERE Obrisan=0;";
                 da.SelectCommand = cmd;
                 da.Fill(ds, "Korisnici"); //izvrsavanje upita
+                
+
 
                 foreach (DataRow row in ds.Tables["Korisnici"].Rows)
                 {

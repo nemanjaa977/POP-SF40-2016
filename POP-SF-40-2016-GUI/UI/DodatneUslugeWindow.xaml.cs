@@ -45,7 +45,9 @@ namespace POP_SF_40_2016_GUI.UI
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
             }
 
-            view = CollectionViewSource.GetDefaultView(DodatnaUsluga.GetAllUsluge());
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.DodatnaUsluga);
+
+            view.Filter = prikazFilter;
 
             dgUsluga.IsSynchronizedWithCurrentItem = true;
             dgUsluga.DataContext = this;
@@ -56,12 +58,16 @@ namespace POP_SF_40_2016_GUI.UI
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private bool prikazFilter(object obj)
+        {
+            return ((DodatnaUsluga)obj).Obrisan == false;
+        }
+
         private void DodajUslugu(object sender, RoutedEventArgs e)
         {
             var novaUsluga = new DodatnaUsluga();          
             var uslugaProzor = new EditDodatneUsluge(novaUsluga, EditDodatneUsluge.Operacija.DODAVANJE);
             uslugaProzor.ShowDialog();
-            Osvezi();
         }
 
         private void IzmeniUslugu(object sender, RoutedEventArgs e)
@@ -73,7 +79,6 @@ namespace POP_SF_40_2016_GUI.UI
                 int index = Projekat.Instance.DodatnaUsluga.IndexOf(IzabranaUsluga);
                 DodatnaUsluga.Update(kopija);
             }
-            Osvezi();
         }
 
         private void IzbrisiUslugu(object sender, RoutedEventArgs e)
@@ -83,7 +88,7 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 DodatnaUsluga.Delete(IzabranaUsluga);
             }
-            Osvezi();
+            view.Refresh();
         }
 
         private void ZatvoriUslugu(object sender, RoutedEventArgs e)
@@ -106,12 +111,6 @@ namespace POP_SF_40_2016_GUI.UI
             SelektovanaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
             this.DialogResult = true;
             this.Close();
-        }
-
-        public void Osvezi()
-        {
-            view = CollectionViewSource.GetDefaultView(DodatnaUsluga.GetAllUsluge());
-            dgUsluga.ItemsSource = view;
         }
     }
 }

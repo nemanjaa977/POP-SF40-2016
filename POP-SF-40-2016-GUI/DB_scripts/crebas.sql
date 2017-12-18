@@ -32,6 +32,6 @@ CREATE TABLE Korisnici(
 	Prezime VARCHAR(70),
 	KorisnickoIme VARCHAR(60),
 	Lozinka VARCHAR(60),
-	TipKorisnika VARCHAR(15),
+	TipKorisnika VARCHAR(20),
 	Obrisan BIT
 );

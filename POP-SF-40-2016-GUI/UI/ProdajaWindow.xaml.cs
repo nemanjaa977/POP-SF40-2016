@@ -22,22 +22,31 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class ProdajaWindow : Window
     {
+        ICollectionView view;
 
         public ProdajaNamestaja IzabranaProdaja { get; set; }
 
         public ProdajaWindow()
         {
-            InitializeComponent();         
+            InitializeComponent();
+
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.ProdajaNamestaja);
+
+            view.Filter = prikazFilter;
 
             dgProdaja.IsSynchronizedWithCurrentItem = true;
             dgProdaja.DataContext = this;
-            dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
+            dgProdaja.ItemsSource = view;
 
             IzabranaProdaja = dgProdaja.SelectedItem as ProdajaNamestaja;
 
             dgProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
 
+        private bool prikazFilter(object obj)
+        {
+            return ((ProdajaNamestaja)obj).Obrisan == false;
+        }
 
         private void DodajRacun(object sender, RoutedEventArgs e)
         {

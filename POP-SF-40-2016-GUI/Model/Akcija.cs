@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +21,6 @@ namespace POP_40_2016.Model
         private List<int> namestajPopustId;
         private double popust;
         private ObservableCollection<Namestaj> namPopust;
-        //private Namestaj nam;
 
         public int Id
         {
@@ -158,6 +160,94 @@ namespace POP_40_2016.Model
             }
             return null;
         }
+
+        #region CRUD
+        public static ObservableCollection<Akcija> GetAllAkcija()
+        {
+            var listaAkcija = new ObservableCollection<Akcija>();
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Akcije WHERE Obrisan=0;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Akcije"); //izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["Akcije"].Rows)
+                {
+                    var a = new Akcija();
+                    a.Id = int.Parse(row["Id"].ToString());
+                    a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
+                    a.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
+                    a.Popust = double.Parse(row["Popust"].ToString());
+                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());    // ostala lista namestajNaPopustuId DODAJ!!!!!!!!!!!
+
+                    listaAkcija.Add(a);
+                }
+            }
+            return listaAkcija;
+        }
+
+        public static Akcija Create(Akcija a)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "INSERT INTO Akcija (DatumPocetka, DatumZavrsetka, NamestajNaPopustuId, Popust, Obrisan) VALUES(@DatumPocetka, @DatumZavrsetka, @NamestajNaPopustuId, @Popust, @Obrisan);";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
+                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
+                cmd.Parameters.AddWithValue("Popust", a.Popust);
+                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+
+                a.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+            }
+            Projekat.Instance.Akcija.Add(a);
+            return a;
+        }
+
+        public static void Update(Akcija a)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                cmd.CommandText = "UPDATE Akcije SET DatumPocetka=@DatumPocetka, DatumZavrsetka=@DatumZavrsetka, NamestajNaPopustuId=@NamestajNaPopustuId, Popust=@Popust, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                cmd.Parameters.AddWithValue("Id", a.Id);
+                cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
+                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
+                cmd.Parameters.AddWithValue("Popust", a.Popust);
+                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+
+                cmd.ExecuteNonQuery();
+            }
+            foreach (var ak in Projekat.Instance.Akcija)
+            {
+                if (ak.Id == a.Id)
+                {
+                    ak.DatumPocetka = a.DatumPocetka;
+                    ak.DatumZavrsetka = a.DatumZavrsetka;
+                    ak.NamestajNaPopustuId = a.NamestajNaPopustuId;
+                    ak.Popust = a.Popust;
+                    ak.Obrisan = a.Obrisan;
+                }
+            }
+        }
+        public static void Delete(Akcija a)
+        {
+            a.Obrisan = true;
+            Update(a);
+        }
+        #endregion
     }
 
 }
