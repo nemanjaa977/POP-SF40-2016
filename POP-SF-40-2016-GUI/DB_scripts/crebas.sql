@@ -35,3 +35,18 @@ CREATE TABLE Korisnici(
 	TipKorisnika VARCHAR(20),
 	Obrisan BIT
 );
+GO
+CREATE TABLE Akcije(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	DatumPocetka Date,
+	DatumKraja Date,
+	Popust INT,
+	Obrisan BIT
+);
+GO
+CREATE TABLE NAAKCIJI(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	NamestajNaPopustuId INT FOREIGN KEY REFERENCES Namestaj(Id),
+	AkcijaId INT FOREIGN KEY REFERENCES Akcije(Id),
+	Obrisan BIT
+);

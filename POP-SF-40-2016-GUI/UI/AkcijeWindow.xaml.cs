@@ -35,7 +35,7 @@ namespace POP_SF_40_2016_GUI.UI
 
             dgAkcija.IsSynchronizedWithCurrentItem = true;
             dgAkcija.DataContext = this;
-            dgAkcija.ItemsSource = Projekat.Instance.Akcija;
+            dgAkcija.ItemsSource = view;
 
             IzabranaAkcija = dgAkcija.SelectedItem as Akcija;
 
@@ -97,5 +97,11 @@ namespace POP_SF_40_2016_GUI.UI
             }
         }
 
+        private void PrikaziNamestajNaAkciji(object sender, RoutedEventArgs e)
+        {
+            var akcija = dgAkcija.SelectedItem as Akcija;
+            var a = new PrikaziPopustNamestaj(akcija);
+            a.ShowDialog();
+        }
     }
 }

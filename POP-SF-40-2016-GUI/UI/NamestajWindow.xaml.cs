@@ -68,6 +68,7 @@ namespace POP_SF_40_2016_GUI.UI
             var noviNamestaj = new Namestaj();
             var namestajProzor = new EditNamestajWindow(noviNamestaj, EditNamestajWindow.Operacija.DODAVANJE);
             namestajProzor.ShowDialog();
+            view.Refresh();
         }
 
         private void IzmeniNamestaj(object sender, RoutedEventArgs e)
@@ -77,8 +78,10 @@ namespace POP_SF_40_2016_GUI.UI
             if (namestajProzor.ShowDialog() == true)
             {
                  int index = Projekat.Instance.Namestaj.IndexOf(IzabranNamestaj);
-                 Namestaj.Update(kopija);           
+                 Namestaj.Update(kopija);
+                
             }
+            view.Refresh();
         }
 
         private void IzbrisiNamestaj(object sender, RoutedEventArgs e)

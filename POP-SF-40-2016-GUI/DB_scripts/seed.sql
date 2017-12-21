@@ -23,3 +23,9 @@ INSERT INTO Korisnici (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obris
 	VALUES('Marko', 'Jezdic', 'mare', '123', 'Administrator' , 0);
 INSERT INTO Korisnici (Ime, Prezime, KorisnickoIme, Lozinka, TipKorisnika, Obrisan)
 	VALUES('Petar', 'Kojic', 'pera', '12345', 'Prodavac' , 0);
+
+INSERT INTO Akcije(DatumPocetka, DatumKraja, Popust, Obrisan)
+	VALUES('11/06/2017', '11/26/2018', 30, 0)	
+
+INSERT INTO NAAKCIJI(NamestajNaPopustuId, AkcijaId, Obrisan)
+	VALUES(1, 1, 0)

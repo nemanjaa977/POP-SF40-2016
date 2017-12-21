@@ -261,6 +261,38 @@ namespace POP_40_2016.Model
             n.Obrisan = true;
             Update(n);
         }
+        public static Namestaj GetById(int id)
+        {
+           
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 AND Id=@id;";
+                cmd.Parameters.AddWithValue("@id", id);
+                da.SelectCommand = cmd;
+                da.Fill(ds, "Namestaj"); //izvrsavanje upita
+
+                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                {
+                    var n = new Namestaj();
+                    n.Id = int.Parse(row["Id"].ToString());
+                    n.Naziv = row["Naziv"].ToString();
+                    n.Sifra = row["Sifra"].ToString();
+                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                    n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                    n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
+                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    return n;
+                         
+                }
+                return null;
+            }
+          
+        }
+
         #endregion
 
 

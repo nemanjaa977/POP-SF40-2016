@@ -180,11 +180,30 @@ namespace POP_40_2016.Model
                     var a = new Akcija();
                     a.Id = int.Parse(row["Id"].ToString());
                     a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
-                    a.DatumZavrsetka = DateTime.Parse(row["DatumZavrsetka"].ToString());
+                    a.DatumZavrsetka = DateTime.Parse(row["DatumKraja"].ToString());
                     a.Popust = double.Parse(row["Popust"].ToString());
                     a.Obrisan = bool.Parse(row["Obrisan"].ToString());    // ostala lista namestajNaPopustuId DODAJ!!!!!!!!!!!
 
                     listaAkcija.Add(a);
+                }
+
+                DataSet ds2 = new DataSet();
+               
+                
+                foreach(var akcija in listaAkcija)
+                {
+                    
+                    ObservableCollection<Namestaj> namestajAkcija = new ObservableCollection<Namestaj>();
+                    cmd.CommandText = "SELECT NamestajNaPopustuId FROM NAAKCIJI WHERE AkcijaId=@id";
+                    cmd.Parameters.AddWithValue("@id", akcija.Id);
+                    da.SelectCommand = cmd;
+                    da.Fill(ds2, "NAAKCIJI");
+                    foreach(DataRow row in ds2.Tables["NAAKCIJI"].Rows)
+                    {
+                        int id = int.Parse(row["NamestajNaPopustuId"].ToString());
+                        namestajAkcija.Add(Namestaj.GetById(id));
+                    }
+                    akcija.NamestajNaPopustu = namestajAkcija;
                 }
             }
             return listaAkcija;
@@ -197,10 +216,10 @@ namespace POP_40_2016.Model
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Akcija (DatumPocetka, DatumZavrsetka, NamestajNaPopustuId, Popust, Obrisan) VALUES(@DatumPocetka, @DatumZavrsetka, @NamestajNaPopustuId, @Popust, @Obrisan);";
+                cmd.CommandText = "INSERT INTO Akcija (DatumPocetka, DatumKraja, NamestajNaPopustuId, Popust, Obrisan) VALUES(@DatumPocetka, @DatumZavrsetka, @NamestajNaPopustuId, @Popust, @Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("DatumKraja", a.DatumZavrsetka);
                 cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
                 cmd.Parameters.AddWithValue("Popust", a.Popust);
                 cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
@@ -223,7 +242,7 @@ namespace POP_40_2016.Model
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", a.Id);
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
-                cmd.Parameters.AddWithValue("DatumZavrsetka", a.DatumZavrsetka);
+                cmd.Parameters.AddWithValue("DatumKraja", a.DatumZavrsetka);
                 cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
                 cmd.Parameters.AddWithValue("Popust", a.Popust);
                 cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);

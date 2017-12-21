@@ -12,6 +12,6 @@
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="31" Margin="196,252,0,0" VerticalAlignment="Top" Width="83" Click="IzbrisiAkciju"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="599,252,0,0" VerticalAlignment="Top" Width="83" Click="ZatvoriAkciju" Background="White" BorderBrush="#FF763737" Foreground="#FFC74848"/>
         <DataGrid HorizontalAlignment="Left"  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="229" Margin="20,10,0,0" VerticalAlignment="Top" Width="662" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn"/>
-        <Button x:Name="btnPrikaziNamestajPopust" Content="Prikazi namestaj" HorizontalAlignment="Left" Height="22" Margin="397,257,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnPrikaziNamestajPopust" Content="Prikazi namestaj" HorizontalAlignment="Left" Height="22" Margin="397,257,0,0" VerticalAlignment="Top" Width="110" Click="PrikaziNamestajNaAkciji"/>
     </Grid>
 </Window>
