@@ -50,3 +50,27 @@ CREATE TABLE NAAKCIJI(
 	AkcijaId INT FOREIGN KEY REFERENCES Akcije(Id),
 	Obrisan BIT
 );
+GO
+CREATE TABLE ProdajaNamestaja(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	DatumProdaje Date,
+	BrojRacuna INT,
+	KolicinaNamestaja INT,
+	Kupac VARCHAR(40),
+	UkupanIznos decimal,
+	Obrisan BIT
+);
+GO
+CREATE TABLE ProdajaProzorNamestaj(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	NamestajZaProdajuId INT	FOREIGN KEY REFERENCES Namestaj(Id),
+	ProdajaNamestajaId INT FOREIGN KEY REFERENCES ProdajaNamestaja(Id),
+	Obrisan BIT
+);
+GO
+CREATE TABLE ProdajaProzorUsluga(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	DodatnaUslugaId INT FOREIGN KEY REFERENCES DodatneUsluge(Id),
+	ProdajaNamestajaId INT FOREIGN KEY REFERENCES ProdajaNamestaja(Id),
+	Obrisan BIT
+);

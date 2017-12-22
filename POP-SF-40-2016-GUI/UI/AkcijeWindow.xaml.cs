@@ -91,7 +91,7 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgAkcija_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
+            if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "NamestajNaPopustuId" || (string)e.Column.Header == "NamestajNaPopustu")
             {
                 e.Cancel = true;
             }

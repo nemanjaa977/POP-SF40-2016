@@ -3,11 +3,11 @@
   <Akcija>
     <Id>1</Id>
     <Obrisan>false</Obrisan>
-    <DatumPocetka>2017-12-05T00:00:00+01:00</DatumPocetka>
-    <DatumZavrsetka>2017-12-05T00:00:00+01:00</DatumZavrsetka>
+    <DatumPocetka>2017-11-06T00:00:00</DatumPocetka>
+    <DatumZavrsetka>2018-11-26T00:00:00</DatumZavrsetka>
     <NamestajNaPopustuId>
       <int>1</int>
     </NamestajNaPopustuId>
-    <Popust>30</Popust>
+    <Popust>40</Popust>
   </Akcija>
 </ArrayOfAkcija>

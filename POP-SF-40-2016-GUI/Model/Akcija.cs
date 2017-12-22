@@ -182,14 +182,12 @@ namespace POP_40_2016.Model
                     a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
                     a.DatumZavrsetka = DateTime.Parse(row["DatumKraja"].ToString());
                     a.Popust = double.Parse(row["Popust"].ToString());
-                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());    // ostala lista namestajNaPopustuId DODAJ!!!!!!!!!!!
+                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());    
 
                     listaAkcija.Add(a);
                 }
 
-                DataSet ds2 = new DataSet();
-               
-                
+                DataSet ds2 = new DataSet();              
                 foreach(var akcija in listaAkcija)
                 {
                     

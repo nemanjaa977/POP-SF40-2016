@@ -168,6 +168,31 @@ namespace POP_40_2016.Model
             ddd.Obrisan = true;
             Update(ddd);
         }
+
+        public static DodatnaUsluga GetById(int id)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                SqlCommand cmd = con.CreateCommand();
+                SqlDataAdapter da = new SqlDataAdapter();
+                DataSet ds = new DataSet();
+
+                cmd.CommandText = "SELECT * FROM DodatneUsluge WHERE Obrisan=0 AND Id=@id;";
+                da.SelectCommand = cmd;
+                da.Fill(ds, "DodatneUsluge"); 
+
+                foreach (DataRow row in ds.Tables["DodatneUsluge"].Rows)
+                {
+                    var dd = new DodatnaUsluga();
+                    dd.Id = int.Parse(row["Id"].ToString());
+                    dd.Naziv = row["Naziv"].ToString();
+                    dd.Cena = double.Parse(row["Cena"].ToString());
+                    dd.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    return dd;
+                }
+            }
+            return null;
+        }
         #endregion
     }
 }

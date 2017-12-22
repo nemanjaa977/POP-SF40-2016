@@ -229,7 +229,6 @@ namespace POP_40_2016.Model
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-
                 cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina  WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", n.Id);

@@ -79,9 +79,14 @@ namespace POP_SF_40_2016_GUI.UI
             }
         }
 
-        private void IzabreiNamestajNaPopustu(object sender, RoutedEventArgs e)
+        private void IzaberiNamestajNaPopustu(object sender, RoutedEventArgs e)
         {
-
+            NamestajWindow nn = new NamestajWindow(NamestajWindow.Operacija.PREUZIMANJE);
+            if (nn.ShowDialog() == true)
+            {
+                akcija.NamestajNaPopustu.Add(nn.SelektovaniNamestaj);
+                akcija.NamestajNaPopustuId.Add(nn.SelektovaniNamestaj.Id);
+            }
         }
     }
 
