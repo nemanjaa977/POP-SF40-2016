@@ -27,7 +27,7 @@ namespace POP_40_2016.Model
             DodatnaUsluga = Model.DodatnaUsluga.GetAllUsluge();
             Korisnik = Model.Korisnik.GetAllKorisnik();
             Akcija = Model.Akcija.GetAllAkcija();
-            ProdajaNamestaja = GenericSerializer.Deserialize<ProdajaNamestaja>("prodajaNamestaja.xml");
+            ProdajaNamestaja = Model.ProdajaNamestaja.GetAllProdajaNamestaja();
             Salon = GenericSerializer.Deserialize<Salon>("salon.xml");
         }        
     }

@@ -104,11 +104,9 @@ namespace POP_SF_40_2016_GUI.UI
             }
         }
 
-        public DodatnaUsluga SelektovanaUsluga = null;
-
         private void PreuzmiUslugu(object sender, RoutedEventArgs e)
         {
-            SelektovanaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
+            IzabranaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
             this.DialogResult = true;
             this.Close();
         }

@@ -57,16 +57,17 @@ namespace POP_SF_40_2016_GUI.UI
             this.DialogResult = true;
             double cenaNamestaja = 0;
             double cenaUsluga = 0;
+
             for(int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
             {
                 cenaNamestaja += prodaja.NamestajNaProdaja[i].JedinicnaCena;
-
             }
+
             for (int i = 0; i < prodaja.DodatneUsluge.Count; i++)
             {
                 cenaUsluga += prodaja.DodatneUsluge[i].Cena;
-
             }
+
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
@@ -85,8 +86,8 @@ namespace POP_SF_40_2016_GUI.UI
             DodatneUslugeWindow ff = new DodatneUslugeWindow(DodatneUslugeWindow.Operacija.PREUZIMANJE);
             if (ff.ShowDialog() == true)
             {
-                prodaja.DodatneUsluge.Add(ff.SelektovanaUsluga);
-                prodaja.DodatnaUslugaId.Add(ff.SelektovanaUsluga.Id);
+                prodaja.DodatneUsluge.Add(ff.IzabranaUsluga);
+                prodaja.DodatnaUslugaId.Add(ff.IzabranaUsluga.Id);
             }
         }
 
@@ -96,7 +97,6 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 e.Cancel = true;
             }
-
         }
 
         private void IzaberiNamestaj(object sender, RoutedEventArgs e)
@@ -104,8 +104,8 @@ namespace POP_SF_40_2016_GUI.UI
             NamestajWindow nn = new NamestajWindow(NamestajWindow.Operacija.PREUZIMANJE);
             if(nn.ShowDialog() == true)
             {
-                prodaja.NamestajNaProdaja.Add(nn.SelektovaniNamestaj);
-                prodaja.NamestajZaProdajuId.Add(nn.SelektovaniNamestaj.Id);
+                prodaja.NamestajNaProdaja.Add(nn.IzabranNamestaj);
+                prodaja.NamestajZaProdajuId.Add(nn.IzabranNamestaj.Id);
             }
         }
 

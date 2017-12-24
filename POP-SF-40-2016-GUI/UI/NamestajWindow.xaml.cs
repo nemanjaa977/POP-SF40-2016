@@ -106,11 +106,10 @@ namespace POP_SF_40_2016_GUI.UI
             }
         }
 
-        public Namestaj SelektovaniNamestaj = null;
-
         private void PreuzmiNamestaj(object sender, RoutedEventArgs e)
         {
-            SelektovaniNamestaj = dgNamestaj.SelectedItem as Namestaj;
+            IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
+           
             this.DialogResult = true;
             this.Close();
         }

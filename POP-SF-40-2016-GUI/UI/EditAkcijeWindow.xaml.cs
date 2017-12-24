@@ -52,16 +52,13 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void SacuvajProzorEditAkcije(object sender, RoutedEventArgs e)
         {
-            var listaAkcija = Projekat.Instance.Akcija;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
-                    akcija.Id = listaAkcija.Count + 1;
-                    listaAkcija.Add(akcija);
+                    Akcija.Create(akcija);
                     break;
             }
-            GenericSerializer.Serialize("akcija.xml", listaAkcija);
             Close();
         }
     
@@ -81,11 +78,11 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void IzaberiNamestajNaPopustu(object sender, RoutedEventArgs e)
         {
-            NamestajWindow nn = new NamestajWindow(NamestajWindow.Operacija.PREUZIMANJE);
-            if (nn.ShowDialog() == true)
+            NamestajWindow s = new NamestajWindow(NamestajWindow.Operacija.PREUZIMANJE);
+            if (s.ShowDialog() == true)
             {
-                akcija.NamestajNaPopustu.Add(nn.SelektovaniNamestaj);
-                akcija.NamestajNaPopustuId.Add(nn.SelektovaniNamestaj.Id);
+                akcija.NamestajNaPopustu.Add(s.IzabranNamestaj);
+                akcija.NamestajNaPopustuId.Add(s.IzabranNamestaj.Id);
             }
         }
     }

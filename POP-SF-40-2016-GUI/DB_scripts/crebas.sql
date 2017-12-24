@@ -38,8 +38,8 @@ CREATE TABLE Korisnici(
 GO
 CREATE TABLE Akcije(
 	Id INT PRIMARY KEY IDENTITY(1, 1),
-	DatumPocetka Date,
-	DatumKraja Date,
+	DatumPocetka DATE,
+	DatumKraja DATE,
 	Popust INT,
 	Obrisan BIT
 );
@@ -53,11 +53,11 @@ CREATE TABLE NAAKCIJI(
 GO
 CREATE TABLE ProdajaNamestaja(
 	Id INT PRIMARY KEY IDENTITY(1, 1),
-	DatumProdaje Date,
+	DatumProdaje DATE,
 	BrojRacuna INT,
 	KolicinaNamestaja INT,
 	Kupac VARCHAR(40),
-	UkupanIznos decimal,
+	UkupanIznos DECIMAL,
 	Obrisan BIT
 );
 GO

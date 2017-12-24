@@ -49,20 +49,20 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void DodajAkciju(object sender, RoutedEventArgs e)
         {
-            var novaAkcija = new Akcija();
+            Akcija novaAkcija = new Akcija();
             var akcijeProzor = new EditAkcijeWindow(novaAkcija, EditAkcijeWindow.Operacija.DODAVANJE);
             akcijeProzor.ShowDialog();
-           
+            view.Refresh();           
         }
 
         private void IzmeniAkciju(object sender, RoutedEventArgs e)
         {
-            Akcija kopija = (Akcija)IzabranaAkcija.Clone();
-            var akcijaProzor = new EditAkcijeWindow(IzabranaAkcija, EditAkcijeWindow.Operacija.IZMENA);
-            if (akcijaProzor.ShowDialog() != true)
+            var kopija = (Akcija)IzabranaAkcija.Clone();
+            var akcijaProzor = new EditAkcijeWindow(kopija, EditAkcijeWindow.Operacija.IZMENA);
+            if (akcijaProzor.ShowDialog() == true)
             {
                 int index = Projekat.Instance.Akcija.IndexOf(IzabranaAkcija);
-                Projekat.Instance.Akcija[index] = kopija;
+                Akcija.Update(kopija);
             }
         }
 
@@ -71,17 +71,9 @@ namespace POP_SF_40_2016_GUI.UI
             var listaAkcija = Projekat.Instance.Akcija;
             if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranaAkcija.Id}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var a in listaAkcija)
-                {
-                    if (a.Id == IzabranaAkcija.Id)
-                    {
-                        a.Obrisan = true;
-                        view.Refresh();
-                        break;
-                    }
-                }
-                GenericSerializer.Serialize("akcija.xml", listaAkcija);     
+                Akcija.Delete(IzabranaAkcija);   
             }
+            view.Refresh();
         }
 
         private void ZatvoriAkciju(object sender, RoutedEventArgs e)
@@ -99,8 +91,8 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void PrikaziNamestajNaAkciji(object sender, RoutedEventArgs e)
         {
-            var akcija = dgAkcija.SelectedItem as Akcija;
-            var a = new PrikaziPopustNamestaj(akcija);
+            var ak = dgAkcija.SelectedItem as Akcija;
+            var a = new PrikaziPopustNamestaj(ak);
             a.ShowDialog();
         }
     }

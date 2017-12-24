@@ -29,3 +29,12 @@ INSERT INTO Akcije(DatumPocetka, DatumKraja, Popust, Obrisan)
 
 INSERT INTO NAAKCIJI(NamestajNaPopustuId, AkcijaId, Obrisan)
 	VALUES(1, 1, 0)
+
+INSERT INTO ProdajaNamestaja(DatumProdaje, BrojRacuna, KolicinaNamestaja, Kupac, UkupanIznos, Obrisan)
+	VALUES('10/07/2017', 1, 15, 'Avram Adzic', 14500, 0)
+
+INSERT INTO ProdajaProzorNamestaj(NamestajZaProdajuId, ProdajaNamestajaId, Obrisan)
+	VALUES(2, 1, 0)
+
+INSERT INTO ProdajaProzorUsluga(DodatnaUslugaId, ProdajaNamestajaId, Obrisan)
+	VALUES(2, 1, 0)

@@ -53,6 +53,7 @@ namespace POP_SF_40_2016_GUI.UI
             var novaProdaja = new ProdajaNamestaja();
             var prodajaProzor = new EditProdajaWindow(novaProdaja, EditProdajaWindow.Operacija.DODAVANJE);
             prodajaProzor.ShowDialog();
+            view.Refresh();
         }
 
         private void ZatvoriRacun(object sender, RoutedEventArgs e)
@@ -72,11 +73,11 @@ namespace POP_SF_40_2016_GUI.UI
         private void IzmeniRacun(object sender, RoutedEventArgs e)
         {
             ProdajaNamestaja kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
-            var pProzor = new EditProdajaWindow(IzabranaProdaja, EditProdajaWindow.Operacija.IZMENA);
+            var pProzor = new EditProdajaWindow(kopija, EditProdajaWindow.Operacija.IZMENA);
             if (pProzor.ShowDialog() != true)
             {
                 int index = Projekat.Instance.ProdajaNamestaja.IndexOf(IzabranaProdaja);
-                Projekat.Instance.ProdajaNamestaja[index] = kopija;
+                ProdajaNamestaja.Update(kopija);
             }
         }
 
