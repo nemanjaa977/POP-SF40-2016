@@ -28,21 +28,35 @@ namespace POP_SF_40_2016_GUI.UI
 
         public enum Operacija { ADMINISTRACIJA, PREUZIMANJE }
         Operacija operacija;
+        Prozor prozor;
+        public enum Prozor { PrezumiAkcija, PreuzmiProdaja}
 
-        public NamestajWindow(Operacija operacija = Operacija.ADMINISTRACIJA)
+        public NamestajWindow(Operacija operacija = Operacija.ADMINISTRACIJA, Prozor prozor=Prozor.PreuzmiProdaja)
         {
             InitializeComponent();
             this.operacija = operacija;
-
+            this.prozor = prozor;
             if (operacija == Operacija.PREUZIMANJE)
             {
-                btnDodaj.Visibility = System.Windows.Visibility.Collapsed;
-                btnIzbrisi.Visibility = System.Windows.Visibility.Collapsed;
-                btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
+                if (prozor == Prozor.PrezumiAkcija)
+                {
+                    btnDodaj.Visibility = System.Windows.Visibility.Collapsed;
+                    btnIzbrisi.Visibility = System.Windows.Visibility.Collapsed;
+                    btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
+                    tbKolicina.Visibility = System.Windows.Visibility.Collapsed;
+                    labKolicina.Visibility = System.Windows.Visibility.Collapsed;
+                }
+                else
+                {
+                    tbKolicina.Visibility = System.Windows.Visibility.Visible;
+                    labKolicina.Visibility = System.Windows.Visibility.Visible;
+                }
             }
             else
             {
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
+                labKolicina.Visibility = System.Windows.Visibility.Hidden;
+                tbKolicina.Visibility = System.Windows.Visibility.Hidden;
             }
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
@@ -78,8 +92,7 @@ namespace POP_SF_40_2016_GUI.UI
             if (namestajProzor.ShowDialog() == true)
             {
                  int index = Projekat.Instance.Namestaj.IndexOf(IzabranNamestaj);
-                 Namestaj.Update(kopija);
-                
+                 Namestaj.Update(kopija);              
             }
             view.Refresh();
         }
@@ -100,7 +113,7 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void dgNamestaj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "Id") // za uklanjanje kolone Id
+            if((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "ProdataKolicina") // za uklanjanje kolone Id
             {
                 e.Cancel = true;
             }
@@ -109,7 +122,17 @@ namespace POP_SF_40_2016_GUI.UI
         private void PreuzmiNamestaj(object sender, RoutedEventArgs e)
         {
             IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
-           
+            if (prozor == Prozor.PreuzmiProdaja)
+            {
+                var kolicina = int.Parse(tbKolicina.Text);
+                IzabranNamestaj.ProdataKolicina = kolicina;
+                IzabranNamestaj.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu - kolicina;
+                foreach (var n in Projekat.Instance.Namestaj)
+                {
+                    if (n.Id == IzabranNamestaj.Id)
+                        n.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu;
+                }
+            }
             this.DialogResult = true;
             this.Close();
         }

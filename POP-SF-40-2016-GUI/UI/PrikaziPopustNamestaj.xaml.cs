@@ -35,7 +35,7 @@ namespace POP_SF_40_2016_GUI.UI
         private void dgPrikaziPopust_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if ((string)e.Column.Header == "Id" || (string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "KolicinaUMagacinu"
-                || (string)e.Column.Header == "Sifra" || (string)e.Column.Header == "TipNamestajaId")
+                || (string)e.Column.Header == "Sifra" || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "TipNamestaja" || (string)e.Column.Header == "ProdataKolicina")
             {
                 e.Cancel = true;
             }

@@ -75,7 +75,7 @@ namespace POP_SF_40_2016_GUI.UI
             var tipProzor = new EditTipWindow(kopija, EditTipWindow.Operacija.IZMENA);
             if (tipProzor.ShowDialog() == true)
             {
-                int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
+                //int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
                 TipNamestaja.Update(kopija);
             }
         }

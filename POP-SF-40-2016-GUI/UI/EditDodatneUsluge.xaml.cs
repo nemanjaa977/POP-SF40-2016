@@ -48,10 +48,12 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void SacuvajEditProzor(object sender, RoutedEventArgs e)
         {
+            var listaU = Projekat.Instance.DodatnaUsluga;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
+                    dUsluga.Id = listaU.Count + 1;
                     DodatnaUsluga.Create(dUsluga);
                     break;
             }

@@ -94,3 +94,5 @@ C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\EditProdajaWind
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziNamestajUsluge.baml
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNamestaj.baml
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.baml
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\SalonWindow.g.cs
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\SalonWindow.baml

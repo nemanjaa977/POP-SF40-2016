@@ -25,7 +25,6 @@ namespace POP_SF_40_2016_GUI.UI
         public LoginWindow()
         {
             InitializeComponent();
-
         }
 
         private void PrijaviSe(object sender, RoutedEventArgs e)

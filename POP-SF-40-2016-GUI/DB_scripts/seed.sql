@@ -5,14 +5,14 @@ INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES('Regal', 0);
 INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES('Ugaona garnitura', 0);
 INSERT INTO TipNamestaja (Naziv, Obrisan) VALUES('Krevet', 0);
 
-INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, Kolicina, Obrisan)
-	VALUES(1, 'Ultra polica', 'UL1PO', 123.5, 2 , 0);
-INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, Kolicina, Obrisan)
-	VALUES(2, 'Crni regal', 'CR1RE', 173.5, 5 , 0);
-INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, Kolicina, Obrisan)
-	VALUES(3, 'Nova ugaona', 'NO1UG', 456.5, 11 , 0);
-INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, Kolicina, Obrisan)
-	VALUES(4, 'Leteci krevet', 'LE1KR', 123.5, 15 , 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina, Obrisan)
+	VALUES(1, 'Ultra polica', 'UL1PO', 123.5, 108.2, 2, 5, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina, Obrisan)
+	VALUES(2, 'Crni regal', 'CR1RE', 173.5, 150.6, 5, 6, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina, Obrisan)
+	VALUES(3, 'Nova ugaona', 'NO1UG', 456.5, 432.1, 11, 12, 0);
+INSERT INTO Namestaj (TipNamestajaId, Naziv, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina, Obrisan)
+	VALUES(4, 'Leteci krevet', 'LE1KR', 123.5, 109.3, 15, 11, 0);
 
 INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Prevoz', 500, 0);
 INSERT INTO DodatneUsluge (Naziv, Cena, Obrisan) VALUES('Utovar', 200, 0);
@@ -30,11 +30,14 @@ INSERT INTO Akcije(DatumPocetka, DatumKraja, Popust, Obrisan)
 INSERT INTO NAAKCIJI(NamestajNaPopustuId, AkcijaId, Obrisan)
 	VALUES(1, 1, 0)
 
-INSERT INTO ProdajaNamestaja(DatumProdaje, BrojRacuna, KolicinaNamestaja, Kupac, UkupanIznos, Obrisan)
-	VALUES('10/07/2017', 1, 15, 'Avram Adzic', 14500, 0)
+INSERT INTO ProdajaNamestaja(DatumProdaje, BrojRacuna, Kupac, UkupanIznos, UkupanIznosPDV, Obrisan)
+	VALUES('10/07/2017', 1, 'Avram Adzic', 14500, 14750, 0)
 
 INSERT INTO ProdajaProzorNamestaj(NamestajZaProdajuId, ProdajaNamestajaId, Obrisan)
 	VALUES(2, 1, 0)
 
 INSERT INTO ProdajaProzorUsluga(DodatnaUslugaId, ProdajaNamestajaId, Obrisan)
 	VALUES(2, 1, 0)
+
+INSERT INTO Salon(Naziv, Adresa, Telefon, Email, AdresaInternetSajta, Pib, MaticniBroj, BrojZiroRacuna, Obrisan)
+	VALUES('Enoxux', 'Zmaj Jovina 11', '021/001/556', 'enoxux@gmail.com', 'www.enoxux.com', 11111, 222211, '845-66666-455', 0)

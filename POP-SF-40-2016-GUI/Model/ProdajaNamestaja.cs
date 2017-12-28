@@ -22,10 +22,10 @@ namespace POP_40_2016.Model
         private string kupac;
         private List<int> uslugaId;
         private double ukupanIznos;
+        private double ukupanIznosPDV;
         private bool obrisan;
         private ObservableCollection<DodatnaUsluga> dodUsluge;
         private ObservableCollection<Namestaj> namProdaja;
-        private int kolicina;
    
         public int Id
         {
@@ -72,6 +72,15 @@ namespace POP_40_2016.Model
                 OnPropertyChanged("UkupanIznos");
             }
         }
+        public double UkupanIznosPDV
+        {
+            get { return ukupanIznosPDV; }
+            set
+            {
+                ukupanIznosPDV = value;
+                OnPropertyChanged("UkupanIznosPDV");
+            }
+        }
         public bool Obrisan
         {
             get { return obrisan; }
@@ -79,16 +88,6 @@ namespace POP_40_2016.Model
             {
                 obrisan = value;
                 OnPropertyChanged("Obrisan");
-            }
-        }
-
-        public int KolicinaNamestaja
-        {
-            get { return kolicina; }
-            set
-            {
-                kolicina = value;
-                OnPropertyChanged("KolicinaNamestaja");
             }
         }
 
@@ -171,10 +170,10 @@ namespace POP_40_2016.Model
                 BrojRacuna = brojRacuna,
                 Kupac = kupac,
                 UkupanIznos = ukupanIznos,
+                UkupanIznosPDV = ukupanIznosPDV,
                 Obrisan = obrisan,
                 NamestajZaProdajuId = namestajZaProdajuId,
                 DodatnaUslugaId = uslugaId,
-                KolicinaNamestaja = kolicina,
                 NamestajNaProdaja = namProdaja,
                 DodatneUsluge = dodUsluge
             };
@@ -267,46 +266,42 @@ namespace POP_40_2016.Model
                     p.Id = int.Parse(row["Id"].ToString());
                     p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
                     p.BrojRacuna = int.Parse(row["BrojRacuna"].ToString());
-                    p.KolicinaNamestaja = int.Parse(row["KolicinaNamestaja"].ToString());
                     p.Kupac = row["Kupac"].ToString();
                     p.UkupanIznos = double.Parse(row["UkupanIznos"].ToString());
+                    p.UkupanIznosPDV = double.Parse(row["UkupanIznosPDV"].ToString());
                     p.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    
-                    listaProdaje.Add(p);
-                }
 
-                DataSet ds2 = new DataSet();
-                foreach (var prod in listaProdaje)
-                {
-
+                    DataSet ds2 = new DataSet();
+                    SqlCommand cmd2 = con.CreateCommand();
                     ObservableCollection<Namestaj> namestajProdaja = new ObservableCollection<Namestaj>();
-                    cmd.CommandText = "SELECT NamestajZaProdajuId FROM ProdajaProzorNamestaj WHERE ProdajaNamestajaId=@id";
-                    cmd.Parameters.AddWithValue("@id", prod.Id);
-                    da.SelectCommand = cmd;
+                    cmd2.CommandText = "SELECT NamestajZaProdajuId FROM ProdajaProzorNamestaj WHERE ProdajaNamestajaId=@ppid AND Obrisan=@obrisan";
+                    cmd2.Parameters.AddWithValue("@ppid", p.Id);
+                    cmd2.Parameters.AddWithValue("@obrisan", '0');
+                    da.SelectCommand = cmd2;
                     da.Fill(ds2, "ProdajaProzorNamestaj");
-                    foreach (DataRow row in ds2.Tables["ProdajaProzorNamestaj"].Rows)
+                    foreach (DataRow row2 in ds2.Tables["ProdajaProzorNamestaj"].Rows)
                     {
-                        int id = int.Parse(row["NamestajZaProdajuId"].ToString());
+                        int id = int.Parse(row2["NamestajZaProdajuId"].ToString());
                         namestajProdaja.Add(Namestaj.GetById(id));
                     }
-                    prod.NamestajNaProdaja = namestajProdaja;
-                }
+                    p.NamestajNaProdaja = namestajProdaja;
 
-                DataSet ds3 = new DataSet();
-                foreach (var pro in listaProdaje)
-                {
-
-                    ObservableCollection<DodatnaUsluga> namestajProdaja = new ObservableCollection<DodatnaUsluga>();
-                    cmd.CommandText = "SELECT DodatnaUslugaId FROM ProdajaProzorUsluga WHERE ProdajaNamestajaId=@id";
-                    cmd.Parameters.AddWithValue("@id", pro.Id);
-                    da.SelectCommand = cmd;
+                    DataSet ds3 = new DataSet();
+                    SqlCommand cmd3 = con.CreateCommand();
+                    ObservableCollection<DodatnaUsluga> uslugaProdaja = new ObservableCollection<DodatnaUsluga>();
+                    cmd3.CommandText = "SELECT DodatnaUslugaId FROM ProdajaProzorUsluga WHERE ProdajaNamestajaId=@plid AND Obrisan=@obr";
+                    cmd3.Parameters.AddWithValue("@plid", p.Id);
+                    cmd3.Parameters.AddWithValue("@obr", '0');
+                    da.SelectCommand = cmd3;
                     da.Fill(ds3, "ProdajaProzorUsluga");
-                    foreach (DataRow row in ds3.Tables["ProdajaProzorUsluga"].Rows)
+                    foreach (DataRow row3 in ds3.Tables["ProdajaProzorUsluga"].Rows)
                     {
-                        int id = int.Parse(row["DodatnaUslugaId"].ToString());
-                        namestajProdaja.Add(DodatnaUsluga.GetById(id));
+                        int id = int.Parse(row3["DodatnaUslugaId"].ToString());
+                        uslugaProdaja.Add(DodatnaUsluga.GetById(id));
                     }
-                    pro.DodatneUsluge = namestajProdaja;
+                    p.DodatneUsluge = uslugaProdaja;
+
+                    listaProdaje.Add(p);
                 }
             }
             return listaProdaje;
@@ -320,16 +315,36 @@ namespace POP_40_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, KolicinaNamestaja, Kupac, UkupanIznos, Obrisan) VALUES(@DatumProdaje, @BrojRacuna, @KolicinaNamestaja, @Kupac, @UkupanIznos, @Obrisan);";
+                cmd.CommandText = "INSERT INTO ProdajaNamestaja (DatumProdaje, BrojRacuna, Kupac, UkupanIznos, UkupanIznosPDV, Obrisan) VALUES(@DatumProdaje, @BrojRacuna, @Kupac, @UkupanIznos, @UkupanIznosPDV, @Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumProdaje", n.DatumProdaje);
                 cmd.Parameters.AddWithValue("BrojRacuna", n.BrojRacuna);
-                cmd.Parameters.AddWithValue("KolicinaNamestaja", n.KolicinaNamestaja);
                 cmd.Parameters.AddWithValue("Kupac", n.Kupac);
                 cmd.Parameters.AddWithValue("UkupanIznos", n.UkupanIznos);
+                cmd.Parameters.AddWithValue("UkupanIznosPDV", n.UkupanIznosPDV);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
                 n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                for (int i = 0; i < n.NamestajNaProdaja.Count; i++)
+                {
+                    SqlCommand cmdd = con.CreateCommand();
+                    cmdd.CommandText = "INSERT INTO ProdajaProzorNamestaj (NamestajZaProdajuId, ProdajaNamestajaId, Obrisan) VALUES(@NamestajZaProdajuId, @ProdajaNamestajaId, @Obrisan);";
+                    cmdd.Parameters.AddWithValue("NamestajZaProdajuId", n.NamestajNaProdaja[i].Id);
+                    cmdd.Parameters.AddWithValue("ProdajaNamestajaId", n.Id);
+                    cmdd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmdd.ExecuteNonQuery();
+                }
+
+                for (int i = 0; i < n.DodatneUsluge.Count; i++)
+                {
+                    SqlCommand cmddd = con.CreateCommand();
+                    cmddd.CommandText = "INSERT INTO ProdajaProzorUsluga (DodatnaUslugaId, ProdajaNamestajaId, Obrisan) VALUES(@DodatnaUslugaId, @ProdajaNamestajaId, @Obrisan);";
+                    cmddd.Parameters.AddWithValue("DodatnaUslugaId", n.DodatneUsluge[i].Id);
+                    cmddd.Parameters.AddWithValue("ProdajaNamestajaId", n.Id);
+                    cmddd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmddd.ExecuteNonQuery();
+                }
             }
             Projekat.Instance.ProdajaNamestaja.Add(n);
             return n;
@@ -343,13 +358,14 @@ namespace POP_40_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "UPDATE ProdajaNamestaja SET DatumProdaje=@DatumProdaje, BrojRacuna=@BrojRacuna, KolicinaNamestaja=@KolicinaNamestaja, Kupac=@Kupac, UkupanIznos=@UkupanIznos, Obrisan=@Obrisan  WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE ProdajaNamestaja SET DatumProdaje=@DatumProdaje, BrojRacuna=@BrojRacuna, Kupac=@Kupac, UkupanIznos=@UkupanIznos, UkupanIznosPDV=@UkupanIznosPDV, Obrisan=@Obrisan  WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumProdaje", n.DatumProdaje);
                 cmd.Parameters.AddWithValue("BrojRacuna", n.BrojRacuna);
-                cmd.Parameters.AddWithValue("KolicinaNamestaja", n.KolicinaNamestaja);
                 cmd.Parameters.AddWithValue("Kupac", n.Kupac);
                 cmd.Parameters.AddWithValue("UkupanIznos", n.UkupanIznos);
+                cmd.Parameters.AddWithValue("UkupanIznosPDV", n.UkupanIznosPDV);
+                cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
 
                 cmd.ExecuteNonQuery();
@@ -360,9 +376,9 @@ namespace POP_40_2016.Model
                 {
                     namPro.DatumProdaje = n.DatumProdaje;
                     namPro.BrojRacuna = n.BrojRacuna;
-                    namPro.KolicinaNamestaja = n.KolicinaNamestaja;
                     namPro.Kupac = n.Kupac;
                     namPro.UkupanIznos = n.UkupanIznos;
+                    namPro.UkupanIznosPDV = n.UkupanIznosPDV;
                     namPro.Obrisan = n.Obrisan;
                 }
             }
@@ -374,6 +390,81 @@ namespace POP_40_2016.Model
             Update(p);
         }
 
+        public static bool AddProdajaProzorNamestaj(ProdajaNamestaja a, ObservableCollection<Namestaj> dodatiNamestaji)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < dodatiNamestaji.Count; i++)
+                {
+                    cmd.CommandText = "INSERT INTO ProdajaProzorNamestaj (NamestajZaProdajuId, ProdajaNamestajaId, Obrisan) VALUES(@ZaProdajuId, @ProdajaNamId, @Obrisan)";
+                    cmd.Parameters.AddWithValue("@ZaProdajuId", dodatiNamestaji[i].Id);
+                    cmd.Parameters.AddWithValue("@ProdajaNamId", a.Id);
+                    cmd.Parameters.AddWithValue("@Obrisan", '0');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+        }
+
+        public static bool DeleteProdajaProzorNamestaj(ProdajaNamestaja a, ObservableCollection<Namestaj> obrisaniNam)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < obrisaniNam.Count; i++)
+                {
+                    cmd.CommandText = "UPDATE ProdajaProzorNamestaj SET Obrisan=@obrisan WHERE NamestajZaProdajuId=@soid AND ProdajaNamestajaId=@pid";
+                    cmd.Parameters.AddWithValue("@soid", obrisaniNam[i].Id);
+                    cmd.Parameters.AddWithValue("@pid", a.Id);
+                    cmd.Parameters.AddWithValue("@obrisan", '1');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+        }
+
+        public static bool AddProdajaProzorUsluga(ProdajaNamestaja a, ObservableCollection<DodatnaUsluga> dodateUsluge)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < dodateUsluge.Count; i++)
+                {
+                    cmd.CommandText = "INSERT INTO ProdajaProzorUsluga (DodatnaUslugaId, ProdajaNamestajaId, Obrisan) VALUES(@DodatnaId, @ProdajaId, @Obrisann)";
+                    cmd.Parameters.AddWithValue("@DodatnaId", dodateUsluge[i].Id);
+                    cmd.Parameters.AddWithValue("@ProdajaId", a.Id);
+                    cmd.Parameters.AddWithValue("@Obrisann", '0');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+        }
+
+        public static bool DeleteProdajaProzorUsluga(ProdajaNamestaja a, ObservableCollection<DodatnaUsluga> obrisaneUs)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < obrisaneUs.Count; i++)
+                {
+                    cmd.CommandText = "UPDATE ProdajaProzorUsluga SET Obrisan=@obrisan WHERE DodatnaUslugaId=@lid AND ProdajaNamestajaId=@cid";
+                    cmd.Parameters.AddWithValue("@lid", obrisaneUs[i].Id);
+                    cmd.Parameters.AddWithValue("@cid", a.Id);
+                    cmd.Parameters.AddWithValue("@obrisan", '1');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+        }
         #endregion
     }
 }

@@ -178,6 +178,7 @@ namespace POP_40_2016.Model
                 DataSet ds = new DataSet();
 
                 cmd.CommandText = "SELECT * FROM DodatneUsluge WHERE Obrisan=0 AND Id=@id;";
+                cmd.Parameters.AddWithValue("@id", id);
                 da.SelectCommand = cmd;
                 da.Fill(ds, "DodatneUsluge"); 
 

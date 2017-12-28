@@ -52,11 +52,13 @@ namespace POP_SF_40_2016_GUI.UI
         }
 
         private void SacuvajProzor(object sender, RoutedEventArgs e)
-        {          
+        {
+            var listaa = Projekat.Instance.Namestaj;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
+                    namestaj.Id = listaa.Count + 1;
                     Namestaj.Create(namestaj);
                     break;                  
             }

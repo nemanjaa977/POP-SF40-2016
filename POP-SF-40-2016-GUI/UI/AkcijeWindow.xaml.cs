@@ -59,11 +59,8 @@ namespace POP_SF_40_2016_GUI.UI
         {
             var kopija = (Akcija)IzabranaAkcija.Clone();
             var akcijaProzor = new EditAkcijeWindow(kopija, EditAkcijeWindow.Operacija.IZMENA);
-            if (akcijaProzor.ShowDialog() == true)
-            {
-                int index = Projekat.Instance.Akcija.IndexOf(IzabranaAkcija);
-                Akcija.Update(kopija);
-            }
+            akcijaProzor.ShowDialog();
+            view.Refresh();
         }
 
         private void IzbrisiAkciju(object sender, RoutedEventArgs e)

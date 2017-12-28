@@ -20,7 +20,7 @@
         <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="142,209,0,0" TextWrapping="Wrap" Text="{Binding Path=Popust}" VerticalAlignment="Top" Width="199"/>
         <DatePicker x:Name="tbDatumP" SelectedDate="{ Binding Path=DatumPocetka}" HorizontalAlignment="Left" Height="33" Margin="204,26,0,0" VerticalAlignment="Top" Width="266"/>
         <DatePicker x:Name="tbDatumZ"  SelectedDate="{ Binding Path=DatumZavrsetka}" HorizontalAlignment="Left" Height="33" Margin="204,72,0,0" VerticalAlignment="Top" Width="266"/>
-        <DataGrid x:Name="dgNamestajPopust" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=NamestajNaPopustu}" HorizontalAlignment="Left" Height="134" Margin="522,69,0,0" VerticalAlignment="Top" Width="373" AutoGeneratingColumn="dgNamestajPopust_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dgNamestajPopust" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=NamestajNaPopustu}" HorizontalAlignment="Left" Height="134" Margin="522,69,0,0" VerticalAlignment="Top" Width="373" AutoGeneratingColumn="dgNamestajPopust_AutoGeneratingColumn" IsReadOnly="True"/>
         <Button x:Name="btnIzaberiNamestajPopust" Content="Izaberi" HorizontalAlignment="Left" Height="18" Margin="601,209,0,0" VerticalAlignment="Top" Width="174" Click="IzaberiNamestajNaPopustu"/>
         <Button x:Name="btnUkloniNamestajPopust" Content="X" HorizontalAlignment="Left" Height="18" Margin="794,209,0,0" VerticalAlignment="Top" Width="33" Click="UkloniNamestajPopust" />
 

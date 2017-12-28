@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="PrikaziPopustNamestaj" Height="291.647" Width="422.506">
+        Title="PrikaziPopustNamestaj" Height="291.647" Width="422.506" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="dgPrikaziPopust" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="215" Margin="0,47,0,0" VerticalAlignment="Top" Width="416" AutoGeneratingColumn="dgPrikaziPopust_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dgPrikaziPopust" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="215" Margin="0,47,0,0" VerticalAlignment="Top" Width="416" AutoGeneratingColumn="dgPrikaziPopust_AutoGeneratingColumn" IsReadOnly="True"/>
         <Label Content="Namestaj na popustu" HorizontalAlignment="Left" Height="32" Margin="130,10,0,0" VerticalAlignment="Top" Width="151" FontSize="15"/>
 
     </Grid>

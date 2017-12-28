@@ -13,7 +13,9 @@ CREATE TABLE Namestaj(
 	Naziv VARCHAR(80),
 	Sifra VARCHAR(20),
 	Cena NUMERIC(9, 2),
+	CenaPopust NUMERIC(9, 2),
 	Kolicina INT,
+	ProdataKolicina INT,
 	Obrisan BIT,
 	FOREIGN KEY (TipNamestajaId) REFERENCES TipNamestaja(Id)
 );
@@ -55,9 +57,9 @@ CREATE TABLE ProdajaNamestaja(
 	Id INT PRIMARY KEY IDENTITY(1, 1),
 	DatumProdaje DATE,
 	BrojRacuna INT,
-	KolicinaNamestaja INT,
 	Kupac VARCHAR(40),
 	UkupanIznos DECIMAL,
+	UkupanIznosPDV DECIMAL,
 	Obrisan BIT
 );
 GO
@@ -72,5 +74,18 @@ CREATE TABLE ProdajaProzorUsluga(
 	Id INT PRIMARY KEY IDENTITY(1, 1),
 	DodatnaUslugaId INT FOREIGN KEY REFERENCES DodatneUsluge(Id),
 	ProdajaNamestajaId INT FOREIGN KEY REFERENCES ProdajaNamestaja(Id),
+	Obrisan BIT
+);
+GO
+CREATE TABLE Salon(
+	Id INT PRIMARY KEY IDENTITY(1, 1),
+	Naziv VARCHAR(90),
+	Adresa VARCHAR(80),
+	Telefon VARCHAR(80),
+	Email VARCHAR(80),
+	AdresaInternetSajta VARCHAR(100),
+	Pib INT,
+	MaticniBroj INT,
+	BrojZiroRacuna VARCHAR(100),
 	Obrisan BIT
 );

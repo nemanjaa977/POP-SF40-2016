@@ -47,10 +47,12 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void SacuvajProzor(object sender, RoutedEventArgs e)
         {
+            var listaT = Projekat.Instance.TipNamestaja;
             this.DialogResult = true;
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
+                    tip.Id = listaT.Count + 1;
                     TipNamestaja.Create(tip);
                     break;
             }

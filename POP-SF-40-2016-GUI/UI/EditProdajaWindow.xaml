@@ -5,22 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="EditProdajaWindow" Height="580.045" Width="730.161" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="EditProdajaWindow" Height="486.445" Width="730.161" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Datum prodaje:" HorizontalAlignment="Left" Height="31" Margin="10,31,0,0" VerticalAlignment="Top" Width="110" FontSize="14" RenderTransformOrigin="0.5,0.5"/>
         <DatePicker x:Name="dpDatumProdaje" SelectedDate="{ Binding Path=DatumProdaje}" HorizontalAlignment="Left" Height="31" Margin="125,31,0,0" VerticalAlignment="Top" Width="243" RenderTransformOrigin="0.498,0.561"/>
         <Label Content="Kupac:" HorizontalAlignment="Left" Height="33" Margin="10,91,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
         <TextBox x:Name="tbKupac" HorizontalAlignment="Left" Height="33" Margin="125,91,0,0" TextWrapping="Wrap" Text="{Binding Path=Kupac}" VerticalAlignment="Top" Width="243"/>
-        <Button x:Name="btnZavoriProzor" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="495,510,0,0" VerticalAlignment="Top" Width="102" Click="ZatvoriProzorProdajaEdit"/>
-        <Button x:Name="btnSacuvajProzor" Content="Sacuvaj" HorizontalAlignment="Left" Height="28" Margin="612,510,0,0" VerticalAlignment="Top" Width="102" Click="SacuvajEditProdaja"/>
+        <Button x:Name="btnZavoriProzor" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="587,417,0,0" VerticalAlignment="Top" Width="127" Click="ZatvoriProzorProdajaEdit"/>
+        <Button x:Name="btnSacuvajProzor" Content="Sacuvaj" HorizontalAlignment="Left" Height="28" Margin="587,367,0,0" VerticalAlignment="Top" Width="127" Click="SacuvajEditProdaja"/>
         <Label Content="Dodatne Usluge" HorizontalAlignment="Left" Height="34" Margin="485,31,0,0" VerticalAlignment="Top" Width="143" FontSize="18"/>
         <Button x:Name="btnIzaberiUslugu" Content="Izaberi" HorizontalAlignment="Left" Height="23" Margin="495,202,0,0" VerticalAlignment="Top" Width="112" Click="IzaberiUslugu"/>
-        <DataGrid x:Name="dgDodUsluge" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=DodatneUsluge}" HorizontalAlignment="Left" Height="130" Margin="416,67,0,0" VerticalAlignment="Top" Width="264" AutoGeneratingColumn="dgDodUsluge_AutoGeneratingColumn"/>
-        <Label Content="Namestaj" HorizontalAlignment="Left" Height="32" Margin="154,239,0,0" VerticalAlignment="Top" Width="90" FontSize="18" RenderTransformOrigin="0.505,0.488"/>
-        <DataGrid x:Name="dgNamestajj" ItemsSource="{Binding Source=NamestajNaProdaja}" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" HorizontalAlignment="Left" Height="136" Margin="25,276,0,0" VerticalAlignment="Top" Width="343" AutoGeneratingColumn="dgNamestajj_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dgDodUsluge" AutoGenerateColumns="True" IsReadOnly="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=DodatneUsluge}" HorizontalAlignment="Left" Height="130" Margin="416,67,0,0" VerticalAlignment="Top" Width="264" AutoGeneratingColumn="dgDodUsluge_AutoGeneratingColumn"/>
+        <Label Content="Namestaj" HorizontalAlignment="Left" Height="41" Margin="159,212,0,0" VerticalAlignment="Top" Width="115" FontSize="25" RenderTransformOrigin="0.505,0.488"/>
+        <DataGrid x:Name="dgNamestajj" ItemsSource="{Binding Source=NamestajNaProdaja}" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" HorizontalAlignment="Left" Height="154" Margin="25,258,0,0" VerticalAlignment="Top" Width="387" AutoGeneratingColumn="dgNamestajj_AutoGeneratingColumn" IsReadOnly="True"/>
         <Button x:Name="btnIzaberiNamestaj" Content="Izaberi" HorizontalAlignment="Left" Height="20" Margin="100,417,0,0" VerticalAlignment="Top" Width="189" Click="IzaberiNamestaj"/>
-        <Label Content="Kolicina" HorizontalAlignment="Left" Height="28" Margin="513,310,0,0" VerticalAlignment="Top" Width="74" FontSize="15"/>
-        <TextBox x:Name="tbKolicinaNamestaja" HorizontalAlignment="Left" Height="31" Margin="464,352,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaNamestaja}" VerticalAlignment="Top" Width="164" FontSize="15"/>
         <Button x:Name="btnUkloniNamestaj" Content="X" HorizontalAlignment="Left" Height="20" Margin="294,417,0,0" VerticalAlignment="Top" Width="29" Click="UkloniNamestaj" />
         <Button x:Name="btnUkloniUslugu" Content="X" HorizontalAlignment="Left" Height="23" Margin="612,202,0,0" VerticalAlignment="Top" Width="28" Click="UkloniUslugu"/>
 

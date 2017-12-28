@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="ProdajaWindow" Height="340.023" Width="753.678" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="dgProdaja" HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="251" Margin="10,10,0,0" VerticalAlignment="Top" Width="727" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dgProdaja" HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="251" Margin="10,10,0,0" VerticalAlignment="Top" Width="727" SelectedItem="{Binding Path=IzabranaProdaja}" AutoGeneratingColumn="dgProdaja_AutoGeneratingColumn" IsReadOnly="True"/>
         <Button x:Name="btnDodajRacun" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="10,277,0,0" VerticalAlignment="Top" Width="87" Click="DodajRacun"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="650,277,0,0" VerticalAlignment="Top" Width="87" Click="ZatvoriRacun"/>
-        <Button x:Name="btnPrikaziNamUs" Content="Prikazi namestaj i usluge" HorizontalAlignment="Left" Height="23" Margin="335,277,0,0" VerticalAlignment="Top" Width="156" Click="PrikaziNamUs" />
+        <Button x:Name="btnPrikaziNamUs" Content="Prikazi namestaj i usluge" HorizontalAlignment="Left" Height="23" Margin="356,277,0,0" VerticalAlignment="Top" Width="156" Click="PrikaziNamUs" />
         <Button x:Name="btnIzmeniRacun" Content="Izmeni" HorizontalAlignment="Left" Height="23" Margin="102,277,0,0" VerticalAlignment="Top" Width="87" Click="IzmeniRacun" />
     </Grid>
 </Window>

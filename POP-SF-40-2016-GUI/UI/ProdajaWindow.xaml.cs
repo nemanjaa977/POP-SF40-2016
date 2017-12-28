@@ -74,11 +74,8 @@ namespace POP_SF_40_2016_GUI.UI
         {
             ProdajaNamestaja kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
             var pProzor = new EditProdajaWindow(kopija, EditProdajaWindow.Operacija.IZMENA);
-            if (pProzor.ShowDialog() != true)
-            {
-                int index = Projekat.Instance.ProdajaNamestaja.IndexOf(IzabranaProdaja);
-                ProdajaNamestaja.Update(kopija);
-            }
+            pProzor.ShowDialog();
+            view.Refresh();      
         }
 
         private void PrikaziNamUs(object sender, RoutedEventArgs e)

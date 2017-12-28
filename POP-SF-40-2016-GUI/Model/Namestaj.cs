@@ -17,10 +17,12 @@ namespace POP_40_2016.Model
         private int id;
         private string naziv;
         private double jedinicnaCena;
+        private double cenaPopust;
         private int tipNamestajaId;
         private bool obrisan;
         private string sifra;
         private int kolicina;
+        private int prodataKolicina;
         private TipNamestaja tippNamestaja;
 
         public int Id
@@ -63,6 +65,16 @@ namespace POP_40_2016.Model
             }
         }
 
+        public Double CenaPopust
+        {
+            get { return cenaPopust; }
+            set
+            {
+                cenaPopust = value;
+                OnPropertyChanged("CenaPopust");
+            }
+        }
+
         public int KolicinaUMagacinu
         {
             get { return kolicina; }
@@ -70,6 +82,16 @@ namespace POP_40_2016.Model
             {
                 kolicina = value;
                 OnPropertyChanged("KolicinaUMagacinu");
+            }
+        }
+
+        public int ProdataKolicina
+        {
+            get { return prodataKolicina; }
+            set
+            {
+                prodataKolicina = value;
+                OnPropertyChanged("ProdataKolicina");
             }
         }
 
@@ -145,10 +167,12 @@ namespace POP_40_2016.Model
                 Id = id,
                 Naziv = naziv,
                 JedinicnaCena = jedinicnaCena,
+                CenaPopust = cenaPopust,
                 Obrisan = obrisan,
                 TipNamestaja = tippNamestaja,
                 TipNamestajaId = tipNamestajaId,
                 KolicinaUMagacinu = kolicina,
+                ProdataKolicina = prodataKolicina,
                 Sifra = sifra
             };
         }
@@ -188,7 +212,9 @@ namespace POP_40_2016.Model
                     n.Naziv = row["Naziv"].ToString();
                     n.Sifra = row["Sifra"].ToString();
                     n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                    n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
                     n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                    n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
                     n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
                     n.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
@@ -206,14 +232,16 @@ namespace POP_40_2016.Model
 
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Obrisan, TipNamestajaId, Sifra, Cena, Kolicina) VALUES(@Naziv, @Obrisan, @TipNamestajaId, @Sifra, @Cena, @Kolicina);";
+                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Obrisan, TipNamestajaId, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina) VALUES(@Naziv, @Obrisan, @TipNamestajaId, @Sifra, @Cena, @CenaPopust, @Kolicina, @ProdataKolicina);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                 cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu); 
+                cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
+                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
 
                 n.Id = int.Parse(cmd.ExecuteScalar().ToString());
                 
@@ -229,7 +257,7 @@ namespace POP_40_2016.Model
                 con.Open();
 
                 SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, Kolicina=@Kolicina  WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, CenaPopust=@CenaPopust, Kolicina=@Kolicina, ProdataKolicina=@ProdataKolicina WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", n.Id);
                 cmd.Parameters.AddWithValue("Naziv", n.Naziv);
@@ -237,7 +265,9 @@ namespace POP_40_2016.Model
                 cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
                 cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                 cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
                 cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
 
                 cmd.ExecuteNonQuery();
             }
@@ -250,7 +280,9 @@ namespace POP_40_2016.Model
                     nam.TipNamestajaId = n.TipNamestajaId;
                     nam.Sifra = n.Sifra;
                     nam.JedinicnaCena = n.JedinicnaCena;
+                    nam.CenaPopust = n.CenaPopust;
                     nam.KolicinaUMagacinu = n.KolicinaUMagacinu;
+                    nam.ProdataKolicina = n.ProdataKolicina;
                 }
             }
         }
@@ -269,8 +301,8 @@ namespace POP_40_2016.Model
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
 
-                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 AND Id=@id;";
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 AND Id=@lid;";
+                cmd.Parameters.AddWithValue("@lid", id);
                 da.SelectCommand = cmd;
                 da.Fill(ds, "Namestaj"); //izvrsavanje upita
 
@@ -281,7 +313,9 @@ namespace POP_40_2016.Model
                     n.Naziv = row["Naziv"].ToString();
                     n.Sifra = row["Sifra"].ToString();
                     n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                    n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
                     n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                    n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
                     n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
                     n.Obrisan = bool.Parse(row["Obrisan"].ToString());
                     return n;

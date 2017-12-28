@@ -1,0 +1,14 @@
+﻿<Window x:Class="POP_SF_40_2016_GUI.UI.SalonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
+        mc:Ignorable="d"
+        Title="SalonWindow" Height="210.906" Width="955.236" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Informacije o salonu!" HorizontalAlignment="Left" Height="52" Margin="339,5,0,0" VerticalAlignment="Top" Width="291" FontSize="30"/>
+        <DataGrid x:Name="dgPrikaziSalon" CanUserAddRows="False" IsReadOnly="True" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="110" Margin="10,62,0,0" VerticalAlignment="Top" Width="929" AutoGeneratingColumn="dgPrikaziSalon_AutoGeneratingColumn"/>
+
+    </Grid>
+</Window>

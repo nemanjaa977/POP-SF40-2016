@@ -9,8 +9,8 @@
     <Grid>
         <Label Content="Namestaj" HorizontalAlignment="Left" Height="36" Margin="118,25,0,0" VerticalAlignment="Top" Width="80" FontSize="15"/>
         <Label Content="Dodatne usluge" HorizontalAlignment="Left" Height="36" Margin="428,25,0,0" VerticalAlignment="Top" Width="120" FontSize="15"/>
-        <DataGrid x:Name="dgNamestaj" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="262" Margin="10,66,0,0" VerticalAlignment="Top" Width="320" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn"/>
-        <DataGrid x:Name="dgDodatneUsluge" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="262" Margin="335,66,0,0" VerticalAlignment="Top" Width="322" AutoGeneratingColumn="dgDodatneUsluge_AutoGeneratingColumn"/>
+        <DataGrid x:Name="dgNamestaj" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="262" Margin="10,66,0,0" VerticalAlignment="Top" Width="320" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" IsReadOnly="True"/>
+        <DataGrid x:Name="dgDodatneUsluge" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" HorizontalAlignment="Left" Height="262" Margin="335,66,0,0" VerticalAlignment="Top" Width="322" AutoGeneratingColumn="dgDodatneUsluge_AutoGeneratingColumn" IsReadOnly="True"/>
 
     </Grid>
 </Window>

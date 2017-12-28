@@ -182,26 +182,24 @@ namespace POP_40_2016.Model
                     a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
                     a.DatumZavrsetka = DateTime.Parse(row["DatumKraja"].ToString());
                     a.Popust = double.Parse(row["Popust"].ToString());
-                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());    
+                    a.Obrisan = bool.Parse(row["Obrisan"].ToString());
 
-                    listaAkcija.Add(a);
-                }
-
-                DataSet ds2 = new DataSet();              
-                foreach(var akcija in listaAkcija)
-                {
-                    
+                    DataSet ds2 = new DataSet();
+                    SqlCommand cmd2 = con.CreateCommand();
                     ObservableCollection<Namestaj> namestajAkcija = new ObservableCollection<Namestaj>();
-                    cmd.CommandText = "SELECT NamestajNaPopustuId FROM NAAKCIJI WHERE AkcijaId=@id";
-                    cmd.Parameters.AddWithValue("@id", akcija.Id);
-                    da.SelectCommand = cmd;
+                    cmd2.CommandText = "SELECT NamestajNaPopustuId FROM NAAKCIJI WHERE AkcijaId=@uuid AND Obrisan=@o";
+                    cmd2.Parameters.AddWithValue("@uuid", a.Id);
+                    cmd2.Parameters.AddWithValue("@o",'0');
+                    da.SelectCommand = cmd2;
                     da.Fill(ds2, "NAAKCIJI");
-                    foreach(DataRow row in ds2.Tables["NAAKCIJI"].Rows)
+                    foreach (DataRow row2 in ds2.Tables["NAAKCIJI"].Rows)
                     {
-                        int id = int.Parse(row["NamestajNaPopustuId"].ToString());
+                        int id = int.Parse(row2["NamestajNaPopustuId"].ToString());
                         namestajAkcija.Add(Namestaj.GetById(id));
                     }
-                    akcija.NamestajNaPopustu = namestajAkcija;
+                    a.NamestajNaPopustu = namestajAkcija;
+
+                    listaAkcija.Add(a);
                 }
             }
             return listaAkcija;
@@ -214,16 +212,24 @@ namespace POP_40_2016.Model
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Akcija (DatumPocetka, DatumKraja, NamestajNaPopustuId, Popust, Obrisan) VALUES(@DatumPocetka, @DatumZavrsetka, @NamestajNaPopustuId, @Popust, @Obrisan);";
+                cmd.CommandText = "INSERT INTO Akcije (DatumPocetka, DatumKraja, Popust, Obrisan) VALUES(@DatumPocetka, @DatumKraja, @Popust, @Obrisan);";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
                 cmd.Parameters.AddWithValue("DatumKraja", a.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
                 cmd.Parameters.AddWithValue("Popust", a.Popust);
-                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+                cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);              
 
                 a.Id = int.Parse(cmd.ExecuteScalar().ToString());
 
+                for (int i = 0; i < a.NamestajNaPopustu.Count; i++)
+                {
+                        SqlCommand cmdd = con.CreateCommand();
+                        cmdd.CommandText = "INSERT INTO NAAKCIJI (NamestajNaPopustuId, AkcijaId, Obrisan) VALUES(@NamestajNaPopustuId, @AkcijaId, @Obrisan);";
+                        cmdd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustu[i].Id);
+                        cmdd.Parameters.AddWithValue("AkcijaId", a.Id);
+                        cmdd.Parameters.AddWithValue("Obrisan", a.Obrisan);
+                        cmdd.ExecuteNonQuery();
+                }
             }
             Projekat.Instance.Akcija.Add(a);
             return a;
@@ -236,33 +242,83 @@ namespace POP_40_2016.Model
                 con.Open();
                 SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "UPDATE Akcije SET DatumPocetka=@DatumPocetka, DatumZavrsetka=@DatumZavrsetka, NamestajNaPopustuId=@NamestajNaPopustuId, Popust=@Popust, Obrisan=@Obrisan WHERE Id=@Id;";
+                cmd.CommandText = "UPDATE Akcije SET DatumPocetka=@DatumPocetka, DatumKraja=@DatumKraja, Popust=@Popust, Obrisan=@Obrisan WHERE Id=@Id;";
                 cmd.CommandText += "SELECT SCOPE_IDENTITY();";
                 cmd.Parameters.AddWithValue("Id", a.Id);
                 cmd.Parameters.AddWithValue("DatumPocetka", a.DatumPocetka);
                 cmd.Parameters.AddWithValue("DatumKraja", a.DatumZavrsetka);
-                cmd.Parameters.AddWithValue("NamestajNaPopustuId", a.NamestajNaPopustuId);
                 cmd.Parameters.AddWithValue("Popust", a.Popust);
                 cmd.Parameters.AddWithValue("Obrisan", a.Obrisan);
 
                 cmd.ExecuteNonQuery();
             }
+
             foreach (var ak in Projekat.Instance.Akcija)
             {
                 if (ak.Id == a.Id)
                 {
                     ak.DatumPocetka = a.DatumPocetka;
                     ak.DatumZavrsetka = a.DatumZavrsetka;
-                    ak.NamestajNaPopustuId = a.NamestajNaPopustuId;
                     ak.Popust = a.Popust;
                     ak.Obrisan = a.Obrisan;
                 }
             }
         }
+
         public static void Delete(Akcija a)
         {
             a.Obrisan = true;
+            foreach (var item in a.NamestajNaPopustu)
+            {
+                item.CenaPopust = 0;
+                Namestaj.Update(item);
+                foreach (var n in Projekat.Instance.Namestaj)
+                {
+                    if(n.Id == item.Id)
+                    {
+                        n.CenaPopust = 0;
+                    }
+                }
+            }
             Update(a);
+        }
+
+        public static bool AddNaAkciji(Akcija a, ObservableCollection<Namestaj>dodatiNamestaji)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < dodatiNamestaji.Count; i++)
+                {
+                    cmd.CommandText = "INSERT INTO NAAKCIJI (NamestajNaPopustuId, AkcijaId, Obrisan) VALUES(@nnn, @AkcijaId, @Obrisan)";
+                    cmd.Parameters.AddWithValue("@nnn", dodatiNamestaji[i].Id);
+                    cmd.Parameters.AddWithValue("@AkcijaId", a.Id);
+                    cmd.Parameters.AddWithValue("@Obrisan", '0');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
+        }
+
+        public static bool DeleteNaAkcija(Akcija a, ObservableCollection<Namestaj> obrisani)
+        {
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = con.CreateCommand();
+
+                for (int i = 0; i < obrisani.Count; i++)
+                {
+                    cmd.CommandText = "UPDATE NAAKCIJI SET Obrisan=@obrisan WHERE NamestajNaPopustuId=@iid AND AkcijaId=@aid";
+                    cmd.Parameters.AddWithValue("@iid", obrisani[i].Id);
+                    cmd.Parameters.AddWithValue("@aid", a.Id);
+                    cmd.Parameters.AddWithValue("@obrisan", '1');
+                    cmd.ExecuteNonQuery();
+                }
+                return true;
+            }
         }
         #endregion
     }
