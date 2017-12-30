@@ -20,9 +20,18 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class GlavniMeniWindow : Window
     {
-        public GlavniMeniWindow()
+        public GlavniMeniWindow(TipKorisnika uloga)
         {
             InitializeComponent();
+
+            if (uloga == TipKorisnika.Prodavac)
+            {
+                btnAkcije.Visibility = System.Windows.Visibility.Collapsed;
+                btnDodUsluge.Visibility = System.Windows.Visibility.Collapsed;
+                btnKorisnik.Visibility = System.Windows.Visibility.Collapsed;
+                btnPrikaziTip.Visibility = System.Windows.Visibility.Collapsed;
+                btnPrikazi.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void PrikaziNamestaj(object sender, RoutedEventArgs e)
@@ -65,6 +74,14 @@ namespace POP_SF_40_2016_GUI.UI
         {
             var salonns = new SalonWindow();
             salonns.ShowDialog();      
+        }
+
+        private void Odjava(object sender, RoutedEventArgs e)
+        {
+            var odjave = new LoginWindow();
+            odjave.ShowDialog();
+            this.Close();
+           
         }
     }
 }

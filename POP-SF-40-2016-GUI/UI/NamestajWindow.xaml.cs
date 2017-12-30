@@ -27,8 +27,10 @@ namespace POP_SF_40_2016_GUI.UI
         public Namestaj IzabranNamestaj { get; set; }
 
         public enum Operacija { ADMINISTRACIJA, PREUZIMANJE }
+
         Operacija operacija;
         Prozor prozor;
+
         public enum Prozor { PrezumiAkcija, PreuzmiProdaja}
 
         public NamestajWindow(Operacija operacija = Operacija.ADMINISTRACIJA, Prozor prozor=Prozor.PreuzmiProdaja)
@@ -137,5 +139,9 @@ namespace POP_SF_40_2016_GUI.UI
             this.Close();
         }
 
+        private void dgNamestaj_LostFocus(object sender, RoutedEventArgs e)
+        {
+            IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
+        }
     }
 }

@@ -9,7 +9,7 @@
     <Grid>
 
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="35" Margin="10,301,0,0" VerticalAlignment="Top" Width="71" Click="DodajNamestaj" Background="#FFFFFBFB" Foreground="#FF06FF00" BorderBrush="#FF46FF00"/>
-        <DataGrid HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="214" Margin="10,10,0,0" VerticalAlignment="Top" Width="769" Name="dgNamestaj" SelectedItem="{Binding Path=IzabranNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" IsReadOnly="True" Background="White"/>
+        <DataGrid HorizontalAlignment="Left" LostFocus="dgNamestaj_LostFocus" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="214" Margin="10,10,0,0" VerticalAlignment="Top" Width="769" Name="dgNamestaj" SelectedItem="{Binding Path=IzabranNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" IsReadOnly="True" Background="White"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="35" Margin="86,301,0,0" VerticalAlignment="Top" Width="71" Click="IzmeniNamestaj" Background="White" BorderBrush="#FF75FA05" Foreground="#FF41F608" />
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="35" Margin="162,301,0,0" VerticalAlignment="Top" Width="71" Click="IzbrisiNamestaj" RenderTransformOrigin="0.544,0.543" Background="White" BorderBrush="#FFF00606" Foreground="#FFF40808" />
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="35" Margin="708,301,0,0" VerticalAlignment="Top" Width="71" Click="ZatvoriNamestaj" Background="White" BorderBrush="#FFF60707" Foreground="#FFF70606" />

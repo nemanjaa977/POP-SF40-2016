@@ -163,12 +163,12 @@ namespace POP_SF_40_2016_GUI.UI
                     dodatiNamestaji.Remove(namestaj);
             }
                       
-            /*select.KolicinaUMagacinu = select.KolicinaUMagacinu + select.ProdataKolicina;
+            select.KolicinaUMagacinu = select.KolicinaUMagacinu + select.ProdataKolicina;
             foreach (var n in Projekat.Instance.Namestaj)
             {
                 if (n.Id == select.Id)
                     n.KolicinaUMagacinu = select.KolicinaUMagacinu;
-            }*/
+            }
         }
 
         private void UkloniUslugu(object sender, RoutedEventArgs e)
