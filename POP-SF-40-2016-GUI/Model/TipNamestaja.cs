@@ -158,6 +158,7 @@ namespace POP_40_2016.Model
         {
             tn.Obrisan = true;
             Update(tn);
+
         }
         #endregion
     }

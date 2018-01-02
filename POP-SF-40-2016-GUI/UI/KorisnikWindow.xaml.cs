@@ -41,6 +41,12 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranKorisnik = dgKorisnik.SelectedItem as Korisnik;
 
             dgKorisnik.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaKor = new List<string>()
+            {
+                "Ime", "Prezime", "KorisnickoIme", "Lozinka", "TipKorisnika"
+            };
+            cbSortKorisnik.ItemsSource = listaKor;
         }
 
         private bool prikazFilter(object obj)
@@ -86,6 +92,36 @@ namespace POP_SF_40_2016_GUI.UI
             if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id")
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void cbSortKorisnik_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var izabrano = cbSortKorisnik.SelectedItem as string;
+            switch (izabrano)
+            {
+                case "Ime":
+                    var listaK = Projekat.Instance.Korisnik.OrderBy(k => k.Ime);
+                    dgKorisnik.ItemsSource = listaK;
+                    break;
+                case "Prezime":
+                    var listaKo = Projekat.Instance.Korisnik.OrderBy(k => k.Prezime);
+                    dgKorisnik.ItemsSource = listaKo;
+                    break;
+                case "KorisnickoIme":
+                    var listaKk = Projekat.Instance.Korisnik.OrderBy(k => k.KorisnickoIme);
+                    dgKorisnik.ItemsSource = listaKk;
+                    break;
+                case "Lozinka":
+                    var listaKs = Projekat.Instance.Korisnik.OrderBy(k => k.Lozinka);
+                    dgKorisnik.ItemsSource = listaKs;
+                    break;
+                case "TipKorisnika":
+                    var listaKkk = Projekat.Instance.Korisnik.OrderBy(k => k.TipKorisnika);
+                    dgKorisnik.ItemsSource = listaKkk;
+                    break;
+                default:
+                    break;
             }
         }
     }

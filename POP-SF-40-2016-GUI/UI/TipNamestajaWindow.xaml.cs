@@ -3,6 +3,9 @@ using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +44,14 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranTipNamestaja = dgTipNamestaja.SelectedItem as TipNamestaja;
 
             dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaTipNamestaja = new List<string>()
+            {
+                "Naziv"
+            };
+
+            cbSortiranjeTipa.ItemsSource = listaTipNamestaja;
+            
         }
 
         private bool prikazFilter(object obj)
@@ -75,7 +86,6 @@ namespace POP_SF_40_2016_GUI.UI
             var tipProzor = new EditTipWindow(kopija, EditTipWindow.Operacija.IZMENA);
             if (tipProzor.ShowDialog() == true)
             {
-                //int index = Projekat.Instance.TipNamestaja.IndexOf(IzabranTipNamestaja);
                 TipNamestaja.Update(kopija);
             }
         }
@@ -86,6 +96,35 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 e.Cancel = true;
             }
+        }
+
+        private void PretragaTipNamestaja(object sender, RoutedEventArgs e)
+        {
+            SqlCommand cmd1;
+            SqlDataAdapter sd;
+            DataTable dt;
+            try
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
+                    cmd1 = new SqlCommand("SELECT Naziv FROM TipNamestaja WHERE Naziv LIKE " + tbTipPretraga.Text, con);
+                    sd = new SqlDataAdapter(cmd1);
+                    dt = new DataTable();
+                    sd.Fill(dt);
+                    dgTipNamestaja.ItemsSource = dt.DefaultView;
+
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message,"Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void cbSortiranjeTipa_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listaT = Projekat.Instance.TipNamestaja.OrderBy(t => t.Naziv);
+            dgTipNamestaja.ItemsSource = listaT;
         }
     }
 }

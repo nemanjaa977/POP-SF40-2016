@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="KorisnikWindow" Height="283.294" Width="546.404" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="KorisnikWindow" Height="340.479" Width="546.404" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <DataGrid x:Name="dgKorisnik" HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="191" Margin="10,10,0,0" VerticalAlignment="Top" Width="520" SelectedItem="{Binding Path=IzabranKorisnik}" AutoGeneratingColumn="dgKorisnik_AutoGeneratingColumn" IsReadOnly="True"/>
-        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="10,221,0,0" VerticalAlignment="Top" Width="73" Click="DodajKorisnika"/>
-        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="23" Margin="88,221,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniKorisnika"/>
-        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="23" Margin="166,221,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiKorisnika"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="457,221,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriKorisnika"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="23" Margin="10,278,0,0" VerticalAlignment="Top" Width="73" Click="DodajKorisnika"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="23" Margin="88,278,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniKorisnika"/>
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="23" Margin="166,278,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiKorisnika"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="457,278,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriKorisnika"/>
+        <Label Content="Sortirati" HorizontalAlignment="Left" Height="24" Margin="306,223,0,0" VerticalAlignment="Top" Width="70"/>
+        <ComboBox x:Name="cbSortKorisnik" HorizontalAlignment="Left" Height="24" Margin="388,223,0,0" VerticalAlignment="Top" Width="86" SelectionChanged="cbSortKorisnik_SelectionChanged"/>
+
 
     </Grid>
 </Window>

@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="374.986" Width="795.282" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFF9F6F6">
+        Title="NamestajWindow" Height="470.186" Width="795.282" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFF9F6F6">
     <Grid>
 
-        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="35" Margin="10,301,0,0" VerticalAlignment="Top" Width="71" Click="DodajNamestaj" Background="#FFFFFBFB" Foreground="#FF06FF00" BorderBrush="#FF46FF00"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="35" Margin="10,396,0,0" VerticalAlignment="Top" Width="71" Click="DodajNamestaj" Background="#FFFFFBFB" Foreground="#FF06FF00" BorderBrush="#FF46FF00"/>
         <DataGrid HorizontalAlignment="Left" LostFocus="dgNamestaj_LostFocus" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="214" Margin="10,10,0,0" VerticalAlignment="Top" Width="769" Name="dgNamestaj" SelectedItem="{Binding Path=IzabranNamestaj}" AutoGeneratingColumn="dgNamestaj_AutoGeneratingColumn" IsReadOnly="True" Background="White"/>
-        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="35" Margin="86,301,0,0" VerticalAlignment="Top" Width="71" Click="IzmeniNamestaj" Background="White" BorderBrush="#FF75FA05" Foreground="#FF41F608" />
-        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="35" Margin="162,301,0,0" VerticalAlignment="Top" Width="71" Click="IzbrisiNamestaj" RenderTransformOrigin="0.544,0.543" Background="White" BorderBrush="#FFF00606" Foreground="#FFF40808" />
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="35" Margin="708,301,0,0" VerticalAlignment="Top" Width="71" Click="ZatvoriNamestaj" Background="White" BorderBrush="#FFF60707" Foreground="#FFF70606" />
-        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="35" Margin="632,301,0,0" VerticalAlignment="Top" Width="71" Click="PreuzmiNamestaj" RenderTransformOrigin="0.442,0.537" Foreground="#FF1EF607" BorderBrush="#FF49F707" Background="White"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="35" Margin="86,396,0,0" VerticalAlignment="Top" Width="71" Click="IzmeniNamestaj" Background="White" BorderBrush="#FF75FA05" Foreground="#FF41F608" />
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="35" Margin="162,396,0,0" VerticalAlignment="Top" Width="71" Click="IzbrisiNamestaj" RenderTransformOrigin="0.544,0.543" Background="White" BorderBrush="#FFF00606" Foreground="#FFF40808" />
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="35" Margin="708,396,0,0" VerticalAlignment="Top" Width="71" Click="ZatvoriNamestaj" Background="White" BorderBrush="#FFF60707" Foreground="#FFF70606" />
+        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="35" Margin="632,396,0,0" VerticalAlignment="Top" Width="71" Click="PreuzmiNamestaj" RenderTransformOrigin="0.442,0.537" Foreground="#FF1EF607" BorderBrush="#FF49F707" Background="White"/>
         <Label x:Name="labKolicina" Content="Kolicina:" HorizontalAlignment="Left" Height="38" Margin="264,247,0,0" VerticalAlignment="Top" Width="98" FontSize="20" Foreground="Black"/>
         <TextBox x:Name="tbKolicina" HorizontalAlignment="Left" Height="38" Margin="376,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" FontSize="20"/>
+        <Label Content="Sortirati" Name="labSort" HorizontalAlignment="Left" Height="33" Margin="461,313,0,0" VerticalAlignment="Top" Width="95"/>
+        <ComboBox x:Name="cbSortiranjeNAmestaj" HorizontalAlignment="Left" Height="33" Margin="598,313,0,0" VerticalAlignment="Top" Width="117" SelectionChanged="ComboBox_SelectionChanged"/>
     </Grid>
 </Window>

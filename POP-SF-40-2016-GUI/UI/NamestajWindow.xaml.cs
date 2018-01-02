@@ -47,11 +47,16 @@ namespace POP_SF_40_2016_GUI.UI
                     btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
                     tbKolicina.Visibility = System.Windows.Visibility.Collapsed;
                     labKolicina.Visibility = System.Windows.Visibility.Collapsed;
+                    labSort.Visibility = System.Windows.Visibility.Hidden;
+                    cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Hidden;
+
                 }
                 else
                 {
                     tbKolicina.Visibility = System.Windows.Visibility.Visible;
                     labKolicina.Visibility = System.Windows.Visibility.Visible;
+                    labSort.Visibility = System.Windows.Visibility.Hidden;
+                    cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
             else
@@ -59,6 +64,8 @@ namespace POP_SF_40_2016_GUI.UI
                 btnPreuzmi.Visibility = System.Windows.Visibility.Hidden;
                 labKolicina.Visibility = System.Windows.Visibility.Hidden;
                 tbKolicina.Visibility = System.Windows.Visibility.Hidden;
+                labSort.Visibility = System.Windows.Visibility.Visible;
+                cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Visible;
             }
 
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
@@ -72,6 +79,12 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
 
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaNamestajaaa = new List<string>()
+            {
+                "Naziv", "JedinicnaCena", "Sifra", "KolicinaUMagacinu", "TipNamestaja"
+            };
+            cbSortiranjeNAmestaj.ItemsSource = listaNamestajaaa;
         }
 
         private bool prikazFilter(object obj)
@@ -142,6 +155,36 @@ namespace POP_SF_40_2016_GUI.UI
         private void dgNamestaj_LostFocus(object sender, RoutedEventArgs e)
         {
             IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var izabrano = cbSortiranjeNAmestaj.SelectedItem as string;
+            switch (izabrano)
+            {
+                case "Naziv":
+                    var listaN = Projekat.Instance.Namestaj.OrderBy(n => n.Naziv);
+                    dgNamestaj.ItemsSource = listaN;
+                    break;
+                case "JedinicnaCena":
+                    var listaNa = Projekat.Instance.Namestaj.OrderBy(n => n.JedinicnaCena);
+                    dgNamestaj.ItemsSource = listaNa;
+                    break;
+                case "Sifra":
+                    var listaNaa = Projekat.Instance.Namestaj.OrderBy(n => n.Sifra);
+                    dgNamestaj.ItemsSource = listaNaa;
+                    break;
+                case "KolicinaUMagacinu":
+                    var listaNam = Projekat.Instance.Namestaj.OrderBy(n => n.KolicinaUMagacinu);
+                    dgNamestaj.ItemsSource = listaNam;
+                    break;
+                case "TipNamestaja":
+                    var listaNami = Projekat.Instance.Namestaj.OrderBy(n => n.TipNamestaja.Naziv);
+                    dgNamestaj.ItemsSource = listaNami;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

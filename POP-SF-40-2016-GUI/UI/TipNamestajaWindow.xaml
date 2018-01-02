@@ -5,12 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="TipNamestaja" Height="274.942" Width="480.279" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="TipNamestaja" Height="274.942" Width="650.679" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="24" Margin="10,10,0,0" VerticalAlignment="Top" Width="73" Click="DodajTipNamestaja"/>
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="24" Margin="10,39,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniTipNamestaja" />
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="24" Margin="10,68,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiTipNamestaja"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="24" Margin="10,212,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriTipNamestaja"/>
         <DataGrid HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="226" Margin="116,10,0,0" VerticalAlignment="Top" Width="335" Name="dgTipNamestaja" SelectedItem="{Binding Path=IzabranTipNamestaja}" AutoGeneratingColumn="dgTipNamestaja_AutoGeneratingColumn" IsReadOnly="True"/>
+        <TextBox x:Name="tbTipPretraga" HorizontalAlignment="Left" Height="32" Margin="466,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <Button x:Name="btnPretragaTip" Content="Pretraga" HorizontalAlignment="Left" Height="23" Margin="479,56,0,0" VerticalAlignment="Top" Width="144" Click="PretragaTipNamestaja" />
+        <ComboBox x:Name="cbSortiranjeTipa" HorizontalAlignment="Left" Height="32" Margin="479,156,0,0" VerticalAlignment="Top" Width="133" SelectionChanged="cbSortiranjeTipa_SelectionChanged"/>
+        <Label Content="Sortirati" HorizontalAlignment="Left" Height="30" Margin="479,121,0,0" VerticalAlignment="Top" Width="111"/>
+
     </Grid>
 </Window>

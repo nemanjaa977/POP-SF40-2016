@@ -41,6 +41,12 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranaProdaja = dgProdaja.SelectedItem as ProdajaNamestaja;
 
             dgProdaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaRacuna = new List<string>()
+            {
+                "DatumProdaje", "BrojRacuna", "Kupac", "UkupanIznos", "UkupanIznosPDV"
+            };
+            cbSortProdaja.ItemsSource = listaRacuna;
         }
 
         private bool prikazFilter(object obj)
@@ -83,6 +89,36 @@ namespace POP_SF_40_2016_GUI.UI
             ProdajaNamestaja pr = dgProdaja.SelectedItem as ProdajaNamestaja;
             var novi = new PrikaziNamestajUsluge(pr);
             novi.ShowDialog();
+        }
+
+        private void cbSortProdaja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var izabrano = cbSortProdaja.SelectedItem as string;
+            switch (izabrano)
+            {
+                case "DatumProdaje":
+                    var listaP = Projekat.Instance.ProdajaNamestaja.OrderBy(p => p.DatumProdaje);
+                    dgProdaja.ItemsSource = listaP;
+                    break;
+                case "BrojRacuna":
+                    var listaPp = Projekat.Instance.ProdajaNamestaja.OrderBy(p => p.BrojRacuna);
+                    dgProdaja.ItemsSource = listaPp;
+                    break;
+                case "Kupac":
+                    var listaPo = Projekat.Instance.ProdajaNamestaja.OrderBy(p => p.Kupac);
+                    dgProdaja.ItemsSource = listaPo;
+                    break;
+                case "UkupanIznos":
+                    var listaPP = Projekat.Instance.ProdajaNamestaja.OrderBy(p => p.UkupanIznos);
+                    dgProdaja.ItemsSource = listaPP;
+                    break;
+                case "UkupanIznosPDV":
+                    var listaPaa = Projekat.Instance.ProdajaNamestaja.OrderBy(p => p.UkupanIznosPDV);
+                    dgProdaja.ItemsSource = listaPaa;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

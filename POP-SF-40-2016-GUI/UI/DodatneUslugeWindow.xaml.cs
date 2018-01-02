@@ -39,6 +39,8 @@ namespace POP_SF_40_2016_GUI.UI
                 btnDodaj.Visibility = System.Windows.Visibility.Collapsed;
                 btnIzbrisi.Visibility = System.Windows.Visibility.Collapsed;
                 btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
+                labSort.Visibility = System.Windows.Visibility.Collapsed;
+                cbSortDodUsluge.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
@@ -56,6 +58,12 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
 
             dgUsluga.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaDodatnihUsluga = new List<string>()
+            {
+                "Naziv", "Cena"
+            };
+            cbSortDodUsluge.ItemsSource = listaDodatnihUsluga;
         }
 
         private bool prikazFilter(object obj)
@@ -109,6 +117,24 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranaUsluga = dgUsluga.SelectedItem as DodatnaUsluga;
             this.DialogResult = true;
             this.Close();
+        }
+
+        private void cbSortDodUsluge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var izabrano = cbSortDodUsluge.SelectedItem as string;
+            switch (izabrano)
+            {
+                case "Naziv":
+                    var listaD = Projekat.Instance.DodatnaUsluga.OrderBy(d => d.Naziv);
+                    dgUsluga.ItemsSource = listaD;
+                    break;
+                case "Cena":
+                    var listaDd = Projekat.Instance.DodatnaUsluga.OrderBy(d => d.Cena);
+                    dgUsluga.ItemsSource = listaDd;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -40,6 +40,12 @@ namespace POP_SF_40_2016_GUI.UI
             IzabranaAkcija = dgAkcija.SelectedItem as Akcija;
 
             dgAkcija.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+
+            List<string> listaAkcijaaa = new List<string>()
+            {
+                "DatumPocetka", "DatumZavrsetka", "Popust"
+            };
+            cbSortAkcije.ItemsSource = listaAkcijaaa;
         }
 
         private bool prikazFilter(object obj)
@@ -91,6 +97,28 @@ namespace POP_SF_40_2016_GUI.UI
             var ak = dgAkcija.SelectedItem as Akcija;
             var a = new PrikaziPopustNamestaj(ak);
             a.ShowDialog();
+        }
+
+        private void cbSortAkcije_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var izabrano = cbSortAkcije.SelectedItem as string;
+            switch (izabrano)
+            {
+                case "DatumPocetka":
+                    var listaAs = Projekat.Instance.Akcija.OrderBy(a => a.DatumPocetka);
+                    dgAkcija.ItemsSource = listaAs;
+                    break;
+                case "DatumZavrsetka":
+                    var listaAc = Projekat.Instance.Akcija.OrderBy(a => a.DatumZavrsetka);
+                    dgAkcija.ItemsSource = listaAc;
+                    break;
+                case "Popust":
+                    var listaAy = Projekat.Instance.Akcija.OrderBy(a => a.Popust);
+                    dgAkcija.ItemsSource = listaAy;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
