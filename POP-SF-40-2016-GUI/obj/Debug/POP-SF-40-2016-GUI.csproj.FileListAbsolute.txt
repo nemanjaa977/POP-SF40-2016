@@ -96,3 +96,4 @@ C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\PrikaziPopustNa
 C:\Users\SF40-2016\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\ProdajaWindow.baml
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\SalonWindow.g.cs
 C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\UI\SalonWindow.baml
+C:\Users\nemanja97\POP-SF40-2016\POP-SF-40-2016-GUI\obj\Debug\GeneratedInternalTypeHelper.g.cs

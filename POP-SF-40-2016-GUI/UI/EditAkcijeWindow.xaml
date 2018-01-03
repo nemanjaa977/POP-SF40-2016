@@ -17,7 +17,15 @@
         <Label Content="Popust:" HorizontalAlignment="Left" Height="38" Margin="20,209,0,0" VerticalAlignment="Top" Width="102" FontSize="20"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="33" Margin="20,23.8,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="ZatvoriProzorEditAkcije" Grid.Row="1"/>
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="33" Margin="784,23.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="SacuvajProzorEditAkcije"/>
-        <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="142,209,0,0" TextWrapping="Wrap" Text="{Binding Path=Popust}" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="142,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" >
+            <TextBox.Text>
+                <Binding Path="Popust">
+                    <Binding.ValidationRules>
+                        <local:ValidationPopust/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <DatePicker x:Name="tbDatumP" SelectedDate="{ Binding Path=DatumPocetka}" HorizontalAlignment="Left" Height="33" Margin="204,26,0,0" VerticalAlignment="Top" Width="266"/>
         <DatePicker x:Name="tbDatumZ"  SelectedDate="{ Binding Path=DatumZavrsetka}" HorizontalAlignment="Left" Height="33" Margin="204,72,0,0" VerticalAlignment="Top" Width="266"/>
         <DataGrid x:Name="dgNamestajPopust" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=NamestajNaPopustu}" HorizontalAlignment="Left" Height="134" Margin="522,69,0,0" VerticalAlignment="Top" Width="373" AutoGeneratingColumn="dgNamestajPopust_AutoGeneratingColumn" IsReadOnly="True"/>

@@ -106,6 +106,8 @@
     <Compile Include="UI\TipNamestajaWindow.xaml.cs">
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\ValidationConverter.cs" />
+    <Compile Include="UI\ValidationPopust.cs" />
     <Compile Include="Util\GenericSerializer.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
