@@ -100,24 +100,26 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void PretragaTipNamestaja(object sender, RoutedEventArgs e)
         {
-            SqlCommand cmd1;
-            SqlDataAdapter sd;
-            DataTable dt;
             try
             {
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    con.Open();
-                    cmd1 = new SqlCommand("SELECT Naziv FROM TipNamestaja WHERE Naziv LIKE " + tbTipPretraga.Text, con);
-                    sd = new SqlDataAdapter(cmd1);
-                    dt = new DataTable();
-                    sd.Fill(dt);
-                    dgTipNamestaja.ItemsSource = dt.DefaultView;
+                     con.Open();
+                     string sql = "SELECT * FROM TipNamestaja WHERE [Naziv]= @nn";
+                     SqlCommand com = new SqlCommand(sql, con);
+                     com.Parameters.AddWithValue("@nn", tbTipPretraga.Text);
 
+                     using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                     {
+                         DataTable dt = new DataTable();
+                         adapter.Fill(dt);
+                         dgTipNamestaja.ItemsSource = dt.DefaultView;
+                     }
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -126,5 +128,20 @@ namespace POP_SF_40_2016_GUI.UI
             var listaT = Projekat.Instance.TipNamestaja.OrderBy(t => t.Naziv);
             dgTipNamestaja.ItemsSource = listaT;
         }
+
+        /*private void tbTipPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBoxName = (TextBox)sender;
+            string filterText = textBoxName.Text;
+            ICollectionView cv = CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource);
+
+            if (!string.IsNullOrEmpty(filterText))
+            {
+                cv.Filter = o => {
+                    TipNamestaja p = o as TipNamestaja;
+                    return (p.Naziv.ToUpper().StartsWith(filterText.ToUpper()));
+                };
+            }
+        }*/
     }
 }

@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="AkcijeWindow" Height="403.642" Width="709.464" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFD4C3C3">
+        Title="AkcijeWindow" Height="457.242" Width="707.864" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFA9D0CE">
     <Grid Margin="0,0,2,-4">
-        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="31" Margin="20,322,0,0" VerticalAlignment="Top" Width="83" Click="DodajAkciju" Background="#FFF3F3F3" BorderBrush="#FF20FA09" Foreground="#FF48F107"/>
-        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="31" Margin="108,322,0,0" VerticalAlignment="Top" Width="83" Click="IzmeniAkciju" Foreground="#FF4AEE0C" BorderBrush="#FF21F60B" Background="#FFE8E8E8"/>
-        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="31" Margin="196,322,0,0" VerticalAlignment="Top" Width="83" Click="IzbrisiAkciju" Background="#FFE7E7E7" BorderBrush="#FFF60606" Foreground="#FFF40808"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="599,322,0,0" VerticalAlignment="Top" Width="83" Click="ZatvoriAkciju" Background="White" BorderBrush="#FFDD0B0B" Foreground="#FFCE0909"/>
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="31" Margin="20,382,0,0" VerticalAlignment="Top" Width="83" Click="DodajAkciju" Background="White" BorderBrush="#FF20FA09" Foreground="#FF48F107"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="31" Margin="108,382,0,0" VerticalAlignment="Top" Width="83" Click="IzmeniAkciju" Foreground="#FF4AEE0C" BorderBrush="#FF21F60B" Background="White"/>
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="31" Margin="196,382,0,0" VerticalAlignment="Top" Width="83" Click="IzbrisiAkciju" Background="#FFE7E7E7" BorderBrush="#FFF60606" Foreground="#FFF40808"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="599,382,0,0" VerticalAlignment="Top" Width="83" Click="ZatvoriAkciju" Background="White" BorderBrush="#FFDD0B0B" Foreground="#FFCE0909"/>
         <DataGrid HorizontalAlignment="Left"  CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="229" Margin="20,10,0,0" VerticalAlignment="Top" Width="662" Name="dgAkcija" SelectedItem="{Binding Path=IzabranaAkcija}" AutoGeneratingColumn="dgAkcija_AutoGeneratingColumn" IsReadOnly="True"/>
-        <Button x:Name="btnPrikaziNamestajPopust" Content="Prikazi namestaj" HorizontalAlignment="Left" Height="31" Margin="20,244,0,0" VerticalAlignment="Top" Width="110" Click="PrikaziNamestajNaAkciji" Foreground="#FF27FA07" BorderBrush="#FF5EF011" Background="#FFEAEAEA"/>
-        <Label Content="Sortirati" HorizontalAlignment="Left" Height="29" Margin="444,257,0,0" VerticalAlignment="Top" Width="83"/>
-        <ComboBox x:Name="cbSortAkcije" HorizontalAlignment="Left" Height="29" Margin="541,257,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="cbSortAkcije_SelectionChanged"/>
+        <Button x:Name="btnPrikaziNamestajPopust" Content="Prikazi namestaj" HorizontalAlignment="Left" Height="31" Margin="20,244,0,0" VerticalAlignment="Top" Width="110" Click="PrikaziNamestajNaAkciji" Foreground="#FF27FA07" BorderBrush="#FF5EF011" Background="White"/>
+        <Label Content="Sortirati" FontSize="14" HorizontalAlignment="Left" Height="29" Margin="237,255,0,0" VerticalAlignment="Top" Width="64"/>
+        <ComboBox x:Name="cbSortAkcije" HorizontalAlignment="Left" Height="29" Margin="216,292,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="cbSortAkcije_SelectionChanged"/>
+        <TextBox x:Name="tbPretragaAkcija" HorizontalAlignment="Left" Height="32" Margin="443,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139"/>
+        <Button x:Name="btnPretragaAkcija" Content="Pretraga" HorizontalAlignment="Left" Height="29" Margin="456,292,0,0" VerticalAlignment="Top" Width="113" Background="White" BorderBrush="#FF52F00A" Foreground="#FF3FEB09" Click="PretragaAkcija"/>
     </Grid>
 </Window>

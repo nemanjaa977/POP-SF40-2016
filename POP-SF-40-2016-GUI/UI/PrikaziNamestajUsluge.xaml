@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="PrikaziNamestajUsluge" Height="367.518" Width="673.782" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="PrikaziNamestajUsluge" Height="367.518" Width="673.782" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
     <Grid>
         <Label Content="Namestaj" HorizontalAlignment="Left" Height="36" Margin="118,25,0,0" VerticalAlignment="Top" Width="80" FontSize="15"/>
         <Label Content="Dodatne usluge" HorizontalAlignment="Left" Height="36" Margin="428,25,0,0" VerticalAlignment="Top" Width="120" FontSize="15"/>

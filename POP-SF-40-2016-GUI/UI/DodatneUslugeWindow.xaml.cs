@@ -3,6 +3,9 @@ using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +44,8 @@ namespace POP_SF_40_2016_GUI.UI
                 btnIzmeni.Visibility = System.Windows.Visibility.Collapsed;
                 labSort.Visibility = System.Windows.Visibility.Collapsed;
                 cbSortDodUsluge.Visibility = System.Windows.Visibility.Collapsed;
+                tbPretragaUsluga.Visibility = System.Windows.Visibility.Collapsed;
+                btnPretragaUsluga.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
@@ -134,6 +139,32 @@ namespace POP_SF_40_2016_GUI.UI
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void PretragaDodatnihUsluga(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM DodatneUsluge WHERE [Naziv]= @mm OR [Cena]= @ll";
+                    SqlCommand com = new SqlCommand(sql, con);
+                    com.Parameters.AddWithValue("@mm", tbPretragaUsluga.Text);
+                    com.Parameters.AddWithValue("@ll", tbPretragaUsluga.Text);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgUsluga.ItemsSource = dt.DefaultView;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -117,6 +117,7 @@ namespace POP_40_2016.Model
 
         public static DodatnaUsluga Create(DodatnaUsluga du)
         {
+
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
             {
                 con.Open();

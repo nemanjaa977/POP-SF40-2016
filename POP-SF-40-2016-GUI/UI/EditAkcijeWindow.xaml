@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="EditAkcijeWindow" Height="390.4" Width="920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="EditAkcijeWindow" Height="390.4" Width="920" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="White">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="236*"/>
@@ -15,8 +15,8 @@
         <Label Content="Datum zavrsetka:" HorizontalAlignment="Left" Height="33" Margin="20,72,0,0" VerticalAlignment="Top" Width="163" FontSize="20"/>
         <Label Content="Namestaj na popustu" HorizontalAlignment="Left" Height="43" Margin="601,26,0,0" VerticalAlignment="Top" Width="203" FontSize="20"/>
         <Label Content="Popust:" HorizontalAlignment="Left" Height="38" Margin="20,209,0,0" VerticalAlignment="Top" Width="102" FontSize="20"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="33" Margin="20,23.8,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="ZatvoriProzorEditAkcije" Grid.Row="1"/>
-        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="33" Margin="784,23.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="SacuvajProzorEditAkcije"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="33" Margin="20,23.8,0,0" VerticalAlignment="Top" Width="120" FontSize="18" Click="ZatvoriProzorEditAkcije" Grid.Row="1" Background="White" BorderBrush="Red" Foreground="Red"/>
+        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="33" Margin="784,23.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="SacuvajProzorEditAkcije" Background="White" BorderBrush="#FF0DF107" Foreground="#FF05FD08"/>
         <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="142,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" >
             <TextBox.Text>
                 <Binding Path="Popust">
@@ -29,8 +29,9 @@
         <DatePicker x:Name="tbDatumP" SelectedDate="{ Binding Path=DatumPocetka}" HorizontalAlignment="Left" Height="33" Margin="204,26,0,0" VerticalAlignment="Top" Width="266"/>
         <DatePicker x:Name="tbDatumZ"  SelectedDate="{ Binding Path=DatumZavrsetka}" HorizontalAlignment="Left" Height="33" Margin="204,72,0,0" VerticalAlignment="Top" Width="266"/>
         <DataGrid x:Name="dgNamestajPopust" AutoGenerateColumns="True" ColumnWidth="*" CanUserAddRows="False" ItemsSource="{Binding Source=NamestajNaPopustu}" HorizontalAlignment="Left" Height="134" Margin="522,69,0,0" VerticalAlignment="Top" Width="373" AutoGeneratingColumn="dgNamestajPopust_AutoGeneratingColumn" IsReadOnly="True"/>
-        <Button x:Name="btnIzaberiNamestajPopust" Content="Izaberi" HorizontalAlignment="Left" Height="18" Margin="601,209,0,0" VerticalAlignment="Top" Width="174" Click="IzaberiNamestajNaPopustu"/>
-        <Button x:Name="btnUkloniNamestajPopust" Content="X" HorizontalAlignment="Left" Height="18" Margin="794,209,0,0" VerticalAlignment="Top" Width="33" Click="UkloniNamestajPopust" />
+        <Button x:Name="btnIzaberiNamestajPopust" Content="Izaberi" HorizontalAlignment="Left" Height="18" Margin="601,209,0,0" VerticalAlignment="Top" Width="174" Click="IzaberiNamestajNaPopustu" Foreground="#FF05FA08" BorderBrush="#FF00FF0C" Background="White"/>
+        <Button x:Name="btnUkloniNamestajPopust" Content="X" HorizontalAlignment="Left" Height="18" Margin="794,209,0,0" VerticalAlignment="Top" Width="33" Click="UkloniNamestajPopust" Background="White" BorderBrush="#FFFC1E03" Foreground="Red" />
+        <ListBox x:Name="lbPopust" HorizontalAlignment="Left" ItemsSource="{Binding Path=NamestajNaPopustu}" Height="104" Margin="360,143,0,0" VerticalAlignment="Top" Width="141"/>
 
     </Grid>
 </Window>

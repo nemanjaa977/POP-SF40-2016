@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="EditDodatneUsluge" Height="214.268" Width="515.777" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="EditDodatneUsluge" Height="214.268" Width="515.777" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Foreground="Black" Background="White">
     <Grid Margin="0,0,-0.4,2.2">
         <Grid.RowDefinitions>
             <RowDefinition Height="138*"/>
@@ -15,7 +15,7 @@
         <Label Content="Cena:" HorizontalAlignment="Left" Height="33" Margin="36,80,0,0" VerticalAlignment="Top" Width="111" FontSize="20"/>
         <TextBox x:Name="tbNaziv" HorizontalAlignment="Left" Height="33" Margin="182,33,0,0" TextWrapping="Wrap" Text="{Binding Path=Naziv}" VerticalAlignment="Top" Width="282" FontSize="15"/>
         <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="33" Margin="182,80,0,0" TextWrapping="Wrap" Text="{Binding Path=Cena}" VerticalAlignment="Top" Width="282" FontSize="15"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="36,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="ZatvoriEditProzor"/>
-        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="31" Margin="369,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="SacuvajEditProzor" />
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="36,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="ZatvoriEditProzor" Background="White" Foreground="Red" BorderBrush="Red"/>
+        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="31" Margin="369,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="SacuvajEditProzor" Background="White" BorderBrush="#FF35FF01" Foreground="#FF0FFF00" />
     </Grid>
 </Window>

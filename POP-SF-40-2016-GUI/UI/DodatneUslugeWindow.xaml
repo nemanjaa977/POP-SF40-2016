@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="DodatneUslugeWindow" Height="317.054" Width="698.644" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="DodatneUslugeWindow" Height="317.054" Width="698.644" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFA9D0CE">
     <Grid>
-        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="28" Margin="21,21,0,0" VerticalAlignment="Top" Width="90" Click="DodajUslugu"/>
-        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="28" Margin="21,54,0,0" VerticalAlignment="Top" Width="90" Click="IzmeniUslugu" />
-        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="28" Margin="21,87,0,0" VerticalAlignment="Top" Width="90" Click="IzbrisiUslugu" />
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="21,240,0,0" VerticalAlignment="Top" Width="90" Click="ZatvoriUslugu" />
+        <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="28" Margin="21,21,0,0" VerticalAlignment="Top" Width="90" Click="DodajUslugu" Background="White" Foreground="#FF38E70C" BorderBrush="#FF8CF307"/>
+        <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="28" Margin="21,54,0,0" VerticalAlignment="Top" Width="90" Click="IzmeniUslugu" BorderBrush="#FF8EF607" Foreground="#FF94F306" Background="#FFFDFDFD" />
+        <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="28" Margin="21,87,0,0" VerticalAlignment="Top" Width="90" Click="IzbrisiUslugu" Background="White" BorderBrush="#FFEE0707" Foreground="#FFF60303" />
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="28" Margin="21,240,0,0" VerticalAlignment="Top" Width="90" Click="ZatvoriUslugu" Foreground="#FFF40606" BorderBrush="#FFF70A0A" Background="White" />
         <DataGrid HorizontalAlignment="Left" CanUserAddRows="False" CanUserReorderColumns="False" CanUserResizeColumns="False" Height="247" Margin="139,21,0,0" VerticalAlignment="Top" Width="369" Name="dgUsluga" SelectedItem="{Binding Path=IzabranaUsluga}" AutoGeneratingColumn="dgUsluga_AutoGeneratingColumn" IsReadOnly="True"/>
-        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="28" Margin="21,120,0,0" VerticalAlignment="Top" Width="90" Click="PreuzmiUslugu"/>
-        <Label Content="Sortirati" HorizontalAlignment="Left" Height="29" Margin="541,148,0,0" VerticalAlignment="Top" Width="96" Name="labSort"/>
-        <ComboBox x:Name="cbSortDodUsluge" HorizontalAlignment="Left" Height="29" Margin="541,199,0,0" VerticalAlignment="Top" Width="105" SelectionChanged="cbSortDodUsluge_SelectionChanged"/>
+        <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="28" Margin="21,120,0,0" VerticalAlignment="Top" Width="90" Click="PreuzmiUslugu" Foreground="#FF15ED07" BorderBrush="#FF0AF10D" Background="#FFFDFDFD"/>
+        <Label Content="Sortirati" FontSize="14" HorizontalAlignment="Left" Height="29" Margin="571,165,0,0" VerticalAlignment="Top" Width="61" Name="labSort"/>
+        <ComboBox x:Name="cbSortDodUsluge" HorizontalAlignment="Left" Height="29" Margin="541,199,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortDodUsluge_SelectionChanged"/>
+        <Button x:Name="btnPretragaUsluga" FontSize="13" Content="Pretraga" HorizontalAlignment="Left" Height="26" Margin="559,69,0,0" VerticalAlignment="Top" Width="85" Click="PretragaDodatnihUsluga" Background="White" BorderBrush="#FF07F313" Foreground="#FF3EFF01"/>
+        <TextBox x:Name="tbPretragaUsluga" HorizontalAlignment="Left" Height="30" Margin="532,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="135"/>
     </Grid>
 </Window>

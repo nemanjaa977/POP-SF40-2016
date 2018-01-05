@@ -3,6 +3,9 @@ using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +121,35 @@ namespace POP_SF_40_2016_GUI.UI
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void PretragaProdajaNamestaja(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM Namestaj WHERE [DatumProdaje]= @vvv OR [BrojRacuna]= @brrr OR [Kupac]= @kuppp OR [UkupanIznos]= @cukuppp OR [UkupanIznosPDV]= @kjiii";
+                    SqlCommand com = new SqlCommand(sql, con);
+                    com.Parameters.AddWithValue("@vvv", tbPretragaProdaja.Text);
+                    com.Parameters.AddWithValue("@brrr", tbPretragaProdaja.Text);
+                    com.Parameters.AddWithValue("@kuppp", tbPretragaProdaja.Text);
+                    com.Parameters.AddWithValue("@cukuppp", tbPretragaProdaja.Text);
+                    com.Parameters.AddWithValue("@kjiii", tbPretragaProdaja.Text);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgProdaja.ItemsSource = dt.DefaultView;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

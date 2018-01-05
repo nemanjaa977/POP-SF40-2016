@@ -48,9 +48,10 @@ namespace POP_SF_40_2016_GUI.UI
             tbDatumZ.DataContext = akcija;
             tbPopust.DataContext = akcija;
 
-            view = CollectionViewSource.GetDefaultView(akcija.NamestajNaPopustu);
-            dgNamestajPopust.ItemsSource = view;
-            
+            lbPopust.ItemsSource = akcija.NamestajNaPopustu;
+            dgNamestajPopust.ItemsSource = akcija.NamestajNaPopustu;
+            dgNamestajPopust.IsSynchronizedWithCurrentItem = true;
+
         }
 
         private void ZatvoriProzorEditAkcije(object sender, RoutedEventArgs e)

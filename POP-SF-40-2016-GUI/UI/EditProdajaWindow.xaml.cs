@@ -95,16 +95,15 @@ namespace POP_SF_40_2016_GUI.UI
                     ProdajaNamestaja.Create(prodaja);
                     break;
                 case Operacija.IZMENA:
-                    for (int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
-                    {
-                        prodaja.UkupanIznos = (cenaNamestaja * prodaja.NamestajNaProdaja[i].ProdataKolicina) + cenaUsluga;
-                    }
+                    if (prodaja.NamestajNaProdaja.Count > 0)
+                        for (int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
+                        {
+                            prodaja.UkupanIznos = (cenaNamestaja * prodaja.NamestajNaProdaja[i].ProdataKolicina) + cenaUsluga;
+                        }
                     prodaja.UkupanIznosPDV = prodaja.UkupanIznos + ((prodaja.UkupanIznos * 20) / 100);
                     ProdajaNamestaja.Update(prodaja);
-                    if(dodatiNamestaji.Count>0)
-                        ProdajaNamestaja.AddProdajaProzorNamestaj(prodaja, dodatiNamestaji);
-                    if(dodateUsluge.Count>0)
-                        ProdajaNamestaja.AddProdajaProzorUsluga(prodaja, dodateUsluge);
+                    ProdajaNamestaja.AddProdajaProzorNamestaj(prodaja, dodatiNamestaji);
+                    ProdajaNamestaja.AddProdajaProzorUsluga(prodaja, dodateUsluge);
                     ProdajaNamestaja.DeleteProdajaProzorNamestaj(prodaja, obrisaniNam);
                     ProdajaNamestaja.DeleteProdajaProzorUsluga(prodaja, obrisaneUs);
                     break;
@@ -146,7 +145,7 @@ namespace POP_SF_40_2016_GUI.UI
         private void dgNamestajj_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             if ((string)e.Column.Header == "Obrisan" || (string)e.Column.Header == "Id" || (string)e.Column.Header == "Sifra" 
-                || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "TipNamestaja" || (string)e.Column.Header == "ProdataKolicina")
+                || (string)e.Column.Header == "TipNamestajaId" || (string)e.Column.Header == "TipNamestaja" || (string)e.Column.Header == "KolicinaUMagacinu")
             {
                 e.Cancel = true;
             }

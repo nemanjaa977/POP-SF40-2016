@@ -3,6 +3,9 @@ using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -122,6 +125,35 @@ namespace POP_SF_40_2016_GUI.UI
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void PretragaKorisnika(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM Korisnici WHERE [Ime]= @iime OR [Prezime]= @pprezime OR [KorisnickoIme]= @korrIme OR [Lozinka]= @lozzz OR [TipKorisnika]= @tipKorrr" ;
+                    SqlCommand com = new SqlCommand(sql, con);
+                    com.Parameters.AddWithValue("@iime", tbPretragaKorisnik.Text);
+                    com.Parameters.AddWithValue("@pprezime", tbPretragaKorisnik.Text);
+                    com.Parameters.AddWithValue("@korrIme", tbPretragaKorisnik.Text);
+                    com.Parameters.AddWithValue("@lozzz", tbPretragaKorisnik.Text);
+                    com.Parameters.AddWithValue("@tipKorrr", tbPretragaKorisnik.Text);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgKorisnik.ItemsSource = dt.DefaultView;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

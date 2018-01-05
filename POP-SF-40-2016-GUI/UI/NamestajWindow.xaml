@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="NamestajWindow" Height="470.186" Width="795.282" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFF9F6F6">
+        Title="NamestajWindow" Height="470.186" Width="795.282" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFA9D0CE">
     <Grid>
 
         <Button x:Name="btnDodaj" Content="Dodaj" HorizontalAlignment="Left" Height="35" Margin="10,396,0,0" VerticalAlignment="Top" Width="71" Click="DodajNamestaj" Background="#FFFFFBFB" Foreground="#FF06FF00" BorderBrush="#FF46FF00"/>
@@ -16,7 +16,9 @@
         <Button x:Name="btnPreuzmi" Content="Preuzmi" HorizontalAlignment="Left" Height="35" Margin="632,396,0,0" VerticalAlignment="Top" Width="71" Click="PreuzmiNamestaj" RenderTransformOrigin="0.442,0.537" Foreground="#FF1EF607" BorderBrush="#FF49F707" Background="White"/>
         <Label x:Name="labKolicina" Content="Kolicina:" HorizontalAlignment="Left" Height="38" Margin="264,247,0,0" VerticalAlignment="Top" Width="98" FontSize="20" Foreground="Black"/>
         <TextBox x:Name="tbKolicina" HorizontalAlignment="Left" Height="38" Margin="376,247,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" FontSize="20"/>
-        <Label Content="Sortirati" Name="labSort" HorizontalAlignment="Left" Height="33" Margin="461,313,0,0" VerticalAlignment="Top" Width="95"/>
-        <ComboBox x:Name="cbSortiranjeNAmestaj" HorizontalAlignment="Left" Height="33" Margin="598,313,0,0" VerticalAlignment="Top" Width="117" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Label Content="Sortirati" FontSize="15" Name="labSort" HorizontalAlignment="Left" Height="33" Margin="470,313,0,0" VerticalAlignment="Top" Width="65"/>
+        <ComboBox x:Name="cbSortiranjeNAmestaj" HorizontalAlignment="Left" Height="33" Margin="552,313,0,0" VerticalAlignment="Top" Width="167" SelectionChanged="ComboBox_SelectionChanged"/>
+        <TextBox HorizontalAlignment="Left" Height="33" Margin="10,313,0,0" TextWrapping="Wrap" Text="" Name="tbPretragaNamestaj" VerticalAlignment="Top" Width="158"/>
+        <Button x:Name="btnPretragaNamestaj" Content="Pretraga" HorizontalAlignment="Left" Height="33" Margin="173,313,0,0" VerticalAlignment="Top" Width="109" Click="PretragaNamestaj" Background="White" BorderBrush="#FF06F700" Foreground="#FF00F003"/>
     </Grid>
 </Window>

@@ -3,6 +3,9 @@ using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,6 +121,33 @@ namespace POP_SF_40_2016_GUI.UI
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void PretragaAkcija(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
+                    string sql = "SELECT * FROM Akcije WHERE [DatumPocetka]= @datet OR [DatumKraja]= @dattt OR [Popust]= @poppp";
+                    SqlCommand com = new SqlCommand(sql, con);
+                    com.Parameters.AddWithValue("@datet", tbPretragaAkcija.Text);
+                    com.Parameters.AddWithValue("@dattt", tbPretragaAkcija.Text);
+                    com.Parameters.AddWithValue("@poppp", tbPretragaAkcija.Text);
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        dgAkcija.ItemsSource = dt.DefaultView;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

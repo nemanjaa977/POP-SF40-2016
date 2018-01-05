@@ -311,8 +311,8 @@ namespace POP_40_2016.Model
 
                 for (int i = 0; i < obrisani.Count; i++)
                 {
-                    cmd.CommandText = "UPDATE NAAKCIJI SET Obrisan=@obrisan WHERE NamestajNaPopustuId=@iid AND AkcijaId=@aid";
-                    cmd.Parameters.AddWithValue("@iid", obrisani[i].Id);
+                    cmd.CommandText = "UPDATE NAAKCIJI SET Obrisan=@obrisan WHERE NamestajNaPopustuId=@spiid AND AkcijaId=@aid";
+                    cmd.Parameters.AddWithValue("@spiid", obrisani[i].Id);
                     cmd.Parameters.AddWithValue("@aid", a.Id);
                     cmd.Parameters.AddWithValue("@obrisan", '1');
                     cmd.ExecuteNonQuery();
