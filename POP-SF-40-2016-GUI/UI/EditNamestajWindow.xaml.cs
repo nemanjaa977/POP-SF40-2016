@@ -40,7 +40,6 @@ namespace POP_SF_40_2016_GUI.UI
             cbTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
 
             tbNaziv.DataContext = namestaj;
-            tbNazivv.DataContext = namestaj;
             tbNazivi.DataContext = namestaj;
             tbNazivii.DataContext = namestaj;
             cbTipNamestaja.DataContext = namestaj;
@@ -59,8 +58,14 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
                     namestaj.Id = listaa.Count + 1;
+                    namestaj.Sifra = tbNaziv.Text.Substring(0, 2).ToUpper() + namestaj.Id + cbTipNamestaja.Text.Substring(0, 1).ToUpper(); 
                     Namestaj.Create(namestaj);
                     break;                  
+            }
+            foreach(var n in Projekat.Instance.Namestaj)
+            {
+                if (n.Id == namestaj.Id)
+                    n.TipNamestaja = namestaj.TipNamestaja;
             }
             Close();
         }

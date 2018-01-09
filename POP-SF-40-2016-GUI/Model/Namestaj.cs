@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace POP_40_2016.Model
@@ -194,96 +195,119 @@ namespace POP_40_2016.Model
 
         public static ObservableCollection<Namestaj> GetAllNamestaj()
         {
-            var listaNamestaja = new ObservableCollection<Namestaj>();
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                SqlCommand cmd = con.CreateCommand();
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0;";
-                da.SelectCommand = cmd;
-                da.Fill(ds, "Namestaj"); //izvrsavanje upita
-
-                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                var listaNamestaja = new ObservableCollection<Namestaj>();
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    var n = new Namestaj();
-                    n.Id = int.Parse(row["Id"].ToString());
-                    n.Naziv = row["Naziv"].ToString();
-                    n.Sifra = row["Sifra"].ToString();
-                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
-                    n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
-                    n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
-                    n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
-                    n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
-                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                    SqlCommand cmd = con.CreateCommand();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    DataSet ds = new DataSet();
 
-                    listaNamestaja.Add(n);
+                    cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0;";
+                    da.SelectCommand = cmd;
+                    da.Fill(ds, "Namestaj"); //izvrsavanje upita
+
+                    foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                    {
+                        var n = new Namestaj();
+                        n.Id = int.Parse(row["Id"].ToString());
+                        n.Naziv = row["Naziv"].ToString();
+                        n.Sifra = row["Sifra"].ToString();
+                        n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                        n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
+                        n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                        n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
+                        n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
+                        n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaNamestaja.Add(n);
+                    }
                 }
+                return listaNamestaja;
             }
-            return listaNamestaja;
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom ucitavanja namestaja!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return null;
+            }
         }
 
         public static Namestaj Create(Namestaj n)
         {
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                con.Open();
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+                {
+                    con.Open();
 
-                SqlCommand cmd = con.CreateCommand();
+                    SqlCommand cmd = con.CreateCommand();
 
-                cmd.CommandText = "INSERT INTO Namestaj (Naziv, Obrisan, TipNamestajaId, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina) VALUES(@Naziv, @Obrisan, @TipNamestajaId, @Sifra, @Cena, @CenaPopust, @Kolicina, @ProdataKolicina);";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
+                    cmd.CommandText = "INSERT INTO Namestaj (Naziv, Obrisan, TipNamestajaId, Sifra, Cena, CenaPopust, Kolicina, ProdataKolicina) VALUES(@Naziv, @Obrisan, @TipNamestajaId, @Sifra, @Cena, @CenaPopust, @Kolicina, @ProdataKolicina);";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
 
-                n.Id = int.Parse(cmd.ExecuteScalar().ToString());
-                
+                    n.Id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                }
+                Projekat.Instance.Namestaj.Add(n);
+                return n;
             }
-            Projekat.Instance.Namestaj.Add(n);
-            return n;
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom kreiranja namestaja!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                return null;
+            }
         }
 
         public static void Update(Namestaj n)
         {
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+            try
             {
-                con.Open();
-
-                SqlCommand cmd = con.CreateCommand();
-                cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, CenaPopust=@CenaPopust, Kolicina=@Kolicina, ProdataKolicina=@ProdataKolicina WHERE Id=@Id;";
-                cmd.CommandText += "SELECT SCOPE_IDENTITY();";
-                cmd.Parameters.AddWithValue("Id", n.Id);
-                cmd.Parameters.AddWithValue("Naziv", n.Naziv);
-                cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
-                cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
-                cmd.Parameters.AddWithValue("Sifra", n.Sifra);
-                cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
-                cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
-                cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
-                cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
-
-                cmd.ExecuteNonQuery();
-            }
-            foreach (var nam in Projekat.Instance.Namestaj)
-            {
-                if (nam.Id == n.Id)
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    nam.Naziv = n.Naziv;
-                    nam.Obrisan = n.Obrisan;
-                    nam.TipNamestajaId = n.TipNamestajaId;
-                    nam.Sifra = n.Sifra;
-                    nam.JedinicnaCena = n.JedinicnaCena;
-                    nam.CenaPopust = n.CenaPopust;
-                    nam.KolicinaUMagacinu = n.KolicinaUMagacinu;
-                    nam.ProdataKolicina = n.ProdataKolicina;
+                    con.Open();
+
+                    SqlCommand cmd = con.CreateCommand();
+                    cmd.CommandText = "UPDATE Namestaj SET Naziv=@Naziv, Obrisan=@Obrisan, TipNamestajaId=@TipNamestajaId, Sifra=@Sifra, Cena=@Cena, CenaPopust=@CenaPopust, Kolicina=@Kolicina, ProdataKolicina=@ProdataKolicina WHERE Id=@Id;";
+                    cmd.CommandText += "SELECT SCOPE_IDENTITY();";
+                    cmd.Parameters.AddWithValue("Id", n.Id);
+                    cmd.Parameters.AddWithValue("Naziv", n.Naziv);
+                    cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
+                    cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    cmd.Parameters.AddWithValue("Sifra", n.Sifra);
+                    cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
+                    cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
+                    cmd.Parameters.AddWithValue("Kolicina", n.KolicinaUMagacinu);
+                    cmd.Parameters.AddWithValue("ProdataKolicina", n.ProdataKolicina);
+
+                    cmd.ExecuteNonQuery();
                 }
+                foreach (var nam in Projekat.Instance.Namestaj)
+                {
+                    if (nam.Id == n.Id)
+                    {
+                        nam.Naziv = n.Naziv;
+                        nam.Obrisan = n.Obrisan;
+                        nam.TipNamestajaId = n.TipNamestajaId;
+                        nam.Sifra = n.Sifra;
+                        nam.JedinicnaCena = n.JedinicnaCena;
+                        nam.CenaPopust = n.CenaPopust;
+                        nam.KolicinaUMagacinu = n.KolicinaUMagacinu;
+                        nam.ProdataKolicina = n.ProdataKolicina;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom izmene namestaja!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -294,33 +318,41 @@ namespace POP_40_2016.Model
         }
         public static Namestaj GetById(int id)
         {
-           
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
+
+            try
             {
-                SqlCommand cmd = con.CreateCommand();
-                SqlDataAdapter da = new SqlDataAdapter();
-                DataSet ds = new DataSet();
-
-                cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 AND Id=@lid;";
-                cmd.Parameters.AddWithValue("@lid", id);
-                da.SelectCommand = cmd;
-                da.Fill(ds, "Namestaj"); //izvrsavanje upita
-
-                foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
-                    var n = new Namestaj();
-                    n.Id = int.Parse(row["Id"].ToString());
-                    n.Naziv = row["Naziv"].ToString();
-                    n.Sifra = row["Sifra"].ToString();
-                    n.JedinicnaCena = double.Parse(row["Cena"].ToString());
-                    n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
-                    n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
-                    n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
-                    n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
-                    n.Obrisan = bool.Parse(row["Obrisan"].ToString());
-                    return n;
-                         
+                    SqlCommand cmd = con.CreateCommand();
+                    SqlDataAdapter da = new SqlDataAdapter();
+                    DataSet ds = new DataSet();
+
+                    cmd.CommandText = "SELECT * FROM Namestaj WHERE Obrisan=0 AND Id=@lid;";
+                    cmd.Parameters.AddWithValue("@lid", id);
+                    da.SelectCommand = cmd;
+                    da.Fill(ds, "Namestaj"); //izvrsavanje upita
+
+                    foreach (DataRow row in ds.Tables["Namestaj"].Rows)
+                    {
+                        var n = new Namestaj();
+                        n.Id = int.Parse(row["Id"].ToString());
+                        n.Naziv = row["Naziv"].ToString();
+                        n.Sifra = row["Sifra"].ToString();
+                        n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                        n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
+                        n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                        n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
+                        n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
+                        n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+                        return n;
+
+                    }
+                    return null;
                 }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom rada sa bazom!", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
                 return null;
             }
           

@@ -20,5 +20,6 @@
         <ComboBox x:Name="cbSortiranjeNAmestaj" HorizontalAlignment="Left" Height="33" Margin="552,313,0,0" VerticalAlignment="Top" Width="167" SelectionChanged="ComboBox_SelectionChanged"/>
         <TextBox HorizontalAlignment="Left" Height="33" Margin="10,313,0,0" TextWrapping="Wrap" Text="" Name="tbPretragaNamestaj" VerticalAlignment="Top" Width="158"/>
         <Button x:Name="btnPretragaNamestaj" Content="Pretraga" HorizontalAlignment="Left" Height="33" Margin="173,313,0,0" VerticalAlignment="Top" Width="109" Click="PretragaNamestaj" Background="White" BorderBrush="#FF06F700" Foreground="#FF00F003"/>
+        <Button x:Name="btnOsveziNamestaj" Content="Osvezi" HorizontalAlignment="Left" Height="33" Margin="287,313,0,0" VerticalAlignment="Top" Width="100" Click="OsveziNamestajPretraga" Background="White" BorderBrush="#FF26E500" Foreground="#FF15D309"/>
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -131,26 +132,42 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM Namestaj WHERE [DatumProdaje]= @vvv OR [BrojRacuna]= @brrr OR [Kupac]= @kuppp OR [UkupanIznos]= @cukuppp OR [UkupanIznosPDV]= @kjiii";
+                    ObservableCollection<ProdajaNamestaja> listaProdaje = new ObservableCollection<ProdajaNamestaja>();
+                    string sql = "SELECT * FROM ProdajaNamestaja WHERE Obrisan=0 AND (DatumProdaje LIKE @vvv OR BrojRacuna LIKE @vvv OR Kupac LIKE @vvv OR UkupanIznos LIKE @vvv OR UkupanIznosPDV LIKE @vvv)";
                     SqlCommand com = new SqlCommand(sql, con);
-                    com.Parameters.AddWithValue("@vvv", tbPretragaProdaja.Text);
-                    com.Parameters.AddWithValue("@brrr", tbPretragaProdaja.Text);
-                    com.Parameters.AddWithValue("@kuppp", tbPretragaProdaja.Text);
-                    com.Parameters.AddWithValue("@cukuppp", tbPretragaProdaja.Text);
-                    com.Parameters.AddWithValue("@kjiii", tbPretragaProdaja.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    com.Parameters.AddWithValue("@vvv", '%' + tbPretragaProdaja.Text + '%');
+                    da.SelectCommand = com;
+                    da.Fill(ds, "ProdajaNamestaja");
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    foreach (DataRow row in ds.Tables["ProdajaNamestaja"].Rows)
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgProdaja.ItemsSource = dt.DefaultView;
+                        var p = new ProdajaNamestaja();
+                        p.Id = int.Parse(row["Id"].ToString());
+                        p.DatumProdaje = DateTime.Parse(row["DatumProdaje"].ToString());
+                        p.BrojRacuna = int.Parse(row["BrojRacuna"].ToString());
+                        p.Kupac = row["Kupac"].ToString();
+                        p.UkupanIznos = double.Parse(row["UkupanIznos"].ToString());
+                        p.UkupanIznosPDV = double.Parse(row["UkupanIznosPDV"].ToString());
+                        p.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaProdaje.Add(p);
                     }
+
+                    view = CollectionViewSource.GetDefaultView(listaProdaje);
+                    dgProdaja.ItemsSource = view;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void OsveziProdajaPretraga(object sender, RoutedEventArgs e)
+        {
+            dgProdaja.ItemsSource = Projekat.Instance.ProdajaNamestaja;
         }
     }
 }

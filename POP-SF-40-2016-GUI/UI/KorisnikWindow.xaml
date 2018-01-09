@@ -12,10 +12,11 @@
         <Button x:Name="btnIzmeni" Content="Izmeni" HorizontalAlignment="Left" Height="23" Margin="88,278,0,0" VerticalAlignment="Top" Width="73" Click="IzmeniKorisnika" Background="White" BorderBrush="#FF00D631" Foreground="#FF00E713"/>
         <Button x:Name="btnIzbrisi" Content="Izbrisi" HorizontalAlignment="Left" Height="23" Margin="166,278,0,0" VerticalAlignment="Top" Width="73" Click="IzbrisiKorisnika" Background="White" BorderBrush="Red" Foreground="Red"/>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="457,278,0,0" VerticalAlignment="Top" Width="73" Click="ZatvoriKorisnika" Foreground="Red" BorderBrush="Red" Background="White"/>
-        <Label Content="Sortirati" FontSize="13" HorizontalAlignment="Left" Height="24" Margin="279,223,0,0" VerticalAlignment="Top" Width="64"/>
-        <ComboBox x:Name="cbSortKorisnik" HorizontalAlignment="Left" Height="24" Margin="343,223,0,0" VerticalAlignment="Top" Width="104" SelectionChanged="cbSortKorisnik_SelectionChanged"/>
+        <Label Content="Sortirati" FontSize="13" HorizontalAlignment="Left" Height="24" Margin="333,223,0,0" VerticalAlignment="Top" Width="64"/>
+        <ComboBox x:Name="cbSortKorisnik" HorizontalAlignment="Left" Height="24" Margin="402,223,0,0" VerticalAlignment="Top" Width="104" SelectionChanged="cbSortKorisnik_SelectionChanged"/>
         <Button x:Name="btnPretragaKorisnik" Content="Pretraga" FontSize="12" HorizontalAlignment="Left" Height="24" Margin="146,223,0,0" VerticalAlignment="Top" Width="75" Click="PretragaKorisnika" Background="White" BorderBrush="#FF18FF00" Foreground="#FF00FF03"/>
         <TextBox HorizontalAlignment="Left" Name="tbPretragaKorisnik" Height="24" Margin="10,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="131"/>
+        <Button x:Name="btnOSveziKor" Content="Osvezi" HorizontalAlignment="Left" Height="24" Margin="226,223,0,0" VerticalAlignment="Top" Width="75" Click="OsveziTabeluKorisnik" Background="White" BorderBrush="#FF16EA00" Foreground="#FF00EB03"/>
 
 
     </Grid>

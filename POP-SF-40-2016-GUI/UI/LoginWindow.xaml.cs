@@ -43,8 +43,8 @@ namespace POP_SF_40_2016_GUI.UI
                 {
                     //Hide();
                     var glPMeni = new GlavniMeniWindow(k.TipKorisnika);
-                    glPMeni.ShowDialog();
                     this.Close();
+                    glPMeni.ShowDialog();
                     return;
                 }
 

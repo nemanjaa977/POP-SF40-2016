@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -79,7 +80,7 @@ namespace POP_SF_40_2016_GUI.UI
                 tbPretragaNamestaj.Visibility = System.Windows.Visibility.Visible;
                 btnPretragaNamestaj.Visibility = System.Windows.Visibility.Visible;
             }
-
+    
             view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
 
             view.Filter = prikazFilter;
@@ -148,40 +149,43 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void PreuzmiNamestaj(object sender, RoutedEventArgs e)
         {
-            IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
+            var izabran = dgNamestaj.SelectedItem as Namestaj;
             if (prozor == Prozor.PreuzmiProdaja)
             {
                 var kolicina = int.Parse(tbKolicina.Text);
-                //IzabranNamestaj.ProdataKolicina = kolicina;
-                //IzabranNamestaj.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu - kolicina;
                 foreach (var n in Projekat.Instance.Namestaj)
                 {
-                    //if (n.Id == IzabranNamestaj.Id)
-                        //n.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu;
-
-                    if (kolicina > n.KolicinaUMagacinu)
+                    if (n.Id == IzabranNamestaj.Id)
                     {
-                        MessageBox.Show("Nema dovoljno kolicine namestaja u magacinu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }                      
-                    else if (kolicina == 0 )
-                    {
-                        MessageBox.Show("Ne mozete uneti za kolicinu 0!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    else if (kolicina < 0)
-                    {
-                        MessageBox.Show("Ne mozete uneti negativan broj za kolicinu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
-                        return;
-                    }
-                    else if (n.KolicinaUMagacinu >= kolicina && n.Id == IzabranNamestaj.Id)
-                    {
-                        IzabranNamestaj.ProdataKolicina = kolicina;
-                        IzabranNamestaj.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu - kolicina;
-                        n.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu;
-                    }
-                } //kada izaberem kolicinu 1 za namestaj skida 4, i treba da se menja u bazi
+                        if (n.KolicinaUMagacinu < kolicina)
+                        {
+                            MessageBox.Show("Nema dovoljno kolicine namestaja u magacinu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else if (kolicina == 0)
+                        {
+                            MessageBox.Show("Ne mozete uneti za kolicinu 0!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else if (kolicina < 0)
+                        {
+                            MessageBox.Show("Ne mozete uneti negativan broj za kolicinu!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                        else 
+                        {
+                            IzabranNamestaj = izabran;
+                            IzabranNamestaj.ProdataKolicina = kolicina;
+                            IzabranNamestaj.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu - kolicina;
+                            n.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu;
+                            Namestaj.Update(n);
+                        }
+                    } 
+                }
             }
+            else
+                IzabranNamestaj = izabran;
+            
             this.DialogResult = true;
             this.Close();
         }
@@ -228,27 +232,45 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM Namestaj WHERE [Naziv]= @nazz OR [Sifra]= @sss OR [Cena]= @cccena OR [CenaPopust]= @cenappp OR [Kolicina]= @kolll";
+                    ObservableCollection<Namestaj> listaNamestaja = new ObservableCollection<Namestaj>();
+                    string sql = "SELECT * FROM Namestaj WHERE Obrisan=0 AND(Naziv LIKE @nazz OR Sifra LIKE @nazz OR Cena LIKE @nazz OR CenaPopust LIKE @nazz OR Kolicina LIKE @nazz)";
                     SqlCommand com = new SqlCommand(sql, con);
-                    com.Parameters.AddWithValue("@nazz", tbPretragaNamestaj.Text);
-                    com.Parameters.AddWithValue("@sss", tbPretragaNamestaj.Text);
-                    com.Parameters.AddWithValue("@cccena", tbPretragaNamestaj.Text);
-                    com.Parameters.AddWithValue("@cenappp", tbPretragaNamestaj.Text);
-                    com.Parameters.AddWithValue("@kolll", tbPretragaNamestaj.Text);
-                    // ostalo za tip namestaja
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    com.Parameters.AddWithValue("@nazz", '%'+ tbPretragaNamestaj.Text+'%');
+                    da.SelectCommand = com;
+                    da.Fill(ds, "Namestaj"); //izvrsavanje upita
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    foreach (DataRow row in ds.Tables["Namestaj"].Rows)
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgNamestaj.ItemsSource = dt.DefaultView;
+                        var n = new Namestaj();
+                        n.Id = int.Parse(row["Id"].ToString());
+                        n.Naziv = row["Naziv"].ToString();
+                        n.Sifra = row["Sifra"].ToString();
+                        n.JedinicnaCena = double.Parse(row["Cena"].ToString());
+                        n.CenaPopust = double.Parse(row["CenaPopust"].ToString());
+                        n.KolicinaUMagacinu = Convert.ToInt32(row["Kolicina"]);
+                        n.ProdataKolicina = Convert.ToInt32(row["ProdataKolicina"]);
+                        n.TipNamestajaId = Convert.ToInt32(row["TipNamestajaId"]);
+                        n.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaNamestaja.Add(n);
                     }
+
+                    view = CollectionViewSource.GetDefaultView(listaNamestaja);
+                    dgNamestaj.ItemsSource = view;
                 }
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void OsveziNamestajPretraga(object sender, RoutedEventArgs e)
+        {
+            dgNamestaj.ItemsSource = Projekat.Instance.Namestaj;
         }
     }
 }

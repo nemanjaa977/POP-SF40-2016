@@ -16,6 +16,7 @@
         <Button x:Name="btnPretragaTip" Content="Pretraga" HorizontalAlignment="Left" Height="23" Margin="479,57,0,0" VerticalAlignment="Top" Width="144" Click="PretragaTipNamestaja" Background="White" BorderBrush="#FF06F600" Foreground="#FF20F300" />
         <ComboBox x:Name="cbSortiranjeTipa" HorizontalAlignment="Left" Height="28" Margin="497,193,0,0" VerticalAlignment="Top" Width="111" SelectionChanged="cbSortiranjeTipa_SelectionChanged"/>
         <Label Content="Sortirati" FontSize="14" HorizontalAlignment="Left" Height="30" Margin="524,158,0,0" VerticalAlignment="Top" Width="66"/>
+        <Button x:Name="btnOsveziTabelu" Content="Osvezi" HorizontalAlignment="Left" Height="24" Margin="479,85,0,0" VerticalAlignment="Top" Width="144" Click="OsveziTabelu" Background="White" BorderBrush="#FF06ED00" Foreground="#FF3AF300"/>
 
     </Grid>
 </Window>

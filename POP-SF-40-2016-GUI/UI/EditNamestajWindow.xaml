@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:POP_SF_40_2016_GUI.UI"
         mc:Ignorable="d"
-        Title="EditNamestajWindow" Height="322.97" Width="508.121" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="White">
+        Title="EditNamestajWindow" Height="294.97" Width="508.121" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="White">
     <Grid >
 
         <Grid.RowDefinitions>
@@ -15,16 +15,14 @@
 
         <Label x:Name="labelNaziv" Content="Naziv:" HorizontalAlignment="Left" Height="28" Margin="10,10,0,0" VerticalAlignment="Top" Width="72" FontSize="15" Foreground="Black" Background="White"/>
         <TextBox HorizontalAlignment="Left" Height="28" Margin="174,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Naziv}" VerticalAlignment="Top" Width="314" Name="tbNaziv" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="23.386,13,0,0" VerticalAlignment="Top" Width="80" Click="ZatvoriProzor" Grid.Row="1" Grid.Column="1" Background="White" BorderBrush="#FFF70606" Foreground="#FFF30D0D"/>
-        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="394,13,0,0" VerticalAlignment="Top" Width="80" Click="SacuvajProzor" Grid.Row="1" Background="White" BorderBrush="#FF2FF607" Foreground="#FF4BF60A"/>
-        <Label x:Name="labelSifra" Content="Sifra:" HorizontalAlignment="Left" Height="28" Margin="10,50,0,0" VerticalAlignment="Top" Width="72" FontSize="15" Foreground="Black" Background="White"/>
-        <Label x:Name="labelCena" Content="Jedinicna Cena:" HorizontalAlignment="Left" Height="35" Margin="10,93,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
-        <Label x:Name="labelKolicina" Content="Kolicina u magacinu:" HorizontalAlignment="Left" Height="31" Margin="10,141,0,0" VerticalAlignment="Top" Width="146" FontSize="15" Foreground="Black"/>
-        <Label x:Name="labelTipNam" Content="Tip namestaja:" HorizontalAlignment="Left" Height="28" Margin="10,189,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,50,0,0" TextWrapping="Wrap" Text="{Binding Path=Sifra}" VerticalAlignment="Top" Width="314" Name="tbNazivv" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,93,0,0" TextWrapping="Wrap" Text="{Binding Path=JedinicnaCena}" VerticalAlignment="Top" Width="314" Name="tbNazivi" Grid.ColumnSpan="2"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,141,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaUMagacinu}" VerticalAlignment="Top" Width="314" Name="tbNazivii" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,189,0,0" VerticalAlignment="Top" Width="314" Grid.ColumnSpan="2" SelectedItem="{Binding Path=TipNamestaja}"/>
+        <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="23" Margin="22,232,0,0" VerticalAlignment="Top" Width="80" Click="ZatvoriProzor" Background="White" BorderBrush="#FFF70606" Foreground="#FFF30D0D" Grid.RowSpan="2"/>
+        <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="23" Margin="392,232,0,0" VerticalAlignment="Top" Width="80" Click="SacuvajProzor" Background="White" BorderBrush="#FF2FF607" Foreground="#FF4BF60A" Grid.RowSpan="2"/>
+        <Label x:Name="labelCena" Content="Jedinicna Cena:" HorizontalAlignment="Left" Height="35" Margin="10,59,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
+        <Label x:Name="labelKolicina" Content="Kolicina u magacinu:" HorizontalAlignment="Left" Height="31" Margin="10,111,0,0" VerticalAlignment="Top" Width="146" FontSize="15" Foreground="Black"/>
+        <Label x:Name="labelTipNam" Content="Tip namestaja:" HorizontalAlignment="Left" Height="28" Margin="10,169,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,59,0,0" TextWrapping="Wrap" Text="{Binding Path=JedinicnaCena}" VerticalAlignment="Top" Width="314" Name="tbNazivi"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,114,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaUMagacinu}" VerticalAlignment="Top" Width="314" Name="tbNazivii"/>
+        <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,169,0,0" VerticalAlignment="Top" Width="314" SelectedItem="{Binding Path=TipNamestaja}"/>
 
     </Grid>
 </Window>

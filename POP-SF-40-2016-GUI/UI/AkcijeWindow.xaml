@@ -17,5 +17,6 @@
         <ComboBox x:Name="cbSortAkcije" HorizontalAlignment="Left" Height="29" Margin="216,292,0,0" VerticalAlignment="Top" Width="108" SelectionChanged="cbSortAkcije_SelectionChanged"/>
         <TextBox x:Name="tbPretragaAkcija" HorizontalAlignment="Left" Height="32" Margin="443,255,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="139"/>
         <Button x:Name="btnPretragaAkcija" Content="Pretraga" HorizontalAlignment="Left" Height="29" Margin="456,292,0,0" VerticalAlignment="Top" Width="113" Background="White" BorderBrush="#FF52F00A" Foreground="#FF3FEB09" Click="PretragaAkcija"/>
+        <Button x:Name="btnOsveziAkciju" Content="Osvezi" HorizontalAlignment="Left" Height="25" Margin="456,326,0,0" VerticalAlignment="Top" Width="113" Click="OsveziAkciju" Background="White" BorderBrush="#FF03D905" Foreground="#FF00E71C"/>
     </Grid>
 </Window>

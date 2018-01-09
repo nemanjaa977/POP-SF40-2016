@@ -79,9 +79,9 @@ namespace POP_SF_40_2016_GUI.UI
         private void Odjava(object sender, RoutedEventArgs e)
         {
             var odjave = new LoginWindow();
-            odjave.ShowDialog();
             this.Close();
-           
+            odjave.ShowDialog();
+
         }
     }
 }

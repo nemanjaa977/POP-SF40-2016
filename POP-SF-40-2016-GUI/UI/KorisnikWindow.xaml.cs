@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -135,26 +136,42 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM Korisnici WHERE [Ime]= @iime OR [Prezime]= @pprezime OR [KorisnickoIme]= @korrIme OR [Lozinka]= @lozzz OR [TipKorisnika]= @tipKorrr" ;
+                    ObservableCollection<Korisnik> listaKorisnika = new ObservableCollection<Korisnik>();
+                    string sql = "SELECT * FROM Korisnici WHERE Obrisan=0 AND (Ime LIKE @iime OR Prezime LIKE @iime OR KorisnickoIme LIKE @iime OR Lozinka LIKE @iime OR TipKorisnika LIKE @iime)";
                     SqlCommand com = new SqlCommand(sql, con);
-                    com.Parameters.AddWithValue("@iime", tbPretragaKorisnik.Text);
-                    com.Parameters.AddWithValue("@pprezime", tbPretragaKorisnik.Text);
-                    com.Parameters.AddWithValue("@korrIme", tbPretragaKorisnik.Text);
-                    com.Parameters.AddWithValue("@lozzz", tbPretragaKorisnik.Text);
-                    com.Parameters.AddWithValue("@tipKorrr", tbPretragaKorisnik.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    com.Parameters.AddWithValue("@iime",'%' + tbPretragaKorisnik.Text + '%');
+                    da.SelectCommand = com;
+                    da.Fill(ds, "Korisnici");
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    foreach (DataRow row in ds.Tables["Korisnici"].Rows)
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgKorisnik.ItemsSource = dt.DefaultView;
+                        var tn = new Korisnik();
+                        tn.Id = int.Parse(row["Id"].ToString());
+                        tn.Ime = row["Ime"].ToString();
+                        tn.Prezime = row["Prezime"].ToString();
+                        tn.KorisnickoIme = row["KorisnickoIme"].ToString();
+                        tn.Lozinka = row["Lozinka"].ToString();
+                        tn.TipKorisnika = (TipKorisnika)Enum.Parse(typeof(TipKorisnika), row["TipKorisnika"].ToString());
+                        tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaKorisnika.Add(tn);
                     }
+
+                    view = CollectionViewSource.GetDefaultView(listaKorisnika);
+                    dgKorisnik.ItemsSource = view;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void OsveziTabeluKorisnik(object sender, RoutedEventArgs e)
+        {
+            dgKorisnik.ItemsSource = Projekat.Instance.Korisnik;
         }
     }
 }

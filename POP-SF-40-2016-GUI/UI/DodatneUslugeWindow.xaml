@@ -17,5 +17,6 @@
         <ComboBox x:Name="cbSortDodUsluge" HorizontalAlignment="Left" Height="29" Margin="541,199,0,0" VerticalAlignment="Top" Width="126" SelectionChanged="cbSortDodUsluge_SelectionChanged"/>
         <Button x:Name="btnPretragaUsluga" FontSize="13" Content="Pretraga" HorizontalAlignment="Left" Height="26" Margin="559,69,0,0" VerticalAlignment="Top" Width="85" Click="PretragaDodatnihUsluga" Background="White" BorderBrush="#FF07F313" Foreground="#FF3EFF01"/>
         <TextBox x:Name="tbPretragaUsluga" HorizontalAlignment="Left" Height="30" Margin="532,34,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="135"/>
+        <Button x:Name="btnOSveziUsluge" Content="Osvezi" HorizontalAlignment="Left" Height="24" Margin="559,103,0,0" VerticalAlignment="Top" Width="85" Background="White" BorderBrush="#FF45CB08" Foreground="#FF0EEB00" Click="OSveziUslugeTabelu"/>
     </Grid>
 </Window>

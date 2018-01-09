@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -149,23 +150,39 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM DodatneUsluge WHERE [Naziv]= @mm OR [Cena]= @ll";
+                    ObservableCollection<DodatnaUsluga> listaUsluga = new ObservableCollection<DodatnaUsluga>();
+                    string sql = "SELECT * FROM DodatneUsluge WHERE Obrisan = 0 AND (Naziv LIKE @mm OR Cena LIKE @mm)";
                     SqlCommand com = new SqlCommand(sql, con);
-                    com.Parameters.AddWithValue("@mm", tbPretragaUsluga.Text);
-                    com.Parameters.AddWithValue("@ll", tbPretragaUsluga.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    com.Parameters.AddWithValue("@mm",'%' + tbPretragaUsluga.Text + '%');
+                    da.SelectCommand = com;
+                    da.Fill(ds, "DodatneUsluge");
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    foreach (DataRow row in ds.Tables["DodatneUsluge"].Rows)
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgUsluga.ItemsSource = dt.DefaultView;
+                        var dd = new DodatnaUsluga();
+                        dd.Id = int.Parse(row["Id"].ToString());
+                        dd.Naziv = row["Naziv"].ToString();
+                        dd.Cena = double.Parse(row["Cena"].ToString());
+                        dd.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaUsluga.Add(dd);
                     }
+
+                    view = CollectionViewSource.GetDefaultView(listaUsluga);
+                    dgUsluga.ItemsSource = view;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void OSveziUslugeTabelu(object sender, RoutedEventArgs e)
+        {
+            dgUsluga.ItemsSource = Projekat.Instance.DodatnaUsluga;
         }
     }
 }

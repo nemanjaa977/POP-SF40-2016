@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -131,24 +132,40 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                     con.Open();
-                    string sql = "SELECT * FROM Akcije WHERE [DatumPocetka]= @datet OR [DatumKraja]= @dattt OR [Popust]= @poppp";
+                    ObservableCollection<Akcija> listaAkcija = new ObservableCollection<Akcija>();
+                    string sql = "SELECT * FROM Akcije WHERE Obrisan=0 AND (DatumPocetka LIKE @datet OR DatumKraja LIKE @datet OR Popust LIKE @datet) ";
                     SqlCommand com = new SqlCommand(sql, con);
-                    com.Parameters.AddWithValue("@datet", tbPretragaAkcija.Text);
-                    com.Parameters.AddWithValue("@dattt", tbPretragaAkcija.Text);
-                    com.Parameters.AddWithValue("@poppp", tbPretragaAkcija.Text);
+                    SqlDataAdapter da = new SqlDataAdapter(com);
+                    DataSet ds = new DataSet();
+                    com.Parameters.AddWithValue("@datet",'%' + tbPretragaAkcija.Text + '%');
+                    da.SelectCommand = com;
+                    da.Fill(ds, "Akcije");
 
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(com))
+                    foreach (DataRow row in ds.Tables["Akcije"].Rows)
                     {
-                        DataTable dt = new DataTable();
-                        adapter.Fill(dt);
-                        dgAkcija.ItemsSource = dt.DefaultView;
+                        var a = new Akcija();
+                        a.Id = int.Parse(row["Id"].ToString());
+                        a.DatumPocetka = DateTime.Parse(row["DatumPocetka"].ToString());
+                        a.DatumZavrsetka = DateTime.Parse(row["DatumKraja"].ToString());
+                        a.Popust = double.Parse(row["Popust"].ToString());
+                        a.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        listaAkcija.Add(a);
                     }
+
+                    view = CollectionViewSource.GetDefaultView(listaAkcija);
+                    dgAkcija.ItemsSource = view;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+        }
+
+        private void OsveziAkciju(object sender, RoutedEventArgs e)
+        {
+            dgAkcija.ItemsSource = Projekat.Instance.Akcija;
         }
     }
 }

@@ -2,6 +2,7 @@
 using POP_40_2016.utill;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -105,16 +106,27 @@ namespace POP_SF_40_2016_GUI.UI
                 using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["POP"].ConnectionString))
                 {
                      con.Open();
-                     string sql = "SELECT * FROM TipNamestaja WHERE [Naziv]= @nn";
+                     ObservableCollection<TipNamestaja> tipoviNamestaja = new ObservableCollection<TipNamestaja>();
+                     string sql = "SELECT * FROM TipNamestaja WHERE Obrisan = 0 AND (Naziv LIKE @nn)";
                      SqlCommand com = new SqlCommand(sql, con);
-                     com.Parameters.AddWithValue("@nn", tbTipPretraga.Text);
+                     SqlDataAdapter da = new SqlDataAdapter(com);
+                     DataSet ds = new DataSet();
+                     com.Parameters.AddWithValue("@nn",'%' + tbTipPretraga.Text + '%');
+                     da.SelectCommand = com;
+                     da.Fill(ds, "TipNamestaja");
 
-                     using (SqlDataAdapter adapter = new SqlDataAdapter(com))
-                     {
-                         DataTable dt = new DataTable();
-                         adapter.Fill(dt);
-                         dgTipNamestaja.ItemsSource = dt.DefaultView;
-                     }
+                    foreach (DataRow row in ds.Tables["TipNamestaja"].Rows)
+                    {
+                        var tn = new TipNamestaja();
+                        tn.Id = int.Parse(row["Id"].ToString());
+                        tn.Naziv = row["Naziv"].ToString();
+                        tn.Obrisan = bool.Parse(row["Obrisan"].ToString());
+
+                        tipoviNamestaja.Add(tn);
+                    }
+
+                    view = CollectionViewSource.GetDefaultView(tipoviNamestaja);
+                    dgTipNamestaja.ItemsSource = view;
                 }
             }
             catch (Exception ex)
@@ -129,19 +141,9 @@ namespace POP_SF_40_2016_GUI.UI
             dgTipNamestaja.ItemsSource = listaT;
         }
 
-        /*private void tbTipPretraga_TextChanged(object sender, TextChangedEventArgs e)
+        private void OsveziTabelu(object sender, RoutedEventArgs e)
         {
-            TextBox textBoxName = (TextBox)sender;
-            string filterText = textBoxName.Text;
-            ICollectionView cv = CollectionViewSource.GetDefaultView(dgTipNamestaja.ItemsSource);
-
-            if (!string.IsNullOrEmpty(filterText))
-            {
-                cv.Filter = o => {
-                    TipNamestaja p = o as TipNamestaja;
-                    return (p.Naziv.ToUpper().StartsWith(filterText.ToUpper()));
-                };
-            }
-        }*/
+            dgTipNamestaja.ItemsSource = Projekat.Instance.TipNamestaja;
+        }
     }
 }

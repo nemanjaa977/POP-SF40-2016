@@ -48,7 +48,6 @@ namespace POP_SF_40_2016_GUI.UI
             tbDatumZ.DataContext = akcija;
             tbPopust.DataContext = akcija;
 
-            lbPopust.ItemsSource = akcija.NamestajNaPopustu;
             dgNamestajPopust.ItemsSource = akcija.NamestajNaPopustu;
             dgNamestajPopust.IsSynchronizedWithCurrentItem = true;
 
@@ -114,7 +113,7 @@ namespace POP_SF_40_2016_GUI.UI
             obrisani.Add(odabran);
             foreach (var nam in dodatiNamestaji)
             {
-                if (nam.Id == odabran.Id)
+                if (nam.Id == odabran.Id) { }
                     dodatiNamestaji.Remove(nam);
             }
         }
@@ -133,6 +132,7 @@ namespace POP_SF_40_2016_GUI.UI
             NamestajWindow s = new NamestajWindow(NamestajWindow.Operacija.PREUZIMANJE,NamestajWindow.Prozor.PrezumiAkcija);
             if (s.ShowDialog() == true)
             {
+              
                 akcija.NamestajNaPopustu.Add(s.IzabranNamestaj);
                 akcija.NamestajNaPopustuId.Add(s.IzabranNamestaj.Id);
                 dodatiNamestaji.Add(s.IzabranNamestaj);
