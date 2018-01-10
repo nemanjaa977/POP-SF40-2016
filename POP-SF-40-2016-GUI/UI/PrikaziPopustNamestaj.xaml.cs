@@ -28,6 +28,7 @@ namespace POP_SF_40_2016_GUI.UI
             this.akcija = akcija;
 
             dgPrikaziPopust.ItemsSource = akcija.NamestajNaPopustu;
+            dgPrikaziPopust.IsSynchronizedWithCurrentItem = true;
 
             dgPrikaziPopust.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
         }

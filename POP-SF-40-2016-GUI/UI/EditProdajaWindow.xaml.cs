@@ -46,7 +46,9 @@ namespace POP_SF_40_2016_GUI.UI
             tbKupac.DataContext = prodaja;
 
             dgDodUsluge.ItemsSource = prodaja.DodatneUsluge;
+            dgDodUsluge.IsSynchronizedWithCurrentItem = true;
             dgNamestajj.ItemsSource = prodaja.NamestajNaProdaja;
+            dgNamestajj.IsSynchronizedWithCurrentItem = true;
         }
 
         private void ZatvoriProzorProdajaEdit(object sender, RoutedEventArgs e)
@@ -119,6 +121,9 @@ namespace POP_SF_40_2016_GUI.UI
                 prodaja.DodatneUsluge.Add(ff.IzabranaUsluga);
                 prodaja.DodatnaUslugaId.Add(ff.IzabranaUsluga.Id);
                 dodateUsluge.Add(ff.IzabranaUsluga);
+
+                dgDodUsluge.ItemsSource = prodaja.DodatneUsluge;
+                dgDodUsluge.IsSynchronizedWithCurrentItem = true;
             }
         }
 
@@ -138,7 +143,10 @@ namespace POP_SF_40_2016_GUI.UI
                 prodaja.NamestajNaProdaja.Add(nn.IzabranNamestaj);
                 prodaja.NamestajZaProdajuId.Add(nn.IzabranNamestaj.Id);
                 dodatiNamestaji.Add(nn.IzabranNamestaj);
-                
+
+                dgNamestajj.ItemsSource = prodaja.NamestajNaProdaja;
+                dgNamestajj.IsSynchronizedWithCurrentItem = true;
+
             }
         }
 

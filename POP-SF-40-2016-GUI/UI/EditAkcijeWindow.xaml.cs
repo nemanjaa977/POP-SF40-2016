@@ -23,7 +23,7 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class EditAkcijeWindow : Window
     {
-        ICollectionView view;
+        //ICollectionView view;
 
         public enum Operacija
         {
@@ -73,6 +73,12 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 case Operacija.DODAVANJE:
                     akcija.Id = listaAkcija.Count + 1;
+                    var t = double.Parse(tbPopust.Text);
+                    if (t == 0)
+                    {
+                        MessageBox.Show("Polje za popust mora biti popunjeno!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                     for (int i = 0; i < akcija.NamestajNaPopustu.Count; i++)
                     {
                         akcija.NamestajNaPopustu[i].CenaPopust = cenaNamestaja - ((cenaNamestaja * akcija.Popust) / 100);
@@ -108,13 +114,23 @@ namespace POP_SF_40_2016_GUI.UI
     
         private void UkloniNamestajPopust(object sender, RoutedEventArgs e)
         {
-            var odabran = dgNamestajPopust.SelectedItem as Namestaj;
-            akcija.NamestajNaPopustu.Remove(odabran);
-            obrisani.Add(odabran);
-            foreach (var nam in dodatiNamestaji)
+            try
             {
-                if (nam.Id == odabran.Id) { }
+                var odabran = dgNamestajPopust.SelectedItem as Namestaj;
+
+                akcija.NamestajNaPopustu.Remove(odabran);
+                obrisani.Add(odabran);
+                if (dodatiNamestaji.Contains(odabran) == true)
+                    dodatiNamestaji.Remove(odabran);
+           /*     foreach (var nam in dodatiNamestaji)
+                {
+                    if (nam.Id == odabran.Id) { }
                     dodatiNamestaji.Remove(nam);
+                }*/
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom brisanja namestaja!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -136,6 +152,9 @@ namespace POP_SF_40_2016_GUI.UI
                 akcija.NamestajNaPopustu.Add(s.IzabranNamestaj);
                 akcija.NamestajNaPopustuId.Add(s.IzabranNamestaj.Id);
                 dodatiNamestaji.Add(s.IzabranNamestaj);
+
+                dgNamestajPopust.ItemsSource = akcija.NamestajNaPopustu;
+                dgNamestajPopust.IsSynchronizedWithCurrentItem = true;
             }
         }
     }

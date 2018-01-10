@@ -47,6 +47,7 @@ namespace POP_SF_40_2016_GUI.UI
                 cbSortDodUsluge.Visibility = System.Windows.Visibility.Collapsed;
                 tbPretragaUsluga.Visibility = System.Windows.Visibility.Collapsed;
                 btnPretragaUsluga.Visibility = System.Windows.Visibility.Collapsed;
+                btnOSveziUsluge.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {

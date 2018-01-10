@@ -110,7 +110,8 @@ namespace POP_40_2016.Model
                 }
             set {
                 tippNamestaja = value;
-                TipNamestajaId = tippNamestaja.Id;
+             /*   if(tippNamestaja!=null)
+                    TipNamestajaId = tippNamestaja.Id;*/
                 OnPropertyChanged("TipNamestaja");
                 }
         }

@@ -55,6 +55,8 @@ namespace POP_SF_40_2016_GUI.UI
                     cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Hidden;
                     tbPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
                     btnPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
+                    btnOsveziNamestaj.Visibility = System.Windows.Visibility.Hidden;
+
 
                 }
                 else
@@ -68,6 +70,7 @@ namespace POP_SF_40_2016_GUI.UI
                     cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Hidden;
                     tbPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
                     btnPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
+                    btnOsveziNamestaj.Visibility = System.Windows.Visibility.Hidden;
                 }
             }
             else
@@ -79,9 +82,10 @@ namespace POP_SF_40_2016_GUI.UI
                 cbSortiranjeNAmestaj.Visibility = System.Windows.Visibility.Visible;
                 tbPretragaNamestaj.Visibility = System.Windows.Visibility.Visible;
                 btnPretragaNamestaj.Visibility = System.Windows.Visibility.Visible;
+                btnOsveziNamestaj.Visibility = System.Windows.Visibility.Visible;
             }
     
-            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj);
+            view = CollectionViewSource.GetDefaultView(Projekat.Instance.Namestaj.Where(n => n.KolicinaUMagacinu>0));
 
             view.Filter = prikazFilter;
 
