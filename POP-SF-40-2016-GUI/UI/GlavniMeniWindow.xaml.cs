@@ -20,6 +20,7 @@ namespace POP_SF_40_2016_GUI.UI
     /// </summary>
     public partial class GlavniMeniWindow : Window
     {
+
         public GlavniMeniWindow(TipKorisnika uloga)
         {
             InitializeComponent();

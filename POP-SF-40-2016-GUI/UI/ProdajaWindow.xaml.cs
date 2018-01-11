@@ -80,14 +80,6 @@ namespace POP_SF_40_2016_GUI.UI
             }
         }
 
-        private void IzmeniRacun(object sender, RoutedEventArgs e)
-        {
-            ProdajaNamestaja kopija = (ProdajaNamestaja)IzabranaProdaja.Clone();
-            var pProzor = new EditProdajaWindow(kopija, EditProdajaWindow.Operacija.IZMENA);
-            pProzor.ShowDialog();
-            view.Refresh();      
-        }
-
         private void PrikaziNamUs(object sender, RoutedEventArgs e)
         {
             ProdajaNamestaja pr = dgProdaja.SelectedItem as ProdajaNamestaja;

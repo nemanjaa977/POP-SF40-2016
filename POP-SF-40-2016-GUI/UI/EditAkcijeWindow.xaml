@@ -19,7 +19,7 @@
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="33" Margin="784,23.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" FontSize="18" Click="SacuvajProzorEditAkcije" Background="White" BorderBrush="#FF0DF107" Foreground="#FF05FD08"/>
         <TextBox x:Name="tbPopust" HorizontalAlignment="Left" Height="38" Margin="142,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" >
             <TextBox.Text>
-                <Binding Path="Popust">
+                <Binding Path="Popust" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <local:ValidationPopust/>
                     </Binding.ValidationRules>

@@ -29,6 +29,7 @@ namespace POP_SF_40_2016_GUI.UI
         ICollectionView view;
 
         public Namestaj IzabranNamestaj { get; set; }
+        public static int UnetaKolicina { get; set; }
 
         public enum Operacija { ADMINISTRACIJA, PREUZIMANJE }
 
@@ -56,8 +57,6 @@ namespace POP_SF_40_2016_GUI.UI
                     tbPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
                     btnPretragaNamestaj.Visibility = System.Windows.Visibility.Hidden;
                     btnOsveziNamestaj.Visibility = System.Windows.Visibility.Hidden;
-
-
                 }
                 else
                 {
@@ -93,6 +92,7 @@ namespace POP_SF_40_2016_GUI.UI
             dgNamestaj.DataContext = this;
             dgNamestaj.ItemsSource = view;
 
+            dgNamestaj.SelectedIndex = 0;
             IzabranNamestaj = dgNamestaj.SelectedItem as Namestaj;
 
             dgNamestaj.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -179,10 +179,7 @@ namespace POP_SF_40_2016_GUI.UI
                         else 
                         {
                             IzabranNamestaj = izabran;
-                            IzabranNamestaj.ProdataKolicina = kolicina;
-                            IzabranNamestaj.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu - kolicina;
-                            n.KolicinaUMagacinu = IzabranNamestaj.KolicinaUMagacinu;
-                            Namestaj.Update(n);
+                            UnetaKolicina = kolicina;
                         }
                     } 
                 }
@@ -205,23 +202,24 @@ namespace POP_SF_40_2016_GUI.UI
             switch (izabrano)
             {
                 case "Naziv":
-                    var listaN = Projekat.Instance.Namestaj.OrderBy(n => n.Naziv);
+                    var listaN = Projekat.Instance.Namestaj.OrderBy(n => n.Naziv).Where(n => n.Obrisan==false);
                     dgNamestaj.ItemsSource = listaN;
                     break;
                 case "JedinicnaCena":
-                    var listaNa = Projekat.Instance.Namestaj.OrderBy(n => n.JedinicnaCena);
+                    var listaNa = Projekat.Instance.Namestaj.OrderBy(n => n.JedinicnaCena).Where(n => n.Obrisan == false);
                     dgNamestaj.ItemsSource = listaNa;
                     break;
                 case "Sifra":
-                    var listaNaa = Projekat.Instance.Namestaj.OrderBy(n => n.Sifra);
+                    var listaNaa = Projekat.Instance.Namestaj.OrderBy(n => n.Sifra).Where(n => n.Obrisan == false);
                     dgNamestaj.ItemsSource = listaNaa;
                     break;
                 case "KolicinaUMagacinu":
-                    var listaNam = Projekat.Instance.Namestaj.OrderBy(n => n.KolicinaUMagacinu);
+                    var listaNam = Projekat.Instance.Namestaj.OrderBy(n => n.KolicinaUMagacinu).Where(n => n.Obrisan == false);
                     dgNamestaj.ItemsSource = listaNam;
                     break;
                 case "TipNamestaja":
-                    var listaNami = Projekat.Instance.Namestaj.OrderBy(n => n.TipNamestaja.Naziv);
+                    var lo = Projekat.Instance.Namestaj;
+                    var listaNami = lo.OrderBy(n => n.TipNamestaja.Naziv).Where(n => n.Obrisan == false);
                     dgNamestaj.ItemsSource = listaNami;
                     break;
                 default:

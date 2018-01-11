@@ -181,6 +181,14 @@ namespace POP_40_2016.Model
         public static void Delete(TipNamestaja tn)
         {
             tn.Obrisan = true;
+            foreach(var n in Projekat.Instance.Namestaj)
+            {
+                if (n.TipNamestaja.Id == tn.Id)
+                {
+                    n.Obrisan = true;
+                    Namestaj.Delete(n);
+                }
+            }
             Update(tn);
 
         }

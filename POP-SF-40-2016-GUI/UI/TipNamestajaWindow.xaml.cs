@@ -42,6 +42,7 @@ namespace POP_SF_40_2016_GUI.UI
             dgTipNamestaja.DataContext = this;
             dgTipNamestaja.ItemsSource = view;
 
+            dgTipNamestaja.SelectedIndex = 0;
             IzabranTipNamestaja = dgTipNamestaja.SelectedItem as TipNamestaja;
 
             dgTipNamestaja.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
@@ -71,17 +72,7 @@ namespace POP_SF_40_2016_GUI.UI
         {
             if (MessageBox.Show($"Da li zelite da izbrisete: {IzabranTipNamestaja.Naziv}", "Brisanje", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-                foreach (var n in Projekat.Instance.Namestaj.Where(n=> n.TipNamestaja!=null))
-                {
-                    if (n.TipNamestaja.Id == IzabranTipNamestaja.Id)
-                    {
-                        n.TipNamestaja = null;
-                        n.TipNamestajaId = 0;
-                        Namestaj.Update(n);
-                    }
-                }
-                TipNamestaja.Delete(IzabranTipNamestaja);
-               
+                TipNamestaja.Delete(IzabranTipNamestaja);             
             }
             view.Refresh();
         }

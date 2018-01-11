@@ -110,8 +110,8 @@ namespace POP_40_2016.Model
                 }
             set {
                 tippNamestaja = value;
-             /*   if(tippNamestaja!=null)
-                    TipNamestajaId = tippNamestaja.Id;*/
+                if(tippNamestaja!=null)
+                    TipNamestajaId = tippNamestaja.Id;
                 OnPropertyChanged("TipNamestaja");
                 }
         }
@@ -249,6 +249,7 @@ namespace POP_40_2016.Model
                     cmd.Parameters.AddWithValue("Naziv", n.Naziv);
                     cmd.Parameters.AddWithValue("Obrisan", n.Obrisan);
                     cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestajaId);
+                    //cmd.Parameters.AddWithValue("TipNamestajaId", n.TipNamestaja.Id);
                     cmd.Parameters.AddWithValue("Sifra", n.Sifra);
                     cmd.Parameters.AddWithValue("Cena", n.JedinicnaCena);
                     cmd.Parameters.AddWithValue("CenaPopust", n.CenaPopust);
@@ -313,7 +314,7 @@ namespace POP_40_2016.Model
         }
 
         public static void Delete(Namestaj n)
-        {
+        {      
             n.Obrisan = true;
             Update(n);
         }

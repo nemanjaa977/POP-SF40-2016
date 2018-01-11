@@ -32,7 +32,7 @@ namespace POP_SF_40_2016_GUI.UI
             var korisnici = Projekat.Instance.Korisnik;
             foreach (var k in korisnici)
             {
-                var korIme = tbIme.Text;
+                var korIme = tbIme.Text.Trim();
                 var lozinka = pfLozinka.Password;
                 if (korIme == "" || lozinka == "")
                 {

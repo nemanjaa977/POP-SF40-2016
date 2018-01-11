@@ -59,7 +59,10 @@ namespace POP_SF_40_2016_GUI.UI
                 case Operacija.DODAVANJE:
                     namestaj.Id = listaa.Count + 1;
                     if(namestaj.TipNamestaja!=null)
-                    namestaj.Sifra = tbNaziv.Text.Substring(0, 2).ToUpper() + namestaj.Id + cbTipNamestaja.Text.Substring(0, 1).ToUpper(); 
+                        if(tbNaziv.Text.Length>1)
+                            namestaj.Sifra = tbNaziv.Text.Substring(0, 2).ToUpper() + namestaj.Id + cbTipNamestaja.Text.Substring(0, 1).ToUpper(); 
+                    else
+                            namestaj.Sifra = tbNaziv.Text.Substring(0, 1).ToUpper() + namestaj.Id + cbTipNamestaja.Text.Substring(0, 1).ToUpper();
                     Namestaj.Create(namestaj);
                     break;                  
             }

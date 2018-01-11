@@ -20,8 +20,24 @@
         <Label x:Name="labelCena" Content="Jedinicna Cena:" HorizontalAlignment="Left" Height="35" Margin="10,59,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
         <Label x:Name="labelKolicina" Content="Kolicina u magacinu:" HorizontalAlignment="Left" Height="31" Margin="10,111,0,0" VerticalAlignment="Top" Width="146" FontSize="15" Foreground="Black"/>
         <Label x:Name="labelTipNam" Content="Tip namestaja:" HorizontalAlignment="Left" Height="28" Margin="10,169,0,0" VerticalAlignment="Top" Width="116" FontSize="15" Foreground="Black"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,59,0,0" TextWrapping="Wrap" Text="{Binding Path=JedinicnaCena}" VerticalAlignment="Top" Width="314" Name="tbNazivi"/>
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,114,0,0" TextWrapping="Wrap" Text="{Binding Path=KolicinaUMagacinu}" VerticalAlignment="Top" Width="314" Name="tbNazivii"/>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314" Name="tbNazivi">
+            <TextBox.Text>
+                <Binding Path="JedinicnaCena">
+                    <Binding.ValidationRules>
+                        <local:ValidationDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="174,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="314" Name="tbNazivii">
+            <TextBox.Text>
+                <Binding Path="KolicinaUMagacinu" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidationInt/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <ComboBox x:Name="cbTipNamestaja" HorizontalAlignment="Left" Height="28" Margin="174,169,0,0" VerticalAlignment="Top" Width="314" SelectedItem="{Binding Path=TipNamestaja}"/>
 
     </Grid>

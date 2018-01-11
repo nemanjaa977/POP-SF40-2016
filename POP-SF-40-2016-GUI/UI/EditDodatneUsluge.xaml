@@ -14,7 +14,15 @@
         <Label Content="Naziv:" HorizontalAlignment="Left" Height="33" Margin="36,33,0,0" VerticalAlignment="Top" Width="111" FontSize="20"/>
         <Label Content="Cena:" HorizontalAlignment="Left" Height="33" Margin="36,80,0,0" VerticalAlignment="Top" Width="111" FontSize="20"/>
         <TextBox x:Name="tbNaziv" HorizontalAlignment="Left" Height="33" Margin="182,33,0,0" TextWrapping="Wrap" Text="{Binding Path=Naziv}" VerticalAlignment="Top" Width="282" FontSize="15"/>
-        <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="33" Margin="182,80,0,0" TextWrapping="Wrap" Text="{Binding Path=Cena}" VerticalAlignment="Top" Width="282" FontSize="15"/>
+        <TextBox x:Name="tbCena" HorizontalAlignment="Left" Height="33" Margin="182,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="282" FontSize="15" >
+            <TextBox.Text>
+                <Binding Path="Cena" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:ValidationDouble/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button x:Name="btnZatvori" Content="Zatvori" HorizontalAlignment="Left" Height="31" Margin="36,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="ZatvoriEditProzor" Background="White" Foreground="Red" BorderBrush="Red"/>
         <Button x:Name="btnSacuvaj" Content="Sacuvaj" HorizontalAlignment="Left" Height="31" Margin="369,28.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="95" Click="SacuvajEditProzor" Background="White" BorderBrush="#FF35FF01" Foreground="#FF0FFF00" />
     </Grid>

@@ -30,10 +30,6 @@ namespace POP_SF_40_2016_GUI.UI
 
         private ProdajaNamestaja prodaja;
         private Operacija operacija;
-        public ObservableCollection<Namestaj> dodatiNamestaji = new ObservableCollection<Namestaj>();
-        public ObservableCollection<DodatnaUsluga> dodateUsluge = new ObservableCollection<DodatnaUsluga>();
-        public ObservableCollection<Namestaj> obrisaniNam = new ObservableCollection<Namestaj>();
-        public ObservableCollection<DodatnaUsluga> obrisaneUs = new ObservableCollection<DodatnaUsluga>();
 
         public EditProdajaWindow(ProdajaNamestaja prodaja, Operacija operacija)
         {
@@ -91,23 +87,13 @@ namespace POP_SF_40_2016_GUI.UI
                     if(prodaja.NamestajNaProdaja.Count>0)
                         for (int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
                         {
-                             prodaja.UkupanIznos = (cenaNamestaja * prodaja.NamestajNaProdaja[i].ProdataKolicina) + cenaUsluga;
+                             
+                            prodaja.NamestajNaProdaja[i].KolicinaUMagacinu= prodaja.NamestajNaProdaja[i].KolicinaUMagacinu - prodaja.NamestajNaProdaja[i].ProdataKolicina;
+                            prodaja.UkupanIznos = (cenaNamestaja * prodaja.NamestajNaProdaja[i].ProdataKolicina) + cenaUsluga;
+                            Namestaj.Update(prodaja.NamestajNaProdaja[i]);
                         }
                     prodaja.UkupanIznosPDV = prodaja.UkupanIznos + ((prodaja.UkupanIznos * 20) / 100);
                     ProdajaNamestaja.Create(prodaja);
-                    break;
-                case Operacija.IZMENA:
-                    if (prodaja.NamestajNaProdaja.Count > 0)
-                        for (int i = 0; i < prodaja.NamestajNaProdaja.Count; i++)
-                        {
-                            prodaja.UkupanIznos = (cenaNamestaja * prodaja.NamestajNaProdaja[i].ProdataKolicina) + cenaUsluga;
-                        }
-                    prodaja.UkupanIznosPDV = prodaja.UkupanIznos + ((prodaja.UkupanIznos * 20) / 100);
-                    ProdajaNamestaja.Update(prodaja);
-                    ProdajaNamestaja.AddProdajaProzorNamestaj(prodaja, dodatiNamestaji);
-                    ProdajaNamestaja.AddProdajaProzorUsluga(prodaja, dodateUsluge);
-                    ProdajaNamestaja.DeleteProdajaProzorNamestaj(prodaja, obrisaniNam);
-                    ProdajaNamestaja.DeleteProdajaProzorUsluga(prodaja, obrisaneUs);
                     break;
             }
             Close();
@@ -120,7 +106,6 @@ namespace POP_SF_40_2016_GUI.UI
             {
                 prodaja.DodatneUsluge.Add(ff.IzabranaUsluga);
                 prodaja.DodatnaUslugaId.Add(ff.IzabranaUsluga.Id);
-                dodateUsluge.Add(ff.IzabranaUsluga);
 
                 dgDodUsluge.ItemsSource = prodaja.DodatneUsluge;
                 dgDodUsluge.IsSynchronizedWithCurrentItem = true;
@@ -141,9 +126,9 @@ namespace POP_SF_40_2016_GUI.UI
             if(nn.ShowDialog() == true)
             {
                 prodaja.NamestajNaProdaja.Add(nn.IzabranNamestaj);
+                nn.IzabranNamestaj.ProdataKolicina = NamestajWindow.UnetaKolicina;
                 prodaja.NamestajZaProdajuId.Add(nn.IzabranNamestaj.Id);
-                dodatiNamestaji.Add(nn.IzabranNamestaj);
-
+                NamestajWindow.UnetaKolicina=0;
                 dgNamestajj.ItemsSource = prodaja.NamestajNaProdaja;
                 dgNamestajj.IsSynchronizedWithCurrentItem = true;
 
@@ -161,35 +146,39 @@ namespace POP_SF_40_2016_GUI.UI
 
         private void UkloniNamestaj(object sender, RoutedEventArgs e)
         {
-            var select = dgNamestajj.SelectedItem as Namestaj;
-            prodaja.NamestajNaProdaja.Remove(select);
-            obrisaniNam.Add(select);
-            foreach(var namestaj in dodatiNamestaji)
+
+            try
             {
-                if (namestaj.Id == select.Id)
+                if (dgNamestajj.SelectedIndex >= 0)
                 {
-                    dodatiNamestaji.Remove(namestaj);
+                    var selected = dgNamestajj.SelectedItem as Namestaj;
+                    prodaja.NamestajNaProdaja.Remove(selected);
+                    prodaja.NamestajZaProdajuId.Remove(selected.Id);
                 }
             }
-                      
-            /*select.KolicinaUMagacinu = select.KolicinaUMagacinu + select.ProdataKolicina;
-            foreach (var n in Projekat.Instance.Namestaj)
+            catch (Exception)
             {
-                if (n.Id == select.Id)
-                    n.KolicinaUMagacinu = select.KolicinaUMagacinu;
-            }*/
+                MessageBox.Show("Problem prilikom brisanja usluga!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+
         }
 
         private void UkloniUslugu(object sender, RoutedEventArgs e)
 
-        { 
-            var selected = dgDodUsluge.SelectedItem as DodatnaUsluga;
-            prodaja.DodatneUsluge.Remove(selected);
-            obrisaneUs.Add(selected);
-            foreach (var usluga in dodateUsluge)
+        {
+            try
             {
-                if (usluga.Id == selected.Id)
-                     dodateUsluge.Remove(usluga);
+                if (dgDodUsluge.SelectedIndex >= 0)
+                {
+                    var selected = dgDodUsluge.SelectedItem as DodatnaUsluga;
+                    prodaja.DodatneUsluge.Remove(selected);
+                    prodaja.DodatnaUslugaId.Remove(selected.Id);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Problem prilikom brisanja usluga!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

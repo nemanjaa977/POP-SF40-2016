@@ -69,14 +69,15 @@ namespace POP_SF_40_2016_GUI.UI
                 cenaNamestaja += akcija.NamestajNaPopustu[i].JedinicnaCena;
             }
 
+            var t = double.Parse(tbPopust.Text);
+
             switch (operacija)
             {
                 case Operacija.DODAVANJE:
                     akcija.Id = listaAkcija.Count + 1;
-                    var t = double.Parse(tbPopust.Text);
                     if (t == 0)
                     {
-                        MessageBox.Show("Polje za popust mora biti popunjeno!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        MessageBox.Show("Polje za popust mora biti popunjeno, ne moze biti 0!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
                         return;
                     }
                     for (int i = 0; i < akcija.NamestajNaPopustu.Count; i++)
@@ -93,6 +94,11 @@ namespace POP_SF_40_2016_GUI.UI
                     Akcija.Create(akcija);
                     break;
                 case Operacija.IZMENA:
+                    if (t == 0)
+                    {
+                        MessageBox.Show("Polje za popust mora biti popunjeno, ne moze biti 0!", "Greska", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
                     for (int i = 0; i < akcija.NamestajNaPopustu.Count; i++)
                     {
                         akcija.NamestajNaPopustu[i].CenaPopust = cenaNamestaja - ((cenaNamestaja * akcija.Popust) / 100);
@@ -105,8 +111,10 @@ namespace POP_SF_40_2016_GUI.UI
                         }
                     }
                     Akcija.Update(akcija);
-                    Akcija.AddNaAkciji(akcija, dodatiNamestaji);
-                    Akcija.DeleteNaAkcija(akcija, obrisani);
+                    if(dodatiNamestaji.Count>0)
+                        Akcija.AddNaAkciji(akcija, dodatiNamestaji);
+                    if(obrisani.Count>0)
+                        Akcija.DeleteNaAkcija(akcija, obrisani);
                     break;
             }
             Close();
@@ -116,17 +124,16 @@ namespace POP_SF_40_2016_GUI.UI
         {
             try
             {
-                var odabran = dgNamestajPopust.SelectedItem as Namestaj;
-
-                akcija.NamestajNaPopustu.Remove(odabran);
-                obrisani.Add(odabran);
-                if (dodatiNamestaji.Contains(odabran) == true)
-                    dodatiNamestaji.Remove(odabran);
-           /*     foreach (var nam in dodatiNamestaji)
+                if(dgNamestajPopust.SelectedIndex >= 0)
                 {
-                    if (nam.Id == odabran.Id) { }
-                    dodatiNamestaji.Remove(nam);
-                }*/
+                    Namestaj odabran = dgNamestajPopust.SelectedItem as Namestaj;
+                    akcija.NamestajNaPopustu.Remove(odabran);
+                    akcija.NamestajNaPopustuId.Remove(odabran.Id);
+                    obrisani.Add(odabran);
+                    if (dodatiNamestaji.Contains(odabran) == true)
+                        dodatiNamestaji.Remove(odabran);
+                }
+            
             }
             catch (Exception)
             {
@@ -152,6 +159,8 @@ namespace POP_SF_40_2016_GUI.UI
                 akcija.NamestajNaPopustu.Add(s.IzabranNamestaj);
                 akcija.NamestajNaPopustuId.Add(s.IzabranNamestaj.Id);
                 dodatiNamestaji.Add(s.IzabranNamestaj);
+                if (obrisani.Contains(s.IzabranNamestaj) == true)
+                    obrisani.Remove(s.IzabranNamestaj);
 
                 dgNamestajPopust.ItemsSource = akcija.NamestajNaPopustu;
                 dgNamestajPopust.IsSynchronizedWithCurrentItem = true;

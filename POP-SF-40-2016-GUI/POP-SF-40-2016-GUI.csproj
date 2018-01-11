@@ -107,6 +107,8 @@
       <DependentUpon>TipNamestajaWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\ValidationConverter.cs" />
+    <Compile Include="UI\ValidationDouble.cs" />
+    <Compile Include="UI\ValidationInt.cs" />
     <Compile Include="UI\ValidationPopust.cs" />
     <Compile Include="Util\GenericSerializer.cs" />
     <Page Include="MainWindow.xaml">
